@@ -288,9 +288,9 @@
 			$computador = new Computador($_SESSION['idCompAlt'], $numCirBd, $numPatrimonioBd, $numPatReitoriaBd, $nomeComputadorBd, $dataCadastro,
 			$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
 			$_SESSION['antTipoHD'], $nomeUsuarioBd, $statusComp, $obs, $_SESSION['idFuncionario'], $_SESSION['idSetor'], $idTipoProcessadorBd);
-			$computador->exibir();
-			//$computadorDAO = new ControleCirDAO();
-			//$computadorDAO->CoputadorUpdateDados($computador);	
+			//$computador->exibir();
+			$computadorDAO = new ControleCirDAO();
+			$computadorDAO->CoputadorUpdateDados($computador);	
 		}
 
 	elseif($aux == 0 && $auxLocal != 0)
