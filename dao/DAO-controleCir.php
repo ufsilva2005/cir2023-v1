@@ -589,6 +589,84 @@
                     return $buscar;
                     $conn = null;	
                 }
+
+            public function CoputadorUpdateDados($computador) 
+                {	
+                    $BdidComputador		= $computador->getIdComputador();
+                    $BdnumCir  			 = $computador->getNumCir();
+                    $BdnumPatrimonio  	 = $computador->getNumPatrimonio();
+                    $BdnumPatReitoria  	 = $computador->getNumPatReitoria();
+                    $BdnomeComputador	 = $computador->getNomeComputador();
+                    $BddataCadastro 	 = $computador->getDataCadastro();
+                    $BdrespCadastro    	 = $computador->getRespCadastro();                    
+                    $BddataAltCadastro   = $computador->getDataAltCadastro();  
+                    $BdrespAltCadastro   = $computador->getRespAltCadastro();                  
+                    $BdsistemaOpera  	 = $computador->getSistemaOpera();
+                    $BdmodelMaquina  	 = $computador->getModelMaquina();
+                    $Bdmemoria 			 = $computador->getMemoria();
+                    $BdnumIp  			 = $computador->getNumIp();
+                    $BdnumMac 			 = $computador->getNumMac();                   
+                    $BdtipoHD  			 = $computador->getTipoHD();
+                    $BdnomeUsuario  	 = $computador->getNomeUsuario();
+                    $BdstatusComp 		 = $computador->getStatusComp();
+                    $Bdobs  			 = $computador->getObs();
+                    $BdidFuncionario 	 = $computador->getIdFuncionario();
+                    $BdidSetor			 = $computador->getIdSetor();
+                    $BdidTipoProcessador = $computador->getIdTipoProcessador();
+                    
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');
+                    
+                    $prepara = $conn->prepare("UPDATE computador SET  numCir = BdnumCir, numPatrimonio = BdnumPatrimonio, numPatReitoria = BdnumPatReitoria,
+                   nomeComputador = BdnomeComputador, dataCadastro = BddataCadastro, respCadastro = BdrespCadastro, dataAltCadastro = BddataAltCadastro,
+                   respAltCadastro = BdrespAltCadastro, sistemaOpera = BdsistemaOpera, modelMaquina = BdmodelMaquina, memoria = Bdmemoria,
+                   numIp = BdnumIp, numMac = BdnumMac, tipoHD = BdtipoHD, nomeUsuario = BdnomeUsuario, statusComp = BdstatusComp, obs = Bdobs,
+                   idFuncionario = BdidFuncionario, idSetor = BdidSetor, idTipoProcessador = BdidTipoProcessador WHERE idComputador=:BdidComputador"); 
+                   
+                    $prepara->bindParam(":BdidComputador", $BdidComputador);
+                    $prepara->bindParam(":BdnumCir", $BdnumCir);
+                    $prepara->bindParam(":BdnumPatrimonio", $BdnumPatrimonio);
+                    $prepara->bindParam(":BdnumPatReitoria", $BdnumPatReitoria);
+                    $prepara->bindParam(":BdnomeComputador", $BdnomeComputador);
+                    $prepara->bindParam(":BddataCadastro", $BddataCadastro);
+                    $prepara->bindParam(":BdrespCadastro", $BdrespCadastro);
+                    $prepara->bindParam(":BddataAltCadastro", $BddataAltCadastro);
+                    $prepara->bindParam(":BdrespAltCadastro", $BdrespAltCadastro);
+                    $prepara->bindParam(":BdsistemaOpera", $BdsistemaOpera);
+                    $prepara->bindParam(":BdmodelMaquina", $BdmodelMaquina);
+                    $prepara->bindParam(":Bdmemoria", $Bdmemoria);
+                    $prepara->bindParam(":BdnumIp", $BdnumIp);
+                    $prepara->bindParam(":BdnumMac", $BdnumMac); 
+                    $prepara->bindParam(":BdtipoHD", $BdtipoHD);
+                    $prepara->bindParam(":BdnomeUsuario", $BdnomeUsuario);
+                    $prepara->bindParam(":BdstatusComp", $BdstatusComp);
+                    $prepara->bindParam(":Bdobs", $Bdobs);
+                    $prepara->bindParam(":BdidFuncionario", $BdidFuncionario);
+                    $prepara->bindParam(":BdidSetor", $BdidSetor);
+                    $prepara->bindParam(":BdidTipoProcessador", $BdidTipoProcessador);
+
+                    $prepara->execute();                 
+                    $conn = null;
+                }
+
+            public function ComputadorUpdateHd($idComputador,$tipoHD)
+                {
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');                    
+                    $sql = "UPDATE computador SET tipoHD = '$tipoHD' WHERE idComputador = '$idComputador'";
+                    
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
             //FIM DAS FUNÇÕES RELACIONADAS AO COMPUTADOR
 
             //INÍCIO DAS FUNÇÕES RELACIONADAS A IMPRESSORA 
