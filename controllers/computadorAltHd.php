@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	/*include "../funcao/funcao.php";
+	include "../funcao/funcao.php";
 	include "../dao/DAO-controleCir.php";
 	include "../models/class-setor.php";
-	include "../models/class-computador.php";*/	
+	include "../models/class-computador.php";	
 
 	//recebe dados da view
     echo"<br> dados do hd <br>";
