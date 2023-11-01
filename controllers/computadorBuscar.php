@@ -1,5 +1,8 @@
 <?php
+	session_start();
 	include "../dao/DAO-controleCir.php";
+	include "../funcao/funcao.php";
+
 	$op1 =  $_GET['action'];
 	if ($op1 != 1 )  
 		{
@@ -31,7 +34,7 @@
 			$numPatrimonio = $comp->numPatrimonio;
             $numPatReitoria = $comp->numPatReitoria;
 			$nomeComputador = $comp->nomeComputador;
-			$dataCadastro = $comp->dataCadastro;   
+			$dataCadastro = formatarData2($comp->dataCadastro);   
             $respCadastro = $comp->respCadastro;
 			$dataAltCadastro = $comp->dataAltCadastro;
 			$respAltCadastro = $comp->respAltCadastro;
@@ -43,7 +46,9 @@
 			$tipoHD = $comp->tipoHD;
 			$tipoHD =  unserialize($tipoHD);           
             $nomeUsuario = $comp->nomeUsuario;
+			//$_SESSION['nomeUsuario'] = $nomeUsuario;
 			$statusComp = $comp->statusComp;
+			$_SESSION['statusComp'] = $statusComp;
 			$obs = $comp->obs;   			
             $idFuncionario = $comp->idFuncionario;
 			$respCadastro = $comp->respCadastro;

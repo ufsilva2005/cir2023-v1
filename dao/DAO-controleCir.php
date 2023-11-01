@@ -592,7 +592,7 @@
 
             public function CoputadorUpdateDados($computador) 
                 {	
-                    $BdidComputador		= $computador->getIdComputador();
+                    $BdidComputador		 = $computador->getIdComputador();
                     $BdnumCir  			 = $computador->getNumCir();
                     $BdnumPatrimonio  	 = $computador->getNumPatrimonio();
                     $BdnumPatReitoria  	 = $computador->getNumPatReitoria();
@@ -617,11 +617,12 @@
                     $conn = Database::connect();                    
                     $conn->exec('SET CHARACTER SET utf8');
                     
-                    $prepara = $conn->prepare("UPDATE computador SET  numCir = BdnumCir, numPatrimonio = BdnumPatrimonio, numPatReitoria = BdnumPatReitoria,
-                   nomeComputador = BdnomeComputador, dataCadastro = BddataCadastro, respCadastro = BdrespCadastro, dataAltCadastro = BddataAltCadastro,
-                   respAltCadastro = BdrespAltCadastro, sistemaOpera = BdsistemaOpera, modelMaquina = BdmodelMaquina, memoria = Bdmemoria,
-                   numIp = BdnumIp, numMac = BdnumMac, tipoHD = BdtipoHD, nomeUsuario = BdnomeUsuario, statusComp = BdstatusComp, obs = Bdobs,
-                   idFuncionario = BdidFuncionario, idSetor = BdidSetor, idTipoProcessador = BdidTipoProcessador WHERE idComputador=:BdidComputador"); 
+                    $prepara = $conn->prepare("UPDATE computador SET  numCir=:BdnumCir, numPatrimonio=:BdnumPatrimonio, 
+                    numPatReitoria=:BdnumPatReitoria, nomeComputador=:BdnomeComputador, dataCadastro=:BddataCadastro, 
+                    respCadastro=:BdrespCadastro, dataAltCadastro=:BddataAltCadastro, respAltCadastro=:BdrespAltCadastro,
+                    sistemaOpera=:BdsistemaOpera, modelMaquina=:BdmodelMaquina, memoria=:Bdmemoria, numIp=:BdnumIp, numMac=:BdnumMac, 
+                    tipoHD=:BdtipoHD, nomeUsuario=:BdnomeUsuario, statusComp=:BdstatusComp, obs=:Bdobs, idFuncionario=:BdidFuncionario, 
+                    idSetor=:BdidSetor, idTipoProcessador=:BdidTipoProcessador WHERE idComputador=:BdidComputador"); 
                    
                     $prepara->bindParam(":BdidComputador", $BdidComputador);
                     $prepara->bindParam(":BdnumCir", $BdnumCir);

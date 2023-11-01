@@ -5,25 +5,15 @@
 	include "../models/class-setor.php";
 	include "../models/class-computador.php";	
 
-	
-		
-	/*$capHd = array();    
-    $i=0;
-    $_SESSION['i'] = $i;
-    $_SESSION['capHd'] = $capHd;*/
-
-
 	$aux = 0;
 	$auxLocal = 0;
 	$hitorico = "";
-	//$_SESSION['altHd'] = 0;
-	//$altHd = 0;
-
+	
 	//recebe dados da view
 	//$action =  $_GET['action'];
 	$dadosComputador = $_POST['dadosComputador'];
 	$localComputador = $_POST['localComputador'];
-	$dataCadastro    = $dataCadastro = formatarData($_SESSION['data']); 	
+	$dataCadastro    = formatarData($_SESSION['dataCadastro']); 	
 	$respCadastro = $_SESSION['respCadastro'];
 
 	//informações do local	
@@ -167,7 +157,7 @@
         {
             $numIpBd = $numIpAlt;  
 			$_SESSION['numIp'] = $numIpBd;
-            $auxLocal++;
+            $aux++;
             $hitorico .= 'Nº IP DO COMPUTADOR ALTERADO DE: '. $_SESSION['antNumIp'] .' PARA => '. $numIpBd . ' \n';
         }
 
@@ -180,7 +170,7 @@
         {
             $numMacBd = $numMacAlt;  
 			$_SESSION['numMac'] = $numMacBd;
-            $auxLocal++;
+            $aux++;
             $hitorico .= 'Nº MAC ALTERADO DE: '. $_SESSION['antNumMac'] .' PARA => '. $numMacBd . ' \n';
         }
 
@@ -193,7 +183,7 @@
         {
             $nomeUsuarioBd = $nomeUsuarioAlt;  
 			$_SESSION['nomeUsuario'] = $nomeUsuarioBd;
-            $auxLocal++;
+            $aux++;
             $hitorico .= 'NOME DO USUÁRIO ALTERADO DE: '. $_SESSION['antNomeUsuario'] .' PARA => '. $nomeUsuarioBd . ' \n';
         }
 
@@ -278,19 +268,22 @@
             $hitorico .= 'NOME DO LOCAL ALTERADO DE: '. $_SESSION['antNomeLocal'] .' PARA => '. $nomeLocalBd . ' \n';
         }
 
-		echo "<br>aux => " . $aux . "<br>auxLocal => " . $auxLocal .  "<br>historico => " . $hitorico;	
+	//echo "<br>aux => " . $aux . "<br>auxLocal => " . $auxLocal .  "<br>historico => " . $hitorico;	
 			
 	if($aux != 0 && $auxLocal == 0)
 		{
-			//$idComp = $_SESSION['idCompAlt'];
-			echo "<br>dados do computar alterados" ; 
+			//dados do computar alterados 
+
+			$tipoHD = serialize($_SESSION['antTipoHD']); 
 			
 			$computador = new Computador($_SESSION['idCompAlt'], $numCirBd, $numPatrimonioBd, $numPatReitoriaBd, $nomeComputadorBd, $dataCadastro,
 			$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
-			$_SESSION['antTipoHD'], $nomeUsuarioBd, $statusComp, $obs, $_SESSION['idFuncionario'], $_SESSION['idSetor'], $idTipoProcessadorBd);
-			//$computador->exibir();
+			$tipoHD, $nomeUsuarioBd, $_SESSION['statusComp'], $obs, $_SESSION['idFuncionario'], $_SESSION['idSetor'], $idTipoProcessadorBd);
+			$computador->exibir();
 			$computadorDAO = new ControleCirDAO();
 			$computadorDAO->CoputadorUpdateDados($computador);	
+
+			echo "<br>aux => " . $aux . "<br>auxLocal => " . $auxLocal .  "<br>historico => " . $hitorico;	
 		}
 
 	elseif($aux == 0 && $auxLocal != 0)
@@ -319,14 +312,6 @@
 
 					$computadorDAO = new ControleCirDAO();
                     $computadorDAO->ComputadorUpdateSetor($_SESSION['idCompAlt'],$verificaSetor);
-
-					
-					//$computador = new Computador($_SESSION['idCompAlt'], $numCirBd, $numPatrimonioBd, $numPatReitoriaBd, $nomeComputadorBd, $dataCadastro,
-					//$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
-					//$_SESSION['antTipoHD'], $nomeUsuarioBd, $statusComp, $obs, $_SESSION['idFuncionario'], $verificaSetor, $idTipoProcessadorBd);
-					//$computador->exibir();
-					//$computadorDAO = new ControleCirDAO();
-					//$computadorDAO->CadastrarComp($computador);	
 				}
 			
 			else
@@ -334,18 +319,7 @@
 					//FAZER UPDATE APENAS NO ID SETOR, PARA ISSO ALTERAR A FUCÇÃO ABAIXO
 					$computadorDAO = new ControleCirDAO();
                     $computadorDAO->ComputadorUpdateSetor($_SESSION['idCompAlt'],$verificaSetor);
-
-					//$computador = new Computador($_SESSION['idCompAlt'], $numCirBd, $numPatrimonioBd, $numPatReitoriaBd, $nomeComputadorBd, $dataCadastro,
-					//$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
-					//$_SESSION['antTipoHD'], $nomeUsuarioBd, $statusComp, $obs, $_SESSION['idFuncionario'], $verificaSetor, $idTipoProcessadorBd);
-					//$computador->exibir();
-					//$computadorDAO = new ControleCirDAO();
-					//$computadorDAO->CadastrarComp($computador);	
 				}
-					
-		
-			//echo "<br>antTipoHD => "; 
-			//print_r($_SESSION['antTipoHD']); 
 		}
 
 	elseif($aux != 0 && $auxLocal != 0)
@@ -378,7 +352,7 @@
 
 			$computador = new Computador($_SESSION['idCompAlt'], $numCirBd, $numPatrimonioBd, $numPatReitoriaBd, $nomeComputadorBd, $dataCadastro,
 			$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
-			$_SESSION['antTipoHD'], $nomeUsuarioBd, $statusComp, $obs, $_SESSION['idFuncionario'], $idSetorBd, $idTipoProcessadorBd);
+			$_SESSION['antTipoHD'], $nomeUsuarioBd, $_SESSION['statusComp'], $obs, $_SESSION['idFuncionario'], $idSetorBd, $idTipoProcessadorBd);
 			$computador->exibir();
 		}
 

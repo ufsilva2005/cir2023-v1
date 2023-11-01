@@ -296,12 +296,12 @@
                                 <div class="row">
                                     <div class="col px-md-1  col-md-2">
                                         <label for="inputSuccess" class="control-label">Data do Cadastro:</label>
-                                        <input type="text" class="form-control" value="<?php $date = date('d/m/Y'); echo $date; $data = $date ?>" disabled>
+                                        <input type="text" class="form-control" value="<?= $dataCadastro ; $_SESSION['dataCadastro']=$dataCadastro; ?>" disabled>
                                     </div>
 
                                     <div class="col px-md-1 col-md-10">
                                         <label for="inputSuccess" class="control-label">Responsável pelo Cadastro:</label>
-                                        <input type="text" class="form-control" value="<?= $respCadastro; ?>" disabled>
+                                        <input type="text" class="form-control" value="<?= $respCadastro; $_SESSION['respCadastro']=$respCadastro; ?>" disabled>
                                     </div>
                                 </div> 
 
