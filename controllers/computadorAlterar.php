@@ -367,8 +367,16 @@
 	switch (get_post_action('save', 'submit', 'publish')) 
 		{
 			case 'save':
-				echo "<br>OPÇÃO FINALIZAR";
-				echo "<br>aux => " . $aux . "<br>auxLocal => " . $auxLocal;				
+				if($aux != 0 || $auxLocal != 0)
+					{
+						echo "<script type='text/javascript'>alert('ALTERAÇÃO(ÕES)  EFETUADA(S)');</script>";
+						echo "<script>location = '../views/computadorListar.php';</script>";    
+					}	
+				else
+					{
+						echo "<script type='text/javascript'>alert('NENHUMA ALTERAÇÃO FOI EFETUADA');</script>";
+						echo "<script>location = '../views/computadorListar.php';</script>";    
+					}				
 				break;
 
 			case 'submit':
@@ -394,7 +402,6 @@
 				//print_r( $_SESSION['capHd']);
 				header("Location: ../views/computadorAlterar2.php?action=2");
 				break;
-
 			default:
 				//no action sent
 		}
