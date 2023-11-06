@@ -363,9 +363,9 @@
 					fclose($output2); 
 
 					$idComputador = null;
-					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
-					//echo "<br>dados  Historico<br>";		
-					//$historico->exibir();
+					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['nomeFuncionario'], $_SESSION['idCompAlt'],  $idImpressora, $_SESSION['idFuncionario']);
+            		//echo "<br>dados  Historico<br>";		
+					//$historicoBd->exibir();
 					//echo "<br>"; 
 					$historicoDAO = new ControleCirDAO();
 					$historicoDAO->HitoricoCadastrar($historicoBd);
@@ -391,9 +391,9 @@
 					fclose($output2); 
 
 					$idComputador = null;
-					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
-					//echo "<br>dados  Historico<br>";		
-					//$historico->exibir();
+					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['nomeFuncionario'], $_SESSION['idCompAlt'],  $idImpressora, $_SESSION['idFuncionario']);
+            		//echo "<br>dados  Historico<br>";		
+					//$historicoBd->exibir();
 					//echo "<br>"; 
 					$historicoDAO = new ControleCirDAO();
 					$historicoDAO->HitoricoCadastrar($historicoBd);
@@ -449,9 +449,9 @@
             fclose($output2); 
 
             $idComputador = null;
-            $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['idFuncionario'],  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
+            $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['nomeFuncionario'], $_SESSION['idCompAlt'],  $idImpressora, $_SESSION['idFuncionario']);
             //echo "<br>dados  Historico<br>";		
-            //$historico->exibir();			
+            //$historicoBd->exibir();			
             //echo "<br>"; 
             $historicoDAO = new ControleCirDAO();
             $historicoDAO->HitoricoCadastrar($historicoBd);
