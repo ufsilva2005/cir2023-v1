@@ -69,6 +69,13 @@
             echo "<br>"; 
             //$historicoDAO = new ControleCirDAO();
             //$historicoDAO->HitoricoCadastrar($historicoBd);
+
+            $hdNovo = serialize($hdNovo); 
+            echo "<br>HD(s) NOVO(s)" .  $hdNovo;
+            $computadorDAO = new ControleCirDAO();
+            $computadorDAO->ComputadorUpdateHd($_SESSION['idCompAlt'],$hdNovo);
+
+
         }         
 
         else
@@ -111,6 +118,10 @@
             echo "<br>HD(s) ANTIGO(s)" .  $hdAnt;
             echo "<br>HD(s) NOVO(s)" .  $hdNovo;
 
+            $hdNovo = serialize($hdNovo); 
+            echo "<br>HD(s) NOVO(s)" .  $hdNovo;
+            $computadorDAO = new ControleCirDAO();
+            $computadorDAO->ComputadorUpdateHd($_SESSION['idCompAlt'],$hdNovo);
             }
         $computadorDAO = new ControleCirDAO();
     //$computadorDAO->ComputadorUpdateHd($_SESSION['idCompAlt'],$tipoHD); 
