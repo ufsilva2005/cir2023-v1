@@ -294,39 +294,38 @@
 			$computador = new Computador($_SESSION['idCompAlt'], $numCirBd, $numPatrimonioBd, $numPatReitoriaBd, $nomeComputadorBd, $dataCadastro,
 			$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
 			$tipoHD, $nomeUsuarioBd, $_SESSION['statusComp'], $obs, $_SESSION['idFuncionario'], $_SESSION['idSetor'], $idTipoProcessadorBd);
-			$computador->exibir();
-			//$computadorDAO = new ControleCirDAO();
-			//$computadorDAO->CoputadorUpdateDados($computador);
+			//$computador->exibir();
+			$computadorDAO = new ControleCirDAO();
+			$computadorDAO->CoputadorUpdateDados($computador);
 
 			//criar historico e salvar
             //nome dos arquivos historico
             $data2 = soNumero($dataAltCadastro);
             $hora = soNumero(date('H:i:s'));
-            $nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+            $nomeHist = "Comp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
             $caminho = "../historico/";
             $desHist = $caminho . "hist-" . $nomeHist;
             
             $output2 = fopen($desHist, 'wb');
             //salva arquivo 
-            //fwrite($output2, $hitorico);
-            //fclose($output2); 
+            fwrite($output2, $hitorico);
+            fclose($output2); 
 
             $idImpressora = null;
             $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['nomeFuncionario'], $_SESSION['idCompAlt'],  $idImpressora, $_SESSION['idFuncionario']);
-            echo "<br>dados  Historico<br>";		
-            $historicoBd->exibir();
-            echo "<br>"; 
-            //$historicoDAO = new ControleCirDAO();
-            //$historicoDAO->HitoricoCadastrar($historicoBd);
+            //echo "<br>dados  Historico<br>";		
+            //$historicoBd->exibir();
+            //echo "<br>"; 
+            $historicoDAO = new ControleCirDAO();
+            $historicoDAO->HitoricoCadastrar($historicoBd);
 
 
-			echo "<br>historico => " . $hitorico;	
+			//echo "<br>historico => " . $hitorico;	
 		}
 
 	elseif($aux == 0 && $auxLocal != 0)
 		{
-			//$idComp = $_SESSION['idCompAlt'];
-			echo "<br>setor alterado";  
+			//$tipoHD = serialize($_SESSION['antTipoHD']); 
 
 			//verificar se local existe
 			$setorExisteDAO = new ControleCirDAO();
@@ -335,7 +334,7 @@
 					$verificaSetor = $local->idSetor;				          
 				}
 				
-			echo "<br>verificaSetor => " . $verificaSetor . "<br>";
+			//echo "<br>verificaSetor => " . $verificaSetor . "<br>";
 			if($verificaSetor == "")
 				{
 					$local1 = new Setor($idSetor, $divisaoBd, $localizacaoBd, $ramalBd, $respSetBd, $nomeLocalBd);			
@@ -354,7 +353,7 @@
 					//nome dos arquivos historico
 					$data2 = soNumero($dataAltCadastro);
 					$hora = soNumero(date('H:i:s'));
-					$nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+					$nomeHist = "Comp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
 					$caminho = "../historico/";
 					$desHist = $caminho . "hist-" . $nomeHist;
 					
@@ -365,11 +364,11 @@
 
 					$idComputador = null;
 					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
-					echo "<br>dados  Historico<br>";		
-					$historico->exibir();
-					echo "<br>"; 
-					//$historicoDAO = new ControleCirDAO();
-					//$historicoDAO->HitoricoCadastrar($historicoBd);
+					//echo "<br>dados  Historico<br>";		
+					//$historico->exibir();
+					//echo "<br>"; 
+					$historicoDAO = new ControleCirDAO();
+					$historicoDAO->HitoricoCadastrar($historicoBd);
 				}
 			
 			else
@@ -382,7 +381,7 @@
 					//nome dos arquivos historico
 					$data2 = soNumero($dataAltCadastro);
 					$hora = soNumero(date('H:i:s'));
-					$nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+					$nomeHist = "Comp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
 					$caminho = "../historico/";
 					$desHist = $caminho . "hist-" . $nomeHist;
 					
@@ -393,19 +392,18 @@
 
 					$idComputador = null;
 					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
-					echo "<br>dados  Historico<br>";		
-					$historico->exibir();
-					echo "<br>"; 
-					//$historicoDAO = new ControleCirDAO();
-					//$historicoDAO->HitoricoCadastrar($historicoBd);
+					//echo "<br>dados  Historico<br>";		
+					//$historico->exibir();
+					//echo "<br>"; 
+					$historicoDAO = new ControleCirDAO();
+					$historicoDAO->HitoricoCadastrar($historicoBd);
 
 				}
 		}
 
 	elseif($aux != 0 && $auxLocal != 0)
 		{
-			//$idComp = $_SESSION['idCompAlt'];
-			echo "<br>computador e setor alterados";  
+			$tipoHD = serialize($_SESSION['antTipoHD']); 
 
 			$setorExisteDAO = new ControleCirDAO();
 			foreach ($setorExisteDAO->VerificarSetor2($divisaoBd,$localizacaoBd,$nomeLocalBd) as $local)
@@ -413,7 +411,7 @@
 					$verificaSetor = $local->idSetor;				          
 				}
 				
-			echo "<br>verificaSetor => " . $verificaSetor . "<br>";
+			//echo "<br>verificaSetor => " . $verificaSetor . "<br>";
 			if($verificaSetor == "")
 				{
 					$local1 = new Setor($idSetor, $divisaoBd, $localizacaoBd, $ramalBd, $respSetBd, $nomeLocalBd);			
@@ -432,16 +430,16 @@
 
 			$computador = new Computador($_SESSION['idCompAlt'], $numCirBd, $numPatrimonioBd, $numPatReitoriaBd, $nomeComputadorBd, $dataCadastro,
 			$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
-			$_SESSION['antTipoHD'], $nomeUsuarioBd, $_SESSION['statusComp'], $obs, $_SESSION['idFuncionario'], $idSetorBd, $idTipoProcessadorBd);
-			$computador->exibir();
-			//$computadorDAO = new ControleCirDAO();
-			//$computadorDAO->CoputadorUpdateDados($computador);
+			$tipoHD, $nomeUsuarioBd, $_SESSION['statusComp'], $obs, $_SESSION['idFuncionario'], $idSetorBd, $idTipoProcessadorBd);
+			//$computador->exibir();
+			$computadorDAO = new ControleCirDAO();
+			$computadorDAO->CoputadorUpdateDados($computador);
 
 			//criar historico e salvar
             //nome dos arquivos historico
             $data2 = soNumero($dataAltCadastro);
             $hora = soNumero(date('H:i:s'));
-            $nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+            $nomeHist = "Comp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
             $caminho = "../historico/";
             $desHist = $caminho . "hist-" . $nomeHist;
             
@@ -452,11 +450,11 @@
 
             $idComputador = null;
             $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['idFuncionario'],  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
-            echo "<br>dados  Historico<br>";		
-            $historico->exibir();			
-            echo "<br>"; 
-            //$historicoDAO = new ControleCirDAO();
-            //$historicoDAO->HitoricoCadastrar($historicoBd);
+            //echo "<br>dados  Historico<br>";		
+            //$historico->exibir();			
+            //echo "<br>"; 
+            $historicoDAO = new ControleCirDAO();
+            $historicoDAO->HitoricoCadastrar($historicoBd);
 
 		}
 
@@ -473,18 +471,18 @@
 			case 'save':
 				if($aux != 0 || $auxLocal != 0)
 					{
-						//echo "<script type='text/javascript'>alert('ALTERAÇÃO(ÕES)  EFETUADA(S)');</script>";
-						//echo "<script>location = '../views/computadorListar.php';</script>";    
+						echo "<script type='text/javascript'>alert('ALTERAÇÃO(ÕES)  EFETUADA(S)');</script>";
+						echo "<script>location = '../views/computadorListar.php';</script>";    
 					}	
 				else
 					{
-						//echo "<script type='text/javascript'>alert('NENHUMA ALTERAÇÃO FOI EFETUADA');</script>";
-						//echo "<script>location = '../views/computadorListar.php';</script>";    
+						echo "<script type='text/javascript'>alert('NENHUMA ALTERAÇÃO FOI EFETUADA');</script>";
+						echo "<script>location = '../views/computadorListar.php';</script>";    
 					}				
 				break;
 
 			case 'submit':
-				echo "<br>OPÇÃO INSERIR HD";
+				//echo "<br>OPÇÃO INSERIR HD";
 				//echo "<br> antigo hd 0 => ";
                 //print_r($_SESSION['antTipoHD']);
 				$capHd = array();    
@@ -497,7 +495,7 @@
 				break;
 
 			case 'publish':
-				echo "<br>OPÇÃO ALTERAR HD";
+				//echo "<br>OPÇÃO ALTERAR HD";
 				$capHd = array();    
 				$i=0;
 				$_SESSION['i'] = $i;
