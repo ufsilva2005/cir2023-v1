@@ -4,6 +4,7 @@
 	include "../dao/DAO-controleCir.php";
 	include "../models/class-setor.php";
 	include "../models/class-computador.php";	
+	include "../models/class-historico.php";
 
 	$aux = 0;
 	$auxLocal = 0;
@@ -41,7 +42,7 @@
 	$nomeUsuarioAlt =  converteMaiuscula($_POST['nomeUsuario']);
 	$obs  = converteMaiuscula($dadosComputador[0]);
 	$respAltCadastro = $_SESSION['nomeFuncionario'];
-    $dataAltCadastro = $_SESSION['data'];
+    $dataAltCadastro = $_SESSION['data'];	
 
 	//verificar se houve alterações nos dados
 	  if ($numCirAlt == "" || $numCirAlt ==  $_SESSION['antNumCir']) 
@@ -132,7 +133,21 @@
             $idTipoProcessadorBd = $idTipoProcessadorAlt;  
 			$_SESSION['idTipoProcessador'] = $idTipoProcessadorBd;
             $aux++;
-            $hitorico .= 'TIPO DE PROCESSADOR ALTERADO DE: '. $_SESSION['antIdTipoProcessador']  .' PARA => '. $idTipoProcessadorBd . ' \n';
+
+			//procura desc processador
+			$proce0DAO = new ControleCirDAO();   
+            $nomeTabela = "tipoProcessadores";
+            $tipoOpcao = "idTipoProcessador";
+            foreach ($proce0DAO->ListarOpcao($nomeTabela, $tipoOpcao, $_SESSION['antIdTipoProcessador']) as $res)
+                {
+                    $descProc1 = $res->descricao;
+                }
+            $proce1DAO = new ControleCirDAO();   
+            foreach ($proce1DAO->ListarOpcao($nomeTabela, $tipoOpcao, $idTipoProcessadorBd) as $res)
+                {
+                    $descProc2 = $res->descricao;
+                }	
+            $hitorico .= 'TIPO DE PROCESSADOR ALTERADO DE: '. $descProc1  .' PARA => '. $descProc2 . ' \n';
         }
 
     if ($memoriaAlt == "" || $memoriaAlt == $_SESSION['antMemoria'])
@@ -280,10 +295,32 @@
 			$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
 			$tipoHD, $nomeUsuarioBd, $_SESSION['statusComp'], $obs, $_SESSION['idFuncionario'], $_SESSION['idSetor'], $idTipoProcessadorBd);
 			$computador->exibir();
-			$computadorDAO = new ControleCirDAO();
-			$computadorDAO->CoputadorUpdateDados($computador);	
+			//$computadorDAO = new ControleCirDAO();
+			//$computadorDAO->CoputadorUpdateDados($computador);
 
-			echo "<br>aux => " . $aux . "<br>auxLocal => " . $auxLocal .  "<br>historico => " . $hitorico;	
+			//criar historico e salvar
+            //nome dos arquivos historico
+            $data2 = soNumero($dataAltCadastro);
+            $hora = soNumero(date('H:i:s'));
+            $nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+            $caminho = "../historico/";
+            $desHist = $caminho . "hist-" . $nomeHist;
+            
+            $output2 = fopen($desHist, 'wb');
+            //salva arquivo 
+            //fwrite($output2, $hitorico);
+            //fclose($output2); 
+
+            $idImpressora = null;
+            $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['nomeFuncionario'], $_SESSION['idCompAlt'],  $idImpressora, $_SESSION['idFuncionario']);
+            echo "<br>dados  Historico<br>";		
+            $historicoBd->exibir();
+            echo "<br>"; 
+            //$historicoDAO = new ControleCirDAO();
+            //$historicoDAO->HitoricoCadastrar($historicoBd);
+
+
+			echo "<br>historico => " . $hitorico;	
 		}
 
 	elseif($aux == 0 && $auxLocal != 0)
@@ -312,6 +349,27 @@
 
 					$computadorDAO = new ControleCirDAO();
                     $computadorDAO->ComputadorUpdateSetor($_SESSION['idCompAlt'],$verificaSetor);
+
+					//criar historico e salvar
+					//nome dos arquivos historico
+					$data2 = soNumero($dataAltCadastro);
+					$hora = soNumero(date('H:i:s'));
+					$nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+					$caminho = "../historico/";
+					$desHist = $caminho . "hist-" . $nomeHist;
+					
+					$output2 = fopen($desHist, 'wb');
+					//salva arquivo 
+					fwrite($output2, $hitorico);
+					fclose($output2); 
+
+					$idComputador = null;
+					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
+					echo "<br>dados  Historico<br>";		
+					$historico->exibir();
+					echo "<br>"; 
+					//$historicoDAO = new ControleCirDAO();
+					//$historicoDAO->HitoricoCadastrar($historicoBd);
 				}
 			
 			else
@@ -319,6 +377,28 @@
 					//FAZER UPDATE APENAS NO ID SETOR, PARA ISSO ALTERAR A FUCÇÃO ABAIXO
 					$computadorDAO = new ControleCirDAO();
                     $computadorDAO->ComputadorUpdateSetor($_SESSION['idCompAlt'],$verificaSetor);
+
+					//criar historico e salvar
+					//nome dos arquivos historico
+					$data2 = soNumero($dataAltCadastro);
+					$hora = soNumero(date('H:i:s'));
+					$nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+					$caminho = "../historico/";
+					$desHist = $caminho . "hist-" . $nomeHist;
+					
+					$output2 = fopen($desHist, 'wb');
+					//salva arquivo 
+					fwrite($output2, $hitorico);
+					fclose($output2); 
+
+					$idComputador = null;
+					$historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
+					echo "<br>dados  Historico<br>";		
+					$historico->exibir();
+					echo "<br>"; 
+					//$historicoDAO = new ControleCirDAO();
+					//$historicoDAO->HitoricoCadastrar($historicoBd);
+
 				}
 		}
 
@@ -354,6 +434,30 @@
 			$respCadastro, $dataAltCadastro, $_SESSION['nomeFuncionario'],  $sistemaOperaBd, $modelMaquinaBd, $memoriaBd, $numIpBd, $numMacBd, 
 			$_SESSION['antTipoHD'], $nomeUsuarioBd, $_SESSION['statusComp'], $obs, $_SESSION['idFuncionario'], $idSetorBd, $idTipoProcessadorBd);
 			$computador->exibir();
+			//$computadorDAO = new ControleCirDAO();
+			//$computadorDAO->CoputadorUpdateDados($computador);
+
+			//criar historico e salvar
+            //nome dos arquivos historico
+            $data2 = soNumero($dataAltCadastro);
+            $hora = soNumero(date('H:i:s'));
+            $nomeHist = "Imp" . $_SESSION['idCompAlt'] . "D". $data2 . "h" . $hora ."F" . $_SESSION['idFuncionario'].".txt";
+            $caminho = "../historico/";
+            $desHist = $caminho . "hist-" . $nomeHist;
+            
+            $output2 = fopen($desHist, 'wb');
+            //salva arquivo 
+            fwrite($output2, $hitorico);
+            fclose($output2); 
+
+            $idComputador = null;
+            $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['idFuncionario'],  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
+            echo "<br>dados  Historico<br>";		
+            $historico->exibir();			
+            echo "<br>"; 
+            //$historicoDAO = new ControleCirDAO();
+            //$historicoDAO->HitoricoCadastrar($historicoBd);
+
 		}
 
 	else
@@ -369,13 +473,13 @@
 			case 'save':
 				if($aux != 0 || $auxLocal != 0)
 					{
-						echo "<script type='text/javascript'>alert('ALTERAÇÃO(ÕES)  EFETUADA(S)');</script>";
-						echo "<script>location = '../views/computadorListar.php';</script>";    
+						//echo "<script type='text/javascript'>alert('ALTERAÇÃO(ÕES)  EFETUADA(S)');</script>";
+						//echo "<script>location = '../views/computadorListar.php';</script>";    
 					}	
 				else
 					{
-						echo "<script type='text/javascript'>alert('NENHUMA ALTERAÇÃO FOI EFETUADA');</script>";
-						echo "<script>location = '../views/computadorListar.php';</script>";    
+						//echo "<script type='text/javascript'>alert('NENHUMA ALTERAÇÃO FOI EFETUADA');</script>";
+						//echo "<script>location = '../views/computadorListar.php';</script>";    
 					}				
 				break;
 
