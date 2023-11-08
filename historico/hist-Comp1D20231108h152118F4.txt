@@ -1,0 +1,1 @@
+HD('s) ALTERADO(S) DE: hd(1) =>480 GB - SSD M2 PARA: hd(1) =>1 TB - SSD mSATA

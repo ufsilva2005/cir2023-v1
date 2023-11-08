@@ -1,0 +1,1 @@
+HD('s) ALTERADO(S) DE: &emsp; hd(1) =>256 GB - SSD 2.5&emsp; hd(2) =>1 TB - HD SATA PARA: &emsp; hd(1) =>480 GB - SSD M2

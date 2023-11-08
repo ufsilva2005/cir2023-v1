@@ -1,0 +1,1 @@
+HD('s) ALTERADO(S) DE: hd(1) => 1 TB - SSD mSATAhd(2) => 3 TB - HD SATA PARA: hd(1) => 1 TB - HD SATA

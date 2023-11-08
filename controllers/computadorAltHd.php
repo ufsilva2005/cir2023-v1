@@ -56,6 +56,9 @@
             //update dados
             $computadorDAO = new ControleCirDAO();
             $computadorDAO->ComputadorUpdateHd($_SESSION['idCompAlt'],$tipoHD);
+
+            echo "<script type='text/javascript'>alert('ALTERAÇÃO(ÕES)  EFETUADA(S)');</script>";
+			echo "<script>location = '../views/computadorListar.php';</script>";    
         }         
 
         else
@@ -75,7 +78,7 @@
                             { 
                                 $x = $i + 1;
                                 //$hdAnt .= $descricao = $resp->descricao;
-                                $historico1 .= "&emsp; hd(" . $x .") =>" . $descricao = $resp->descricao;  
+                                $historico1 .= "hd(" . $x .") => " . $descricao = $resp->descricao;  
                             }
                     } 
 
@@ -92,15 +95,15 @@
                             { 
                                 $x = $i + 1;
                                 //$hdNovo .= $descricao = $resp->descricao;
-                                $historico2 .=  "&emsp; hd(" . $x .") =>" . $descricao = $resp->descricao;  
+                                $historico2 .=  "hd(" . $x .") => " . $descricao = $resp->descricao;  
                             } 
                     } 
 
-            echo "<br>HD(s) ANTIGO(s) => " .  $historico1;
-            echo "<br>HD(s) NOVO(s) => " .  $historico2;
+            //echo "<br>HD(s) ANTIGO(s) => " .  $historico1;
+            //echo "<br>HD(s) NOVO(s) => " .  $historico2;
 
             $hdNovo = serialize($capHdBd); 
-            echo "<br>HD(s) NOVO(s) => " .  $hdNovo;
+            //echo "<br>HD(s) NOVO(s) => " .  $hdNovo;
 
             //criar historico e salvar
             $hitorico = "HD('s) ALTERADO(S) DE: " .  $historico1 . " PARA: " . $historico2;
@@ -111,16 +114,16 @@
             $caminho = "../historico/";
             $desHist = $caminho . "hist-" . $nomeHist;
             
-            echo "<br>hitorico => " .  $hitorico;
+            //echo "<br>hitorico => " .  $hitorico;
             //salva arquivo 
-            //$output2 = fopen($desHist, 'wb');            
-            //fwrite($output2, $hitorico);
-            //fclose($output2); 
+            $output2 = fopen($desHist, 'wb');            
+            fwrite($output2, $hitorico);
+            fclose($output2); 
 
+            $computadorDAO = new ControleCirDAO();
+            $computadorDAO->ComputadorUpdateHd($_SESSION['idCompAlt'],$hdNovo);
 
-            //$computadorDAO = new ControleCirDAO();
-            //$computadorDAO->ComputadorUpdateHd($_SESSION['idCompAlt'],$hdNovo);
+            echo "<script type='text/javascript'>alert('ALTERAÇÃO(ÕES)  EFETUADA(S)');</script>";
+			echo "<script>location = '../views/computadorListar.php';</script>";    
             }
-            //$computadorDAO = new ControleCirDAO();
-            //$computadorDAO->ComputadorUpdateHd($_SESSION['idCompAlt'],$tipoHD); 
 ?>
