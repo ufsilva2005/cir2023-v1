@@ -2,7 +2,7 @@
     include "../template/menuPrincipal.php";
     include "../scripts/mascara.php";
 
-    if ($_SESSION['impressora'] != "sim") {
+    if ($_SESSION['computador'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
         echo "<script>location = '../template/menuPrincipal.php';</script>";
     }

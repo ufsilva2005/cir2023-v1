@@ -25,7 +25,6 @@
 
     //echo $idComputador;
 
-
 	$compAltDAO = new ControleCirDAO();
 	foreach($compAltDAO->Verificar($nomeTabela, $opcao1, $valor1) as $comp)
 		{ 	
