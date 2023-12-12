@@ -1,17 +1,11 @@
 <?php
-    //echo "1" . $tipoPesquisa . " - " . $valorPesquisa;
-    //echo $tipoPesquisa;
-    //echo $valorPesquisa;
-    //$_SESSION['tipoP'] = $tipoPesquisa;
-    //$_SESSION['valorP'] = $valorPesquisa;
-
     if($tipoPesquisa == "" && $valorPesquisa == "")
         {
             $tipoPesquisa =  $_SESSION['tipoP1'];
             $valorPesquisa = $_SESSION['valorP1'];
         }
-    echo $_SESSION['tipoP'] = $tipoPesquisa;
-    echo $_SESSION['valorP'] = $valorPesquisa;
+    $_SESSION['tipoP'] = $tipoPesquisa;
+    $_SESSION['valorP'] = $valorPesquisa;
 ?>
 
                                 <table class="table table-striped table-bordered table-condensed">
@@ -90,7 +84,7 @@
                                                         ?>  
                                                     </div>
 													<div class="btn-group pull-left">
-                                                        <a href="../gerarPdf/ComputadorImprimirDados.php?action=1&id=<?php echo $comp->idComputador; ?>" class="btn btn-small btn-ufs">P<i class="icon-remove"></i></a>
+                                                        <a href="../gerarPdf/computadorImprimirDados.php?action=1&id=<?php echo $comp->idComputador; ?>"  target="_blank"  class="btn btn-small btn-ufs">P<i class="icon-remove"></i></a>
                                                     </div>
                                                 </td>			
 											<tr>									

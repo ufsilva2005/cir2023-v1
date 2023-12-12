@@ -13,11 +13,6 @@
         }
 
     $_SESSION['numUser'] = "";
-    //echo "<br><br>";
-    //echo "<br>valorPesquisa => " . $valorPesquisa;  
-    //echo "<br>tipoPesquisa => " . $tipoPesquisa;  
-    //$idFuncionario = $_SESSION['idFuncionario'];  
-    //$nomeFuncionario = $_SESSION['nomeFuncionario'];  
 ?>
 
         <hr>
@@ -29,7 +24,7 @@
                     <table class="table table-borderless">
                         <thead>
                             <tr>
-                                <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;</th>
+                                <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;</th>
                                 <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;</th>
                                 <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;</th>
                                 <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;</th>
@@ -56,7 +51,7 @@
                                     </div>
 
                                     <div class="btn-group pull-left">
-                                        <a class='nav-link' href='./pesquisacomputadors.php'><button type='button' class='btn btn-outline-warning'>voltar</button> </a>
+                                        <a class='nav-link' href='./computadorPesquisar.php'><button type='button' class='btn btn-outline-warning'>voltar</button> </a>
                                     </div>
                                 </th>
                             </tr>

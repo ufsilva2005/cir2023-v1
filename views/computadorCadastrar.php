@@ -78,7 +78,7 @@
                                                                     
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Localização:</label>
-                                        <select class="form-control" name = "localComputador[]" >
+                                        <select class="form-control" name = "localComputador[]" required>
                                             <option> </option>
                                             <option>subsolo</option>
                                             <option>1° andar</option>
@@ -153,7 +153,7 @@
                                 <div class="row">
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Sistema Operacional:</label>
-                                        <select class="form-control"  name = "dadosComputador[]" >
+                                        <select class="form-control"  name = "dadosComputador[]" required>
                                             <option> </option>
                                             <option>WINDOWS XP</option>
                                             <option>WINDOWS VISTA</option>
@@ -180,7 +180,7 @@
                                                                         
                                     <div class="col px-md-1 col-md-4">
                                         <label for="inputSuccess" class="control-label">Tipo de Processador:</label>
-                                        <select class="form-control" name="listaProcessador" id="listaProcessador" onclick="if( $('#listaProcessador').html() == '' ){ alert('Tipo de Processador Não encontrado.\n Comunique ao Administrador do Sistema.');}"></select>
+                                        <select class="form-control" name="listaProcessador" id="listaProcessador" onclick="if( $('#listaProcessador').html() == '' ){ alert('Tipo de Processador Não encontrado.\n Comunique ao Administrador do Sistema.');}" required></select>
                                     </div>
 
                                     <div class="col px-md-1 col-md-2">

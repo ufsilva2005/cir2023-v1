@@ -35,13 +35,13 @@
 						<table class="table table-striped table-bordered table-condensed">
 							<thead>
 								<tr>
-									<th>Modelo</th>
-									<th>Número Série</th>
+									<th>ID</th>
+                                    <th>Nº CIR</th>
+									<th>Nome do Computador</th>
 									<th>Divisão</th>
 									<th>Setor da Máquina</th>
 									<th>Localização</th>
 									<th>Status</th>
-									<th>Conexão</th>
 									<th>OPÇÃO</th>
 								</tr>
 

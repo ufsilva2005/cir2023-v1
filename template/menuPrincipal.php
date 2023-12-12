@@ -78,8 +78,8 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">RELATÓRIOS</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Data</a></li>
-                        <li><a class="dropdown-item" href="../views/naoImplementada.php">2</a></li>
+                        <li><a class="dropdown-item" href="../views/relacaoComputPesquisa.php">Relação de computadores</a></li>
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Relação de impressoras</a></li>
                         <li><a class="dropdown-item" href="../views/naoImplementada.php">3</a></li>
                     </ul>
                 </div>  

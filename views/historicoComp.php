@@ -44,8 +44,8 @@
 															$historico = $hist->nomeAlteracoes;
 															$historico = lerArquivo($historico);
 															//echo nl2br($historico);
-															echo "\n Obs: " . $result = strstr($historico, " - ", true);
-															echo "\n Alteração: " . $result = str_replace(" - ","",strstr($historico, " - ", false));
+															echo "\n" . $historico;
+															#echo "\n Alteração: " . $result = str_replace(" - ","",strstr($historico, " - ", false));
 														?>        
 													</textarea>     
 												</p>                              

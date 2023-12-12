@@ -967,6 +967,210 @@
                     $prepara->execute();       
                     $conn = null;
                 }
-            //FIM DAS FUNÇÕES RELACIONADAS AO HISTORICO   
+            //FIM DAS FUNÇÕES RELACIONADAS AO HISTORICO  
+            
+            //INÍCIO DAS FUNÇÕES RELACIONADAS AOS RELATÓRIOS 
+            //busca por andar
+            public function RelatAndar($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM computador c, setor s
+                            WHERE s.localizacao = '$valor'
+                            AND s.idSetor = c.idSetor
+                            ORDER BY numCir DESC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+             
+            //busca por divisao
+            public function RelatDivisao($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM computador c, setor s, divisao d
+                            WHERE d.idDivisao = '$valor'
+                            AND d.idDivisao = s.idDivisao
+                            AND s.idSetor = c.idSetor
+                            ORDER BY numCir DESC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por setor
+            public function RelatSetor($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM computador c, setor s
+                            WHERE s.idSetor = '$valor'
+                            AND s.idSetor = c.idSetor
+                            ORDER BY numCir DESC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por status
+            public function RelatStatus($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM computador 
+                            WHERE statusComp = '$valor'
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+                
+            //busca por sistema
+            public function RelatSistema($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM computador 
+                            WHERE sistemaOpera = '$valor'
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por data
+            public function RelatData($dataInComp, $dataOutComp)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM computador 
+                            WHERE dataCadastro BETWEEN '$dataInComp' AND '$dataOutComp'
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por processador
+            public function RelatProcessador($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM computador c, tipoProcessadores p
+                    WHERE p.descricao LIKE '%$valor%'
+                    AND p.idTipoProcessador = c.idTipoProcessador
+                    ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+            //FIM DAS FUNÇÕES RELACIONADAS AOS RELATÓRIOS   
         }
 ?>

@@ -1,10 +1,4 @@
 <?php
-    //echo "1" . $tipoPesquisa . " - " . $valorPesquisa;
-    //echo $tipoPesquisa;
-    //echo $valorPesquisa;
-    //$_SESSION['tipoP'] = $tipoPesquisa;
-    //$_SESSION['valorP'] = $valorPesquisa;
-
     if($tipoPesquisa == "" && $valorPesquisa == "")
         {
             $tipoPesquisa =  $_SESSION['tipoP1'];

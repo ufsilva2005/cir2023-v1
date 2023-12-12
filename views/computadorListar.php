@@ -100,7 +100,7 @@
                                                         ?>  
                                                     </div>
 													<div class="btn-group pull-left">
-                                                        <a href="../gerarPdf/ComputadorImprimirDados.php?action=1&id=<?php echo $comp->idComputador; ?>" class="btn btn-small btn-ufs">P<i class="icon-remove"></i></a>
+                                                        <a href="../gerarPdf/computadorImprimirDados.php?action=1&id=<?php echo $comp->idComputador; ?>" target="_blank" class="btn btn-small btn-ufs">P<i class="icon-remove"></i></a>
                                                     </div>
                                                 </td>			
 											<tr>									

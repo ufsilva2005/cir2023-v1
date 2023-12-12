@@ -1,11 +1,4 @@
 <?php
-    //session_start();
-    //echo "1" . $tipoPesquisa . " - " . $valorPesquisa;
-    //echo $tipoPesquisa;
-    //cho $valorPesquisa;
-    //$_SESSION['tipoP'] = $tipoPesquisa;
-    //$_SESSION['valorP'] = $valorPesquisa;
-    //echo "<br>tipo1 valor1 => " . $_SESSION['tipoP1'] . " - " . $_SESSION['valorP1'];
     if($tipoPesquisa == "" && $valorPesquisa == "")
         {
             $tipoPesquisa =  $_SESSION['tipoP1'];

@@ -1,6 +1,6 @@
 <?php	
 	session_start();	
-	include "../funcao/funcao.php";
+	//include "../funcao/funcao.php";
 
 	//recebe dados da view
 	$numCirComp = $_POST['numCir'];   
@@ -11,7 +11,7 @@
 	
 	if($numCirComp == "" && $divisaoComp == "" && $nomeCirComp == "" && $ipComputador == "" && $macComputador == "")
 		{
-			echo "<br>DAdos em branco";
+			echo "<br>Dados em branco";
 		}
 	elseif($numCirComp != "" && $divisaoComp == "" && $nomeCirComp == "" && $ipComputador == "" && $macComputador == "")
 		{
