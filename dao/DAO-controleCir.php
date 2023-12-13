@@ -979,7 +979,7 @@
                     $sql = "SELECT * FROM computador c, setor s
                             WHERE s.localizacao = '$valor'
                             AND s.idSetor = c.idSetor
-                            ORDER BY numCir DESC";
+                            ORDER BY numCir ASC";
 
                     try 
                         {
@@ -1169,6 +1169,26 @@
                    
                     $_SESSION['numRows'] = $numRows;
                     return $buscar;                        
+                    $conn = null;	
+                }
+            //procura processador
+            public function BuscaProc($idTipoProcessador) 
+                {					
+                    $conn = Database::connect();                                
+                    $conn->exec('SET CHARACTER SET utf8');     
+                    $sql = "SELECT * FROM tipoProcessadores
+                    WHERE idTipoProcessador = '$idTipoProcessador'";
+                                
+                     try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
                     $conn = null;	
                 }
             //FIM DAS FUNÇÕES RELACIONADAS AOS RELATÓRIOS   

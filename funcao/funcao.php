@@ -30,6 +30,13 @@
 			return $palavra;
 		}
 
+	//CONVERTE MINUSCULA
+	function converteMinuscula($nomeA) 
+		{
+			$palavra =  strtr(strtolower($nomeA),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß", "àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
+			return $palavra;
+		}
+
 	//PEGAR SÓ NÚMEROS DE UMA STRING
 	function soNumero($str) 
 		{
