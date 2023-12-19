@@ -970,6 +970,7 @@
             //FIM DAS FUNÇÕES RELACIONADAS AO HISTORICO  
             
             //INÍCIO DAS FUNÇÕES RELACIONADAS AOS RELATÓRIOS 
+            //INICIO COMPUTADOR
             //busca por andar
             public function RelatAndar($valor)  
                 {
@@ -1009,7 +1010,7 @@
                             WHERE d.idDivisao = '$valor'
                             AND d.idDivisao = s.idDivisao
                             AND s.idSetor = c.idSetor
-                            ORDER BY numCir DESC";
+                            ORDER BY numCir ASC";
 
                     try 
                         {
@@ -1191,6 +1192,123 @@
                     return $buscar;
                     $conn = null;	
                 }
+            //FIM COMPUTADOR
+            //INICIO IMPRESSORA
+            //busca por andar
+            public function RelatAndarImp($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM impressoras i, setor s
+                            WHERE s.localizacao = '$valor'
+                            AND s.idSetor = i.idSetor
+                            ORDER BY idImpressora ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+            //busca por divisão
+            public function RelatDivisaoImp($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM impressoras i, setor s, divisao d
+                            WHERE d.idDivisao = '$valor'
+                            AND d.idDivisao = s.idDivisao
+                            AND s.idSetor = i.idSetor
+                            ORDER BY idImpressora ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+            //busca por setor
+            public function RelatSetorImp($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM impressoras i, setor s
+                            WHERE s.idSetor = '$valor'
+                            AND s.idSetor = i.idSetor
+                            ORDER BY idImpressora ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+            //busca por modelo
+            public function RelatModeloImp($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM impressoras i, modeloImpressora m
+                            WHERE m.idModelo = '$valor'
+                            AND m.idModelo = i.modeloImpressora
+                            ORDER BY idImpressora ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+            //FIM IMPRESSORA
+            
             //FIM DAS FUNÇÕES RELACIONADAS AOS RELATÓRIOS   
         }
 ?>

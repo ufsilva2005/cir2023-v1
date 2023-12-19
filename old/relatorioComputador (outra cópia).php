@@ -11,7 +11,7 @@
             $compAltDAO = new ControleCirDAO();
             foreach($compAltDAO->RelatSetor($_SESSION['valorPesquisa']) as $comp)                                             
                 {  
-				    $idComputador = $comp->idComputador;											
+				    $idComputador .= $comp->idComputador;											
 					$numCir[] = $comp->numCir;															
 					$numPatrimonio[] = $comp->numPatrimonio; 
                     $numPatReitoria[] = $comp->numPatReitoria;
@@ -38,14 +38,13 @@
                     $modelMaquina[] = converteMinuscula($comp->modelMaquina);
                 }
             $numRows = $_SESSION['numRows'];
-            $pesquisa = "do Setor de " . converteMaiuscula($nomeLocal[0]);
         }
     elseif($_SESSION['tipoPesquisa'] == "divisao")
         {
             $compAltDAO = new ControleCirDAO();
             foreach($compAltDAO->RelatDivisao($_SESSION['valorPesquisa']) as $comp)                                             
                 {  
-				    $idComputador = $comp->idComputador;											
+				    $idComputador .= $comp->idComputador;											
 					$numCir[] = $comp->numCir;															
 					$numPatrimonio[] = $comp->numPatrimonio; 
                     $numPatReitoria[] = $comp->numPatReitoria;
@@ -72,14 +71,13 @@
                     $modelMaquina[] = converteMinuscula($comp->modelMaquina);
                 }
             $numRows = $_SESSION['numRows'];
-            $pesquisa = "da Divisão " . converteMaiuscula($divisao[0]);
         }
     elseif($_SESSION['tipoPesquisa'] == "andar")
         {
             $compAltDAO = new ControleCirDAO();
             foreach($compAltDAO->RelatAndar($_SESSION['valorPesquisa']) as $comp)                                             
                 {  
-				    $idComputador = $comp->idComputador;											
+				    $idComputador .= $comp->idComputador;											
 					$numCir[] = $comp->numCir;															
 					$numPatrimonio[] = $comp->numPatrimonio; 
                     $numPatReitoria[] = $comp->numPatReitoria;
@@ -106,153 +104,37 @@
                     $modelMaquina[] = converteMinuscula($comp->modelMaquina);
                 }
             $numRows = $_SESSION['numRows'];
-            $pesquisa = "do " . $_SESSION['valorPesquisa'];
-        }
-    elseif($_SESSION['tipoPesquisa'] == "status")
-        {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatStatus($_SESSION['valorPesquisa']) as $comp)                                             
-                {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = $_SESSION['valorPesquisa'] . "s";
-        }
-    elseif($_SESSION['tipoPesquisa'] == "sistema")
-        {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatSistema($_SESSION['valorPesquisa']) as $comp)                                             
-                {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "com " . $_SESSION['valorPesquisa'];
-        }
-    elseif($_SESSION['tipoPesquisa'] == "processador")
-        {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatProcessador($_SESSION['valorPesquisa']) as $comp)                                             
-                {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "com Processador " . $_SESSION['valorPesquisa'];
-        }
-     elseif($_SESSION['tipoPesquisa'] == "data")
-        {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO-> RelatData($_SESSION['dataInComp'] , $_SESSION['dataOutComp'] ) as $comp)                                             
-                {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "com Cadastro realizado entre o dia " . formatarData2($_SESSION['dataInComp']) . " e o dia " . formatarData2($_SESSION['dataOutComp']);
         }
     else
         {
-            //NÃO FAZ NADA PAGINA EM BRANCO//
+            //echo "<br>valorPesquisa => " . $_SESSION['valorPesquisa'];
+            //echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];			
+            //echo "<br>dataInComp => " . $_SESSION['dataInComp'];
+            //echo "<br>dataOutComp => " . $_SESSION['dataOutComp'];
+            //echo "<br>total => " . $_SESSION['numRows'];
         }
-    
+
+    //echo "<br>total => 0 <br>";
+    //print_r($tipoHD);
+    //echo "<br>total => 1";
+    //echo "<br>"; echo "<br>"; echo "<br>";
+
+    //print_r($tipoHD[1][0]); 
+
+    /*for ($i=0; $i < $numRows; $i++)
+        { 
+            print_r($tipoHD[$i]);  
+            $teste[$i] = $tipoHD[$i];
+            echo "<br>";echo "<br>";echo "<br>";
+            /*echo "<br>teste1";                 
+        }*/
+
     for ($i=0; $i < $numRows; $i++)
         { 
+            //print_r($tipoHD[$i]); 
+            //echo "<br>";
             $t = sizeof($tipoHD[$i]);
-           
+            //echo "tamanho => " . $t . "<br>";
             $nomeTabela = 'hdTipos';
             $tipoOpcao = 'id';                                 
             for ($x = 0; $x < $t; $x++) 
@@ -264,11 +146,28 @@
                             $hd .= $resp->descricao . " ";  
                         } 
                 }
+            //echo "<br>hd " . $x . " - " . $i . " => " . $hd . "<br>";
             $thd[$i] = $hd;
             $hd = "";
 
         }
-         
+         //echo "<br>"; echo "<br>"; echo "<br>";
+
+        //print_r($thd[0]);
+    /*$t = sizeof($teste[0]);
+    $nomeTabela = 'hdTipos';
+    $tipoOpcao = 'id';                                 
+    for ($x = 0; $x < $t; $x++) 
+        {
+            $id = $teste[$x];
+            $tipoHDDAO = new ControleCirDAO();
+            foreach ($tipoHDDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
+                { 
+                    print_r($hd[] .= $resp->descricao);  
+                    echo "<br>teste2";
+                } 
+        }*/
+
 	$html1 ='<!DOCTYPE html>
                 <html lang="PT-BR">
                     <head>
@@ -398,7 +297,7 @@
                                         <tr>
                                             <th>   
                                                 <h5>
-                                                    <h4 class="text-success"><strong> Relação dos Computadores ' .  $pesquisa . '</strong></h4>
+                                                    <h4 class="text-success"><strong> Relação dos Computadores do(a) ' .  $_SESSION['valorPesquisa'] . '</strong></h4>
                                                 </h5> 
                                             </th>
                                         </tr>

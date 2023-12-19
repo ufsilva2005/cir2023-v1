@@ -3,29 +3,19 @@
     include "../dao/DAO-controleCir.php";
     include "../funcao/funcao.php";
 
-    //$numCir = array();
+    //$numSerie = array();
     //echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];	
    
     if($_SESSION['tipoPesquisa'] == "setor")
         {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatSetor($_SESSION['valorPesquisa']) as $comp)                                             
+           $impAltDAO = new ControleCirDAO();
+            foreach($impAltDAO->RelatSetorImp($_SESSION['valorPesquisa']) as$imp)                                             
                 {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
+				    $idImpressora =$imp->idImpressora;											
+					$numSerie[] =$imp->numSerie;															
+					$nomeImpressora[] =$imp->nomeImpressora; 
+                    $macImpressora[] =$imp->macImpressora;                   
+                    $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
 						{ 	
@@ -34,32 +24,22 @@
                             $ramal[] = $Setor->ramal;
 							$localizacao[] = $Setor->localizacao;
 						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
+					$statusImpressora[] =$imp->statusImpressora;
+                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = "do Setor de " . converteMaiuscula($nomeLocal[0]);
         }
     elseif($_SESSION['tipoPesquisa'] == "divisao")
         {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatDivisao($_SESSION['valorPesquisa']) as $comp)                                             
+           $impAltDAO = new ControleCirDAO();
+            foreach($impAltDAO->RelatDivisaoImp($_SESSION['valorPesquisa']) as$imp)                                             
                 {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
+				    $idImpressora =$imp->idImpressora;											
+					$numSerie[] =$imp->numSerie;															
+					$nomeImpressora[] =$imp->nomeImpressora; 
+                    $macImpressora[] =$imp->macImpressora;                   
+                    $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
 						{ 	
@@ -68,32 +48,22 @@
                             $ramal[] = $Setor->ramal;
 							$localizacao[] = $Setor->localizacao;
 						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
+					$statusImpressora[] =$imp->statusImpressora;
+                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = "da Divisão " . converteMaiuscula($divisao[0]);
         }
     elseif($_SESSION['tipoPesquisa'] == "andar")
         {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatAndar($_SESSION['valorPesquisa']) as $comp)                                             
+           $impAltDAO = new ControleCirDAO();
+            foreach($impAltDAO->RelatAndarImp($_SESSION['valorPesquisa']) as$imp)                                             
                 {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
+				    $idImpressora =$imp->idImpressora;											
+					$numSerie[] =$imp->numSerie;															
+					$nomeImpressora[] =$imp->nomeImpressora; 
+                    $macImpressora[] =$imp->macImpressora;                   
+                    $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
 						{ 	
@@ -102,32 +72,23 @@
                             $ramal[] = $Setor->ramal;
 							$localizacao[] = $Setor->localizacao;
 						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
+					$statusImpressora[] =$imp->statusImpressora;
+                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = "do " . $_SESSION['valorPesquisa'];
+            echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];	
         }
-    elseif($_SESSION['tipoPesquisa'] == "status")
+    elseif($_SESSION['tipoPesquisa'] == "modelo")
         {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatStatus($_SESSION['valorPesquisa']) as $comp)                                             
+           $impAltDAO = new ControleCirDAO();
+            foreach($impAltDAO->RelatModeloImp($_SESSION['valorPesquisa']) as$imp)                                             
                 {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
+				    $idImpressora =$imp->idImpressora;											
+					$numSerie[] =$imp->numSerie;															
+					$nomeImpressora[] =$imp->nomeImpressora; 
+                    $macImpressora[] =$imp->macImpressora;                   
+                    $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
 						{ 	
@@ -136,137 +97,15 @@
                             $ramal[] = $Setor->ramal;
 							$localizacao[] = $Setor->localizacao;
 						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
+					$statusImpressora[] =$imp->statusImpressora;
+                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = $_SESSION['valorPesquisa'] . "s";
         }
-    elseif($_SESSION['tipoPesquisa'] == "sistema")
-        {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatSistema($_SESSION['valorPesquisa']) as $comp)                                             
-                {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "com " . $_SESSION['valorPesquisa'];
-        }
-    elseif($_SESSION['tipoPesquisa'] == "processador")
-        {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO->RelatProcessador($_SESSION['valorPesquisa']) as $comp)                                             
-                {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "com Processador " . $_SESSION['valorPesquisa'];
-        }
-     elseif($_SESSION['tipoPesquisa'] == "data")
-        {
-            $compAltDAO = new ControleCirDAO();
-            foreach($compAltDAO-> RelatData($_SESSION['dataInComp'] , $_SESSION['dataOutComp'] ) as $comp)                                             
-                {  
-				    $idComputador = $comp->idComputador;											
-					$numCir[] = $comp->numCir;															
-					$numPatrimonio[] = $comp->numPatrimonio; 
-                    $numPatReitoria[] = $comp->numPatReitoria;
-                    $idTipoProcessador = $comp->idTipoProcessador;
-                    $procDAO = new ControleCirDAO();
-					foreach($procDAO->BuscaProc($idTipoProcessador) as $proc)
-						{ 	
-							$descricaoProc[] = converteMinuscula($proc->descricao);
-						}	
-                    $tipoHD1 = $comp->tipoHD;
-                    $tipoHD[] = unserialize($tipoHD1);                   
-                    $memoria[] = $comp->memoria;	
-                    $sistemaOpera[] = converteMinuscula($comp->sistemaOpera);
-                    $idSetor = $comp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusComp[] = $comp->statusComp;
-                    $modelMaquina[] = converteMinuscula($comp->modelMaquina);
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "com Cadastro realizado entre o dia " . formatarData2($_SESSION['dataInComp']) . " e o dia " . formatarData2($_SESSION['dataOutComp']);
-        }
     else
         {
             //NÃO FAZ NADA PAGINA EM BRANCO//
-        }
-    
-    for ($i=0; $i < $numRows; $i++)
-        { 
-            $t = sizeof($tipoHD[$i]);
-           
-            $nomeTabela = 'hdTipos';
-            $tipoOpcao = 'id';                                 
-            for ($x = 0; $x < $t; $x++) 
-                {
-                    $id = $tipoHD[$i][$x];
-                    $tipoHDDAO = new ControleCirDAO();
-                    foreach ($tipoHDDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
-                        { 
-                            $hd .= $resp->descricao . " ";  
-                        } 
-                }
-            $thd[$i] = $hd;
-            $hd = "";
-
         }
          
 	$html1 ='<!DOCTYPE html>
@@ -429,9 +268,9 @@
                                             for ($i=0; $i < $numRows ; $i++)
                                                 { 
                                                 $html2 =' <tr>																																
-                                                                <td class="ufs"><h6> ' . $numCir[$i]. '</h6></td>
-                                                                <td class="ufs"><h6> ' . $numPatrimonio[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $numPatReitoria[$i] . '</h6></td>
+                                                                <td class="ufs"><h6> ' . $numSerie[$i]. '</h6></td>
+                                                                <td class="ufs"><h6> ' . $nomeImpressora[$i] . '</h6></td>
+                                                                <td class="ufs"><h6> ' . $macImpressora[$i] . '</h6></td>
                                                                 <td class="ufs"><h6> ' . $descricaoProc[$i] . '</h6></td>
                                                                 <td class="ufs"><h6> ' . $thd[$i] . '</h6></td>
                                                                 <td class="ufs"><h6> ' . $memoria[$i] . '</h6></td>
@@ -440,8 +279,8 @@
                                                                 <td class="ufs"><h6> ' . $nomeLocal[$i] . '</h6></td>
                                                                 <td class="ufs"><h6> ' . $ramal[$i] . '</h6></td>
                                                                 <td class="ufs"><h6> ' . $localizacao[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $statusComp[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $modelMaquina[$i] . '</h6></td>
+                                                                <td class="ufs"><h6> ' . $statusImpressora[$i] . '</h6></td>
+                                                                <td class="ufs"><h6> ' . $modeloImpressora[$i] . '</h6></td>
                                                             <tr>';
                                                     $html1 = $html1.$html2;
                                                 }
