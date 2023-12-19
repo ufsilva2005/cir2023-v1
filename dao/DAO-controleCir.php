@@ -1307,6 +1307,26 @@
                     return $buscar;                        
                     $conn = null;	
                 }
+            //procura modelo
+            public function Buscamod($idModelo) 
+                {					
+                    $conn = Database::connect();                                
+                    $conn->exec('SET CHARACTER SET utf8');     
+                    $sql = "SELECT * FROM modeloImpressora
+                    WHERE idModelo = '$idModelo'";
+                                
+                     try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
             //FIM IMPRESSORA
             
             //FIM DAS FUNÇÕES RELACIONADAS AOS RELATÓRIOS   

@@ -367,7 +367,7 @@
                             bottom: 0;
                         }
                         .ufs {
-                                width:5px;
+                                width:50px;
                         }
                     </style>
                 </head>
@@ -405,43 +405,43 @@
                                     </thead>            
                                 </table>
                             </div>
-                            <div class="row">
+                           
                                 <div class="col px-md-1 col-md-12"> 
                                     <table class = "tableUfs">  
                                         <thead>     
                                             <tr>
-                                                <th class="ufs"><h6>Número:</h6></th>   
-                                                <th class="ufs"><h6>Nº Pat Hu:</h6></th>
-                                                <th class="ufs"><h6>Nº Pat Reitoria:</h6></th>  
-                                                <th class="ufs"><h6>Processador</h6></th>                                              
-                                                <th class="ufs"><h6>HD</h6></th>
-                                                <th class="ufs"><h6>Memória</h6></th>																								
-                                                <th class="ufs"><h6>Sistema Operacional<h6></th>
-                                                <th class="ufs"><h6>Divisao</h6></th>
-                                                <th class="ufs"><h6>Setor</h6></th>
-                                                <th class="ufs"><h6>Ramal</h6></th>
-                                                <th class="ufs"><h6>localizacao</h6></th>
-                                                <th class="ufs"><h6>Status do Computador</h6></th>
-                                                <th class="ufs"><h6>Modelo/Marca</h6></th>
+                                                <th><h6>Número:</h6></th>   
+                                                <th><h6>Nº Pat Hu:</h6></th>
+                                                <th><h6>Nº Pat Reitoria:</h6></th>  
+                                                <th><h6>Processador</h6></th>                                              
+                                                <th><h6>HD</h6></th>
+                                                <th><h6>Memória</h6></th>																								
+                                                <th><h6>Sistema Operacional<h6></th>
+                                                <th><h6>Divisao</h6></th>
+                                                <th><h6>Setor</h6></th>
+                                                <th><h6>Ramal</h6></th>
+                                                <th><h6>localizacao</h6></th>
+                                                <th><h6>Status do Computador</h6></th>
+                                                <th><h6>Modelo/Marca</h6></th>
                                             </tr>
                                         </thead>    
                                         <tbody>';
                                             for ($i=0; $i < $numRows ; $i++)
                                                 { 
                                                 $html2 =' <tr>																																
-                                                                <td class="ufs"><h6> ' . $numCir[$i]. '</h6></td>
-                                                                <td class="ufs"><h6> ' . $numPatrimonio[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $numPatReitoria[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $descricaoProc[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $thd[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $memoria[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $sistemaOpera[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $divisao[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $nomeLocal[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $ramal[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $localizacao[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $statusComp[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $modelMaquina[$i] . '</h6></td>
+                                                                <td><h6> ' . $numCir[$i]. '</h6></td>
+                                                                <td><h6> ' . $numPatrimonio[$i] . '</h6></td>
+                                                                <td><h6> ' . $numPatReitoria[$i] . '</h6></td>
+                                                                <td><h6> ' . $descricaoProc[$i] . '</h6></td>
+                                                                <td><h6> ' . $thd[$i] . '</h6></td>
+                                                                <td><h6> ' . $memoria[$i] . '</h6></td>
+                                                                <td><h6> ' . $sistemaOpera[$i] . '</h6></td>
+                                                                <td><h6> ' . $divisao[$i] . '</h6></td>
+                                                                <td><h6> ' . $nomeLocal[$i] . '</h6></td>
+                                                                <td><h6> ' . $ramal[$i] . '</h6></td>
+                                                                <td><h6> ' . $localizacao[$i] . '</h6></td>
+                                                                <td><h6> ' . $statusComp[$i] . '</h6></td>
+                                                                <td><h6> ' . $modelMaquina[$i] . '</h6></td>
                                                             <tr>';
                                                     $html1 = $html1.$html2;
                                                 }
@@ -450,7 +450,7 @@
                             $html3 =    '</tbody>        
                                     </table>
                                 </div>
-                            </div>
+                            
                             <div class="panel-content">
                                 <div class="row">
                                     <div class="col px-md-1 col-md-12">                                        

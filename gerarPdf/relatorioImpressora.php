@@ -25,7 +25,12 @@
 							$localizacao[] = $Setor->localizacao;
 						}		
 					$statusImpressora[] =$imp->statusImpressora;
-                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
+                    $idModelo = $imp->modeloImpressora;
+                    $modeloDAO = new ControleCirDAO();
+					foreach($modeloDAO->Buscamod($idModelo) as $mod)
+						{ 	
+							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
+						}		
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = "do Setor de " . converteMaiuscula($nomeLocal[0]);
@@ -49,7 +54,12 @@
 							$localizacao[] = $Setor->localizacao;
 						}		
 					$statusImpressora[] =$imp->statusImpressora;
-                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
+                    $idModelo = $imp->modeloImpressora;
+                    $modeloDAO = new ControleCirDAO();
+					foreach($modeloDAO->Buscamod($idModelo) as $mod)
+						{ 	
+							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
+						}		
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = "da Divisão " . converteMaiuscula($divisao[0]);
@@ -73,11 +83,15 @@
 							$localizacao[] = $Setor->localizacao;
 						}		
 					$statusImpressora[] =$imp->statusImpressora;
-                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
+                    $idModelo = $imp->modeloImpressora;
+                    $modeloDAO = new ControleCirDAO();
+					foreach($modeloDAO->Buscamod($idModelo) as $mod)
+						{ 	
+							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
+						}		
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = "do " . $_SESSION['valorPesquisa'];
-            echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];	
         }
     elseif($_SESSION['tipoPesquisa'] == "modelo")
         {
@@ -98,7 +112,12 @@
 							$localizacao[] = $Setor->localizacao;
 						}		
 					$statusImpressora[] =$imp->statusImpressora;
-                    $modeloImpressora[] = converteMinuscula($comp->modeloImpressora);
+                    $idModelo = $imp->modeloImpressora;
+                    $modeloDAO = new ControleCirDAO();
+					foreach($modeloDAO->Buscamod($idModelo) as $mod)
+						{ 	
+							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
+						}		
                 }
             $numRows = $_SESSION['numRows'];
             $pesquisa = $_SESSION['valorPesquisa'] . "s";
@@ -160,7 +179,7 @@
                             border-spacing: 1;
                             margin-top: 5px;
                             margin-right: 0px;
-                            margin-left: -30px;
+                            margin-left: 20px;
                             margin-bottom: 1px;
 
                             border-top: 1px solid;
@@ -206,7 +225,7 @@
                             bottom: 0;
                         }
                         .ufs {
-                                width:5px;
+                                width:50px;
                         }
                     </style>
                 </head>
@@ -237,59 +256,50 @@
                                         <tr>
                                             <th>   
                                                 <h5>
-                                                    <h4 class="text-success"><strong> Relação dos Computadores ' .  $pesquisa . '</strong></h4>
+                                                    <h4 class="text-success"><strong> Relação das Impressoras ' .  $pesquisa . '</strong></h4>
                                                 </h5> 
                                             </th>
                                         </tr>
                                     </thead>            
                                 </table>
-                            </div>
-                            <div class="row">
-                                <div class="col px-md-1 col-md-12"> 
-                                    <table class = "tableUfs">  
-                                        <thead>     
-                                            <tr>
-                                                <th class="ufs"><h6>Número:</h6></th>   
-                                                <th class="ufs"><h6>Nº Pat Hu:</h6></th>
-                                                <th class="ufs"><h6>Nº Pat Reitoria:</h6></th>  
-                                                <th class="ufs"><h6>Processador</h6></th>                                              
-                                                <th class="ufs"><h6>HD</h6></th>
-                                                <th class="ufs"><h6>Memória</h6></th>																								
-                                                <th class="ufs"><h6>Sistema Operacional<h6></th>
-                                                <th class="ufs"><h6>Divisao</h6></th>
-                                                <th class="ufs"><h6>Setor</h6></th>
-                                                <th class="ufs"><h6>Ramal</h6></th>
-                                                <th class="ufs"><h6>localizacao</h6></th>
-                                                <th class="ufs"><h6>Status do Computador</h6></th>
-                                                <th class="ufs"><h6>Modelo/Marca</h6></th>
-                                            </tr>
-                                        </thead>    
-                                        <tbody>';
-                                            for ($i=0; $i < $numRows ; $i++)
-                                                { 
-                                                $html2 =' <tr>																																
-                                                                <td class="ufs"><h6> ' . $numSerie[$i]. '</h6></td>
-                                                                <td class="ufs"><h6> ' . $nomeImpressora[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $macImpressora[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $descricaoProc[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $thd[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $memoria[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $sistemaOpera[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $divisao[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $nomeLocal[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $ramal[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $localizacao[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $statusImpressora[$i] . '</h6></td>
-                                                                <td class="ufs"><h6> ' . $modeloImpressora[$i] . '</h6></td>
-                                                            <tr>';
-                                                    $html1 = $html1.$html2;
-                                                }
+                            </div>                           
+                            <div class="col-md-12 py-5 px-2"> 
+                                <table class = "tableUfs">  
+                                    <thead>     
+                                        <tr>
+                                            <th><h6>Número de Série:</h6></th>   
+                                            <th><h6>Nome da Impressora:</h6></th>
+                                            <th><h6>Nº MAC:</h6></th>                                                  
+                                            <th><h6>Divisao</h6></th>
+                                            <th><h6>Setor</h6></th>
+                                            <th><h6>Ramal</h6></th>
+                                            <th><h6>localizacao</h6></th>
+                                            <th><h6>Status</h6></th>
+                                            <th><h6>Modelo</h6></th>
+                                        </tr>
+                                    </thead>    
+                                    <tbody>';
+                                        for ($i=0; $i < $numRows ; $i++)
+                                            { 
+                                            $html2 =' <tr>																																
+                                                            <td><h6> ' . $numSerie[$i]. '</h6></td>
+                                                            <td><h6> ' . $nomeImpressora[$i] . '</h6></td>
+                                                            <td><h6> ' . $macImpressora[$i] . '</h6></td>
+                                                            <td><h6> ' . $divisao[$i] . '</h6></td>
+                                                            <td><h6> ' . $nomeLocal[$i] . '</h6></td>
+                                                            <td><h6> ' . $ramal[$i] . '</h6></td>
+                                                            <td><h6> ' . $localizacao[$i] . '</h6></td>
+                                                            <td><h6> ' . $statusImpressora[$i] . '</h6></td>
+                                                            <td><h6> ' . $modeloImpressora[$i] . '</h6></td>
+                                                        <tr>';
+                                                $html1 = $html1.$html2;
+                                            }
                                                 
 
-                            $html3 =    '</tbody>        
-                                    </table>
-                                </div>
+                        $html3 =    '</tbody>        
+                                </table>
                             </div>
+                           
                             <div class="panel-content">
                                 <div class="row">
                                     <div class="col px-md-1 col-md-12">                                        
@@ -334,7 +344,7 @@
 
 	//Exibibir a página
 	$dompdf->stream(
-		"computador.pdf", 
+		"impressora.pdf", 
 		array(
 			"Attachment" => false //Para realizar o download somente alterar para true
 		)
