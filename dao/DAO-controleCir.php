@@ -1086,7 +1086,6 @@
                     return $buscar;                        
                     $conn = null;	
                 }
-
                 
             //busca por sistema
             public function RelatSistema($valor)  
@@ -1325,6 +1324,33 @@
                             $buscar = $exc->getTraceAsString();
                         }
                     return $buscar;
+                    $conn = null;	
+                }
+            //busca por status
+            public function RelatStatusImp($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM impressoras 
+                            WHERE statusImpressora = '$valor'
+                            ORDER BY idSetor ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
                     $conn = null;	
                 }
             //FIM IMPRESSORA

@@ -30,10 +30,10 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pillsUfs-modelo-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-modelo" type="button" role="tab" aria-controls="pillsUfs-modelo" aria-selected="false">Modelo</button>
                             </li>
-                            <!--li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pillsUfs-sistema-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-sistema" type="button" role="tab" aria-controls="pillsUfs-sistema" aria-selected="false">Sistema</button>
-                            </li>
                             <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pillsUfs-status-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-status" type="button" role="tab" aria-controls="pillsUfs-status" aria-selected="false">status</button>
+                            </li>
+                            <!--li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pillsUfs-data-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-data" type="button" role="tab" aria-controls="pillsUfs-data" aria-selected="false">Data de Cadastro</button>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -123,25 +123,17 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--div class="tab-pane fade" id="pillsUfs-sistema" role="tabpanel" aria-labelledby="pillsUfs-sistema-tab">
+                            <div class="tab-pane fade" id="pillsUfs-status" role="tabpanel" aria-labelledby="pillsUfs-status-tab">
                                 <div class="col px-md-1 col-md-5">
-                                    <label for="inputSuccess" class="control-label">Selecione  o Sistema Operacional:</label>
-                                    <select class="form-control"  name = "sistema" >
+                                    <label for="inputSuccess" class="control-label">Selecione  o status:</label>
+                                    <select class="form-control"  name = "status" >
                                         <option> </option>
-                                        <option>WINDOWS XP</option>
-                                        <option>WINDOWS VISTA</option>
-                                        <option>WINDOWS 7</option>
-                                        <option>WINDOWS 8</option>
-                                        <option>WINDOWS 10</option>
-                                        <option>WINDOWS 11</option>
-                                        <option>MAC OS</option>
-                                        <option>LINUX</option>
-                                        <option>OPEN BSD</option>
-                                        <option>NOVELL</option>
+                                        <option>Ativas</option>
+                                        <option>Desativadas</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pillsUfs-data" role="tabpanel" aria-labelledby="pillsUfs-data-tab">
+                            <!--div class="tab-pane fade" id="pillsUfs-data" role="tabpanel" aria-labelledby="pillsUfs-data-tab">
                                 <div class="col px-md-1 col-md-5">
                                     <label for="inputSuccess" class="control-label">Informe a Data Inicial e Final:</label>
                                     <div class="row">

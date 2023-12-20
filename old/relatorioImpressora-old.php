@@ -2,6 +2,8 @@
 	session_start();
     include "../dao/DAO-controleCir.php";
     include "../funcao/funcao.php";
+    $i=0;
+    $x=0;
 
     //$numSerie = array();
     //echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];	
@@ -148,7 +150,7 @@
 							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
 						}		
                 }
-            $numRows = $_SESSION['numRows'];
+            $numRows = $_SESSION['numRows'];          
             $pesquisa = $_SESSION['valorPesquisa'] . "s";
         }
     else
@@ -156,7 +158,19 @@
             //NÃO FAZ NADA PAGINA EM BRANCO//
         }
          
-	$html1 ='<!DOCTYPE html>
+    $pagina2 =  ($numRows % 20);
+    $pagina1 =  intdiv($numRows, 20);   
+    if ($pagina2 != 0)
+        {
+            $npaginas = $pagina1 + 1;
+        }
+    else
+        {
+            $npaginas = $pagina1;
+        }
+
+    
+    $html1 ='<!DOCTYPE html>
                 <html lang="PT-BR">
                     <head>
                         <meta charset="utf-8">
@@ -175,7 +189,7 @@
                             width: 100%;
                             border-collapse: separate;
                             border-spacing: 0;
-                            margin-top: 0px;
+                            margin-top: 2px;
                             margin-bottom: 1px;
                             margin-right: 0px;
                             margin-left: 20px;
@@ -190,7 +204,7 @@
                         }
 
                         .table1{
-                            margin-top: 0px;
+                            margin-top: 40px;
                             margin-bottom: 1px;
                             margin-right: 0px;
                             margin-left: 20px;
@@ -207,7 +221,7 @@
                         .tableUfs{
                             width: 100%;
                             border-spacing: 1;
-                            margin-top: 10px;
+                            margin-top: 20px;
                             margin-right: 0px;
                             margin-left: 20px;
                             margin-bottom: 1px;
@@ -219,6 +233,7 @@
                             text-align: center;
                             padding: 2px;
                             background-color: #ffffff;
+                            page-break-after: always;
                         }
 
                         thead th{
@@ -309,22 +324,30 @@
                                         </tr>
                                     </thead>    
                                     <tbody>';
-                                        for ($i=0; $i < $numRows ; $i++)
+                                       while($x < $npaginas+1)
                                             { 
-                                            $html2 =' <tr>																																
-                                                            <td><h6> ' . $numSerie[$i]. '</h6></td>
-                                                            <td><h6> ' . $nomeImpressora[$i] . '</h6></td>
-                                                            <td><h6> ' . $macImpressora[$i] . '</h6></td>
-                                                            <td><h6> ' . $divisao[$i] . '</h6></td>
-                                                            <td><h6> ' . $nomeLocal[$i] . '</h6></td>
-                                                            <td><h6> ' . $ramal[$i] . '</h6></td>
-                                                            <td><h6> ' . $localizacao[$i] . '</h6></td>
-                                                            <td><h6> ' . $statusImpressora[$i] . '</h6></td>
-                                                            <td><h6> ' . $modeloImpressora[$i] . '</h6></td>
-                                                        <tr>';
-                                                $html1 = $html1.$html2;
-                                            }
-                                                
+                                                for ($i=$i; $i < 20*$x+1; $i++)
+                                                    { 
+                                                        $html2 =' <tr>																																
+                                                                    <td><h6> ' . $numSerie[$i]. '</h6></td>
+                                                                    <td><h6> ' . $nomeImpressora[$i] . '</h6></td>
+                                                                    <td><h6> ' . $macImpressora[$i] . '</h6></td>
+                                                                    <td><h6> ' . $divisao[$i] . '</h6></td>
+                                                                    <td><h6> ' . $nomeLocal[$i] . '</h6></td>
+                                                                    <td><h6> ' . $ramal[$i] . '</h6></td>
+                                                                    <td><h6> ' . $localizacao[$i] . '</h6></td>
+                                                                    <td><h6> ' . $statusImpressora[$i] . '</h6></td>
+                                                                    <td><h6> ' . $modeloImpressora[$i] . '</h6></td>
+                                                                <tr>';                                                        
+                                                        $html1 = $html1.$html2;
+                                                        /*if($i == $numRows )
+                                                            {
+                                                                //echo "<br>X2 => " . $x . " I2 => " . $i . " p3-2 => " . 20*$x . " linhas2 => " . $numRows ."<br>";
+                                                                break;
+                                                            }*/
+                                                    } ;                    
+                                                $x++;  
+                                            }  
 
                         $html3 =    '</tbody>        
                                 </table>
@@ -342,12 +365,7 @@
             </div> 	
         </body>
     </html>';
-
-	
-      
-	
-
-	
+  
 		
 	
 	//referenciar o DomPDF com namespace
@@ -359,7 +377,7 @@
 	//Criando a Instancia
 	$dompdf = new DOMPDF();
 	
-      $html=$html1.$html3;
+      $html=$html1.$html4.$html3;
 	// Carrega seu HTML
 	$dompdf->load_html('			
 			'. $html .'

@@ -2,6 +2,8 @@
 	session_start();
     include "../dao/DAO-controleCir.php";
     include "../funcao/funcao.php";
+    $i=0;
+    $x=0;
 
     //$numSerie = array();
     //echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];	
@@ -148,7 +150,7 @@
 							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
 						}		
                 }
-            $numRows = $_SESSION['numRows'];
+            $numRows = $_SESSION['numRows'];          
             $pesquisa = $_SESSION['valorPesquisa'] . "s";
         }
     else
@@ -156,6 +158,44 @@
             //NÃO FAZ NADA PAGINA EM BRANCO//
         }
          
+    $pagina2 =  ($numRows % 20);
+    $pagina1 =  intdiv($numRows, 20);   
+    if ($pagina2 != 0)
+        {
+            $npaginas = $pagina1 + 1;
+        }
+    else
+        {
+            $npaginas = $pagina1;
+        }
+    //echo "p1 => " . $pagina1 . " p2 => " . $pagina2 . " p3 => " . $npaginas;
+
+    //for ($x=0; $x < $npaginas+1; $x++)
+    while($x < $npaginas+1)
+        { 
+            for ($i=$i; $i < 20*$x+1; $i++)
+                { 
+                    echo "<br>" . $i . " => " . $numSerie[$i];
+                    echo "<br>" . $i . " => " . $nomeImpressora[$i];
+                    echo "<br>" . $i . " => " . $macImpressora[$i];
+                    echo "<br>" . $i . " => " . $divisao[$i];
+                    echo "<br>" . $i . " => " . $nomeLocal[$i];
+                    echo "<br>" . $i . " => " . $ramal[$i];
+                    echo "<br>" . $i . " => " . $localizacao[$i];
+                    echo "<br>" . $i . " => " . $statusImpressora[$i];
+                    echo "<br>" . $i . " => " . $modeloImpressora[$i];
+                    echo "<br>x => " . $x . " I => " . $i . " p3 => " . 20*$x . " linhas => " . $numRows ."<br>";
+                    if($i == $numRows - 1)
+                        {
+                            echo "<br>X2 => " . $x . " I2 => " . $i . " p3-2 => " . 20*$x . " linhas2 => " . $numRows ."<br>";
+                            break;
+                        }
+                }            
+            $x++;
+        }
+   
+      /*
+
 	$html1 ='<!DOCTYPE html>
                 <html lang="PT-BR">
                     <head>
@@ -167,15 +207,14 @@
                                 padding: 0;
                                 margin: 0;
                                 margin-right: 20px;
-                                margin-left: 10px;
-                                margin-top: 20px;
+                            margin-left: 10px;
                             }
 
                         table{
                             width: 100%;
                             border-collapse: separate;
                             border-spacing: 0;
-                            margin-top: 0px;
+                            margin-top: 2px;
                             margin-bottom: 1px;
                             margin-right: 0px;
                             margin-left: 20px;
@@ -190,7 +229,7 @@
                         }
 
                         .table1{
-                            margin-top: 0px;
+                            margin-top: 40px;
                             margin-bottom: 1px;
                             margin-right: 0px;
                             margin-left: 20px;
@@ -207,7 +246,7 @@
                         .tableUfs{
                             width: 100%;
                             border-spacing: 1;
-                            margin-top: 10px;
+                            margin-top: 20px;
                             margin-right: 0px;
                             margin-left: 20px;
                             margin-bottom: 1px;
@@ -219,6 +258,7 @@
                             text-align: center;
                             padding: 2px;
                             background-color: #ffffff;
+                            page-break-after: always;
                         }
 
                         thead th{
@@ -322,7 +362,10 @@
                                                             <td><h6> ' . $statusImpressora[$i] . '</h6></td>
                                                             <td><h6> ' . $modeloImpressora[$i] . '</h6></td>
                                                         <tr>';
-                                                $html1 = $html1.$html2;
+
+                                                $contents = '<div style="page-break-after: always"></div>';
+                                                //if
+                                                $html1 = $html1.$html2.$contents;
                                             }
                                                 
 
@@ -342,12 +385,6 @@
             </div> 	
         </body>
     </html>';
-
-	
-      
-	
-
-	
 		
 	
 	//referenciar o DomPDF com namespace
@@ -359,7 +396,7 @@
 	//Criando a Instancia
 	$dompdf = new DOMPDF();
 	
-      $html=$html1.$html3;
+      $html=$html1.$html3.$footer;
 	// Carrega seu HTML
 	$dompdf->load_html('			
 			'. $html .'
@@ -379,4 +416,5 @@
 			"Attachment" => false //Para realizar o download somente alterar para true
 		)
 	);
+    */
 ?>

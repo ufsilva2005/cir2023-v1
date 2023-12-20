@@ -58,8 +58,12 @@
                 elseif ($_SESSION['tipoPesquisa'] == "modelo")  
                     {
                         include "../template/relatModeloImp.php";
-                    }               
-                 else
+                    } 
+                elseif ($_SESSION['tipoPesquisa'] == "status")  
+                    {
+                        include "../template/relatStatusImp.php";
+                    }                
+                else
                     {
                         echo "<script type='text/javascript'>alert('OBS DADOS NÃO PODEM SE EM BRANCO');</script>";
                         echo "<script>location = './relacaoImpPesquisa.php';</script>";     
