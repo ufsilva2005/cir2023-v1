@@ -1,8 +1,7 @@
 <?php
     session_start();
 	include "../funcao/funcao.php";	
-	include "../models/class-funcionarios.php";
-    include "../models/class-tipoAcesso.php";
+	include "../models/class-entMaterial.php";
 	include "../dao/DAO-controleCir.php";	
 
     $listaMaterial = $_POST['listaMaterial'];
@@ -11,49 +10,37 @@
     $_SESSION['nomeFuncionario'];
     $_SESSION['data']; 
 
-    echo "<br>listaMaterial => " .  $listaMaterial;
-    echo "<br>codigoMat => " .  $codigoMat;
-    echo "<br>quantidadeMat => " .  $quantidadeMat;
-    echo "<br>nomeFuncionario => " .   $_SESSION['nomeFuncionario'];
-    echo "<br>data => " . $_SESSION['data'];
+    //buscar id funcionário
+    $nomeTabela = "funcionario";
+    $tipoOpcao = "nomeFuncionario";
+    $funcionarioDAO = new ControleCirDAO();
+	foreach ($funcionarioDAO->Verificar($nomeTabela, $tipoOpcao, $_SESSION['nomeFuncionario']) as $func)
+		{ 
+			$idFuncionario = $func->idFuncionario;				          
+		}
 
-    
-/*
-    //VERIFICAR SE ALGUM DADO ESTÃO EM BRANCO
-    if($nomeFuncionario == "" || $login == "" || $testaSenha == "")
-        {
-            echo "<script type='text/javascript'>alert('USUÁRIO, LOGIN OU SENHA NÃO PODEM SER EM BRANCO');</script>";
-            echo "<script>location = '../views/funcionarioCadastro.php';</script>";   
-        }
+    //savar dados no banco
+    $entradaMat = new EntMaterial( $idEntMat,formatarData($_SESSION['data']),$quantidadeMat,$listaMaterial,$codigoMat,$idFuncionario);
+    //echo "<br><== entradaMat ==><br>";
+    //$entradaMat->exibir();
+    $entradaMatDAO = new ControleCirDAO(); 
+    $entradaMatDAO->CadastrarEntMaterial($entradaMat);
 
-      
-    $tipoAcesso = new TipoAcesso($idAcesso, $gerenFuncionarios, $gerenCargos, $gerenEntMaterial, $gerenSaiMaterial, $gerenRelaMaterial, $gerenComputador, $gerenImpressora);
-    //echo "<br><== tipoAcesso ==><br>";
-    //$tipoAcesso->exibir();
+    //atualizar tabela material
+    $nomeTabela = "material";
+    $tipoOpcao = "idMaterial";
+    $materialDAO = new ControleCirDAO();
+	foreach ($materialDAO->Verificar($nomeTabela, $tipoOpcao, $listaMaterial) as $mat)
+		{ 
+			$quantidade = $mat->quantidade;				          
+		}
 
-    $tipoAcessoDAO = new ControleCirDAO();
-	foreach ($tipoAcessoDAO->TipoAcessoPesquisa($gerenFuncionarios, $gerenCargos, $gerenEntMaterial, $gerenSaiMaterial, $gerenRelaMaterial, $gerenComputador, $gerenImpressora) as $resp)
-        { 
-            $idAcesso = $resp->idAcesso;	
-        } 
+    $quantidadeBd = $quantidade+$quantidadeMat;
+    //echo "<br>quantiadeBd ==> " . $quantidadeBd;
+             
+    $updateMaterialDAO = new ControleCirDAO();  
+    $updateMaterialDAO->UpdateMaterial($listaMaterial,$quantidadeBd);
 
-    //echo "<br>idAcesso ==> " .  $idAcesso . "<br>";
-
-    if($idAcesso == 0)
-        {
-            $tipoAcesso->exibir();
-            $tipoAcessoDAO = new ControleCirDAO();
-            $tipoAcessoDAO->TipoAcessoCadastrar($tipoAcesso); 
-            $idAcesso = $_SESSION['idAcesso']; 
-        }
-
-    $funcionario = new Funcionario($idFuncionario, $nomeFuncionario, $statusFuncionario, $login, $senha, $dataCadastro, $dataAltCadastro, $idCargo, $idAcesso);
-    //echo "<br><== funcionario ==><br>";
-    //$funcionario->exibir();
-    $funcionarioDAO = new ControleCirDAO(); 
-    $funcionarioDAO->FuncionarioCadastrar($funcionario);
-
-    echo "<script type='text/javascript'>alert('USUÁRIO CADASTRADO COM SUCESSO');</script>";
-    echo "<script>location = '../views/funcionarioCadastro.php';</script>";   
-    */
+    echo "<script type='text/javascript'>alert('ENTRADA DE MATERIAL CADASTRADA COM SUCESSO');</script>";
+    echo "<script>location = '../views/materialEntradas.php';</script>";   
 ?>

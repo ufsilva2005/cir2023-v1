@@ -935,6 +935,51 @@
                     $prepara->execute();                 
                     $conn = null;
                 }
+
+            public function CadastrarEntMaterial($entradaMat) 
+                {	
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');                    
+                    $prepara = $conn->prepare("INSERT INTO entraMaterial(dataEntrada, quantEntra, idMaterial, codigo, idFuncionario) 
+                    VALUES(:dataEntradaBd, :quantEntraBd, :idMaterialBd, :codigoBd, :idFuncionarioBd)");
+                        
+                    //$BdidEntMat	= $entradaMat->getIdEntMat();                                     
+                    $BddataEntrada   = $entradaMat->getDataEntrada();
+                    $BdquantEntra	 = $entradaMat->getQuantEntra();
+                    $BdidMaterial    = $entradaMat->getIdMaterial();
+                    $Bdcodigo  	     = $entradaMat->getCodigo();  
+                    $BdidFuncionario = $entradaMat->getIdFuncionario();
+                                        
+                    //$prepara->bindParam(":idEntMatBd", $BdidEntMat);
+                    $prepara->bindParam(":dataEntradaBd",  $BddataEntrada);
+                    $prepara->bindParam(":quantEntraBd", $BdquantEntra);                   
+                    $prepara->bindParam(":idMaterialBd", $BdidMaterial);
+                    $prepara->bindParam(":codigoBd", $Bdcodigo);
+                    $prepara->bindParam(":idFuncionarioBd", $BdidFuncionario);
+
+                    $prepara->execute();                 
+                    $conn = null;
+                }
+
+            public function UpdateMaterial($idMaterial,$quantidade)
+				{
+					$conn = Database::connect();					
+					$conn->exec('SET CHARACTER SET utf8');					
+					$sql = "UPDATE material 
+                    SET quantidade = '$quantidade'
+                    WHERE idMaterial = '$idMaterial'";
+					try 
+						{
+							$listar = $conn->query($sql);
+							$buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+						} 
+					catch (PDOException $exc)
+						{
+							$buscar = $exc->getTraceAsString();
+						}
+					return $buscar;
+					$conn = null;	
+				}  
           
             //FIM DAS FUNÇÕES RELACIONADAS AOS MATERIAIS
 
