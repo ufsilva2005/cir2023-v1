@@ -62,7 +62,8 @@
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">MATERIAIS</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../views/materialCadastrar.php">Cadastrar</a></li>
-                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Gerenciar</a></li>
+                        <li><a class="dropdown-item" href="../views/materialEntradas.php">Entradas</a></li>                       
+                        <li><a class="dropdown-item" href="../views/materialSaidas.php">Saídas</a></li>
                     </ul>
                 </div>  
 

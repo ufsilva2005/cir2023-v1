@@ -50,7 +50,17 @@
 												<td><?php echo $nomeLocal1?></td>	
 												<td><?php echo $localizacao1?></td>		
 												<td><?php echo $statusImpressora = $imp->statusImpressora?></td>
-												<td class='operations'>  
+												<td class='operations'> 
+													<?php                                    
+                                                        if($statusImpressora != "ativo") 
+                                                            {
+                                                                $inativo++;
+                                                            }  
+														else
+                                                            {
+                                                                $ativo++;
+                                                            }                                    
+                                                    ?>   
 													<div class="btn-group pull-left">
                                                        <a class='nav-link' href="../gerarPdf/relatorioImpressora.php"  target="_blank"> <button type='button'  class="btn btn-small btn-ufs" >Imprimir</button> </a> 
                                                     </div>

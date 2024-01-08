@@ -268,7 +268,7 @@
                                     <thead>
                                         <tr>
                                             <th>   
-                                                <img id="profile-img" class="profile-img-card" src="../img/cir.jpg" height="10%" width="10%">                   
+                                                <img id="profile-img" class="profile-img-card" src="../img/cir.jpg" height="13%" width="10%">                   
                                             </th> 
                                         <tr>
 
@@ -300,10 +300,10 @@
                                             <th><h6>Número de Série:</h6></th>   
                                             <th><h6>Nome da Impressora:</h6></th>
                                             <th><h6>Nº MAC:</h6></th>                                                  
-                                            <th><h6>Divisao</h6></th>
+                                            <th><h6>Divisão</h6></th>
                                             <th><h6>Setor</h6></th>
                                             <th><h6>Ramal</h6></th>
-                                            <th><h6>localizacao</h6></th>
+                                            <th><h6>localização</h6></th>
                                             <th><h6>Status</h6></th>
                                             <th><h6>Modelo</h6></th>
                                         </tr>

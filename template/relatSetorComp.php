@@ -50,7 +50,17 @@
 												<td><?php echo $nomeLocal1?></td>	
 												<td><?php echo $localizacao1?></td>		
 												<td><?php echo $statusComp = $comp->statusComp?></td>
-												<td class='operations'>  
+												<td class='operations'> 
+													<?php                                    
+                                                        if($statusComp != "ativo") 
+                                                            {
+                                                                $inativo++;
+                                                            }  
+														else
+                                                            {
+                                                                $ativo++;
+                                                            }                                    
+                                                    ?>    
 													<div class="btn-group pull-left">
                                                         <a href="../gerarPdf/computadorImprimirDados.php?action=1&id=<?php echo $comp->idComputador; ?>"  target="_blank"  class="btn btn-small btn-ufs">P<i class="icon-remove"></i></a>
                                                     </div>

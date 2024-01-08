@@ -380,7 +380,7 @@
                                     <thead>
                                         <tr>
                                             <th>   
-                                                <img id="profile-img" class="profile-img-card" src="../img/cir.jpg" height="10%" width="10%">                   
+                                                <img id="profile-img" class="profile-img-card" src="../img/cir.jpg" height="13%" width="10%">                   
                                             </th> 
                                         <tr>
 

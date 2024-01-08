@@ -51,6 +51,16 @@
 												<td><?php echo $localizacao1?></td>		
 												<td><?php echo $statusComp = $comp->statusComp?></td>
 												<td class='operations'>  
+													<?php                                    
+                                                        if($statusComp != "ativo") 
+                                                            {
+                                                                $inativo++;
+                                                            }  
+														else
+                                                            {
+                                                                $ativo++;
+                                                            }                                    
+                                                    ?>   
 													<div class="btn-group pull-left">
                                                        <a class='nav-link' href="../gerarPdf/relatorioComputador.php"  target="_blank"> <button type='button'  class="btn btn-small btn-ufs" >Imprimir</button> </a> 
                                                     </div>
