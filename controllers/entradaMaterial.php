@@ -41,6 +41,8 @@
     $updateMaterialDAO = new ControleCirDAO();  
     $updateMaterialDAO->UpdateMaterial($listaMaterial,$quantidadeBd);
 
+     //savar dados empresa no banco
+
     echo "<script type='text/javascript'>alert('ENTRADA DE MATERIAL CADASTRADA COM SUCESSO');</script>";
     echo "<script>location = '../views/materialEntradas.php';</script>";   
 ?>

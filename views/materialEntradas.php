@@ -60,22 +60,62 @@
                                         <select class="form-control" name="listaMaterial" id="listaMaterial" onclick="if( $('#listaMaterial').html() == '' ){ alert('Material Não encontrado.\n Comunique ao Administrador do Sistema.');}" required></select>
                                     </div>     
 
-                                    <div class="col px-md-1 col-md-3">
+                                    <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Código:</label>
                                         <input type="text" class="form-control"  name="codigo" id="codigo" value =" " readonly tabindex="-1">
                                     </div>
 
-                                    <div class="col px-md-1 col-md-3">
+                                    <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Quantidade:</label>
                                         <input type="number" class="form-control" name="quantidadeMat" id="quantidadeMat" pattern="\d*"  min="1" required/>
                                     </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">Unidade:</label>
+                                        <input type="number" class="form-control" name="unidade"  required/>
+                                    </div>
                                 </div>  
+
+                                <hr>
+                                <div class="row">	
+                                    <div class="col px-md-1  col-md-4">
+                                        <label for="inputSuccess" class="control-label">Nome da Empresa:</label>
+                                        <input type="text" class="form-control" name="nomeEmpresa" >               
+                                     </div>
+                                                                                
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">CNPJ:</label>
+                                        <input type="text" class="form-control" name="cnpj" id="cnpj" >
+                                    </div>     
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">Nº da Nota Fiscal:</label>
+                                        <input type="text" class="form-control"  name="notaFiscal" >
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">Nº do Processo:</label>
+                                        <input type="number" class="form-control" name="numProcesso" />
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">Nº do Empenho:</label>
+                                        <input type="number" class="form-control" name="numEmpenho"  />
+                                    </div>
+                                </div>  
+
+                                <div class="row">	
+                                    <div class="col px-md-1  col-md-12">
+                                        <label for="inputSuccess" class="control-label">OBS:</label>
+                                        <input type="text" class="form-control" name="obsMaterial" >               
+                                     </div>                                 
+                                </div>
 
                                 <hr>
 
                                 <div class="row">	
                                     <label>
-                                        <h5 class="text-primary">Informações do responsavel</h5>
+                                        <h5 class="text-primary">Responsavel pelo Cadastro</h5>
                                     </label>	
                                 </div>
 

@@ -24,18 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `conserto`
+-- Estrutura para tabela `empresaMaterial`
 --
 
-CREATE TABLE `conserto` (
-  `idConserto` int(11) NOT NULL,
-  `obsConserto` varchar(255) DEFAULT NULL,
-  `dataConserto` date DEFAULT NULL,
-  `nomeTecnico` varchar(255) DEFAULT NULL,
-  `idHistorico` int(11) DEFAULT NULL,    
-  `idComputador` int(11) DEFAULT NULL,
-  `idImpressora` int(11) DEFAULT NULL,  
-  `idSaiMat` int(11) DEFAULT NULL
+CREATE TABLE `empresaMaterial` (
+  `idEmpresa` int(11) NOT NULL,
+  `nomeEmpresa` varchar(255) DEFAULT NULL,
+  `cnpj` date DEFAULT NULL,
+  `numNota` varchar(255) DEFAULT NULL,
+  `numProcesso` varchar(50) DEFAULT NULL,    
+  `numEmpenho` varchar(50) DEFAULT NULL,
+  `obs` varchar(255) DEFAULT NULL,  
+  `idEntMat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
@@ -43,35 +43,31 @@ CREATE TABLE `conserto` (
 --
 
 --
--- Índices de tabela `conserto`
+-- Índices de tabela `empresaMaterial`
 --
-ALTER TABLE `conserto`
-  ADD PRIMARY KEY (`idConserto`),
-  ADD KEY `idComputador` (`idComputador`),
-  ADD KEY `idImpressora` (`idImpressora`),
-  ADD KEY `idSaiMat` (`idSaiMat`);
+ALTER TABLE `empresaMaterial`
+  ADD PRIMARY KEY (`idEmpresa`),
+  ADD KEY `idEntMat` (`idEntMat`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `conserto`
+-- AUTO_INCREMENT de tabela `empresaMaterial`
 --
-ALTER TABLE `conserto`
-  MODIFY `idConserto` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `empresaMaterial`
+  MODIFY `idEmpresa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas
 --
 
 --
--- Restrições para tabelas `conserto`
+-- Restrições para tabelas `empresaMaterial`
 --
-ALTER TABLE `conserto`
-  ADD CONSTRAINT `conserto_ibfk_1` FOREIGN KEY (`idComputador`) REFERENCES `computador` (`idComputador`),
-  ADD CONSTRAINT `conserto_ibfk_2` FOREIGN KEY (`idImpressora`) REFERENCES `impressoras` (`idImpressora`),
-  ADD CONSTRAINT `conserto_ibfk_3` FOREIGN KEY (`idSaiMat`) REFERENCES `saiMaterial` (`idSaiMat`);
+ALTER TABLE `empresaMaterial`
+  ADD CONSTRAINT `empresaMaterial_ibfk_3` FOREIGN KEY (`idEntMat`) REFERENCES `entraMaterial` (`idEntMat`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
