@@ -1,7 +1,7 @@
 <?php
     session_start();
 	include "../funcao/funcao.php";	
-	include "../models/class-entMaterial.php";
+	include "../models/class-saiMaterial.php";
 	include "../dao/DAO-controleCir.php";	
 
     $listaMaterial = $_POST['listaMaterial'];

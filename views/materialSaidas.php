@@ -104,11 +104,18 @@
                                     </div>  
                                 </div>  
 
+                                <div class="row">
+                                    <div class="col px-md-1  col-md-12">
+                                        <label for="inputSuccess" class="control-label">OBS:</label>
+                                        <input type="text" class="form-control" name = "obs" required >
+                                    </div>  
+                                </div>
+
                                 <hr>
 
                                 <div class="row">	
                                     <label>
-                                        <h5 class="text-primary">Informações do responsavel</h5>
+                                        <h5 class="text-primary">Responsavel pelas Informações</h5>
                                     </label>	
                                 </div>
 

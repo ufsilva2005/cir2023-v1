@@ -58,6 +58,28 @@
                     </ul>
                 </div>
 
+                 <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">SERVIDORES</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Cadastrar</a></li>
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Listar Todos</a></li>
+                         <li><a class="dropdown-item" href="../views/naoImplementada.php?action=1">Listar Ativos</a></li>
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php?action=2">Listar Inativos</a></li>
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Pesquisar</a></li>
+                    </ul>
+                </div>
+
+                 <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">SWITCH</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Cadastrar</a></li>
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Listar Todos</a></li>
+                         <li><a class="dropdown-item" href="../views/naoImplementada.php?action=1">Listar Ativos</a></li>
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php?action=2">Listar Inativos</a></li>
+                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Pesquisar</a></li>
+                    </ul>
+                </div>
+
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">MATERIAIS</button>
                     <ul class="dropdown-menu">
