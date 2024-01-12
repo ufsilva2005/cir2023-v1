@@ -116,7 +116,7 @@
                                             foreach ($modeloDAO->ListarTudo($nomeTabela) as $res) 
                                                 {
                                                     ?>
-                                                        <option value="<?php echo $res->idModelo; ?>"> <?php echo $res->modeloImpressora;  $_SESSION['modeloImpressora'] = $res->nomeLocal;?> </option>
+                                                        <option value="<?php echo $res->idModelo; ?>"> <?php echo $res->modeloImpressora;  $_SESSION['modeloImpressora'] = $res->modeloImpressora;?> </option>
                                                     <?php
                                                 }
                                         ?>

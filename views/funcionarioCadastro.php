@@ -1,9 +1,9 @@
 <?php
 include "../template/menuPrincipal.php";
-include "../scripts/mascara.php";
-include "../scripts/validarCpf.php";
-include "../scripts/pesquisaNumCpf.php";
-include "../scripts/pesquisaLogin.php";
+//include "../scripts/mascara.php";
+//include "../scripts/validarCpf.php";
+//include "../scripts/pesquisaNumCpf.php";
+//include "../scripts/pesquisaLogin.php";
 
 if ($_SESSION['funcionarios'] != "sim") {
     echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";

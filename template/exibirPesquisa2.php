@@ -6,6 +6,8 @@
         }
     $_SESSION['tipoP'] = $tipoPesquisa;
     $_SESSION['valorP'] = $valorPesquisa;
+    $ativo = 0;
+    $inativo = 0;
 ?>
 
                                 <table class="table table-striped table-bordered table-condensed">
