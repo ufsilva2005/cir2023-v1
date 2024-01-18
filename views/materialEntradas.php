@@ -1,25 +1,27 @@
 <?php
-    session_start();
+    //session_start();
     include "../template/menuPrincipal.php";
+    include "../scripts/mascara.php";
+    include "../scripts/validarCnpj.php";
+    //include "../scripts/validarCpf.php";
+    //include_once("../dao/conexao.php"); 
 
     if ($_SESSION['computador'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
         echo "<script>location = '../template/menuPrincipal.php';</script>";
     }
 
-    //$idFuncionario = $_SESSION['idFuncionario'];  
-    //$nomeFuncionario = $_SESSION['nomeFuncionario'];  
+    //include "../scripts/validarNumImp.php";
+    //include "../scripts/validarNumCir.php"; 
+    //include "../scripts/validarNomeCir.php";
+    //include "../scripts/validarMac.php"; 
 
-    include "../scripts/validarNumImp.php";
-    include "../scripts/validarNumCir.php"; 
-    include "../scripts/validarNomeCir.php";
-    include "../scripts/validarMac.php"; 
-    include "../scripts/mascara.php";
-    include_once("../dao/conexao.php"); 
+    $idFuncionario = $_SESSION['idFuncionario'];  
+    $nomeFuncionario = $_SESSION['nomeFuncionario'];  
 ?>
-    <script src="../js/jquery.min.3-1.js"></script>
+    <!--script src="../js/jquery.min.3-1.js"></script>
     <script src="../js/bootstrap3-typeahead.min.js"></script>  
-    <script src="../js/jquery-latest.min.js"></script>
+    <script src="../js/jquery-latest.min.js"></script-->
     <script>
         $(document).ready(function() {
             $('#termo_busca').keyup(function() {
@@ -38,7 +40,7 @@
         });
     </script>
     <script src="../js/codigoMat.js"></script>
-    
+    <script src="../js/unidadeMat.js"></script>
 
         <hr>
         <nav class="navbar navbar-dark">
@@ -47,7 +49,7 @@
                 <h3 class="text-success">Cadastrar Entrada de Materiais</h3>
                 <div class="panel-content">
                     <div class="col-md-12">
-                        <form name="cadastro" id="cadastro" method="post" action="../controllers/entradaMaterial.php">
+                        <form name="cadastro" id="cadastro" method="post" action="../controllers/entradaMaterial.php" method="POST">
                             <fieldset>	                                
                                 <div class="row">	
                                     <div class="col px-md-1  col-md-2">
@@ -72,7 +74,7 @@
 
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Unidade:</label>
-                                        <input type="number" class="form-control" name="unidade"  required/>
+                                        <input type="text" class="form-control" name="unidade" id="unidade" value =" " readonly tabindex="-1" />
                                     </div>
                                 </div>  
 
@@ -85,8 +87,8 @@
                                                                                 
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">CNPJ:</label>
-                                        <input type="text" class="form-control" name="cnpj" id="cnpj" >
-                                    </div>     
+                                        <input type="text" class="form-control" name="dadosCnpj" id="dadosCnpj" maxlength="18"  OnKeyPress="formatar('##.###.###/####-##', this)"  onblur = "ValidarCnpj(cadastro.dadosCnpj)" required>
+                                    </div>                                   
 
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Nº da Nota Fiscal:</label>
@@ -95,12 +97,12 @@
 
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Nº do Processo:</label>
-                                        <input type="number" class="form-control" name="numProcesso" />
+                                        <input type="text" class="form-control" name="numProcesso" />
                                     </div>
 
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Nº do Empenho:</label>
-                                        <input type="number" class="form-control" name="numEmpenho"  />
+                                        <input type="text" class="form-control" name="numEmpenho"  />
                                     </div>
                                 </div>  
 

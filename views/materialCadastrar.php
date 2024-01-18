@@ -53,6 +53,10 @@
                                         <label for="inputSuccess" class="control-label">Descrição:</label>
                                         <input type="text" class="form-control" name="descImp" id="descImp">
                                     </div>
+                                    <div class="col px-md-1 col-md-3">
+                                        <label for="inputSuccess" class="control-label">Unidade:</label>
+                                        <input type="text" class="form-control" name="unidadeImp" >
+                                    </div>
                                 </div>
                             </div>
 
@@ -65,6 +69,10 @@
                                     <div class="col px-md-1 col-md-5">
                                         <label for="inputSuccess" class="control-label">Descrição:</label>
                                         <input type="text" class="form-control" name="descComp" id="descComp">
+                                    </div>
+                                    <div class="col px-md-1 col-md-3">
+                                        <label for="inputSuccess" class="control-label">Unidade:</label>
+                                        <input type="text" class="form-control" name="unidadeComp">
                                     </div>
                                 </div>
                             </div>

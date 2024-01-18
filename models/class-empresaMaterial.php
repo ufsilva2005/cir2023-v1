@@ -115,16 +115,16 @@
 					echo '</br>nomeEmpresa: </br>';
 					echo $this->nomeEmpresa . '<br>';
 					
-					echo '</br>data Alteração: </br>';
+					echo '</br>cnpj: </br>';
 					echo $this->cnpj . '<br>';
 					
-					echo '</br>responsavel nomeEmpresa: </br>';
+					echo '</br>Nº da nota: </br>';
 					echo $this->numNota . '<br>';
 					
-					echo '</br>numProcesso:</br> ';
+					echo '</br>º do Processo:</br> ';
                     echo $this->numProcesso . '<br>';
                     
-                    echo '</br>numEmpenho:</br> ';
+                    echo '</br>Nº do Empenho:</br> ';
 					echo $this->numEmpenho . '<br>';
 
                     echo '</br>obs:</br> ';

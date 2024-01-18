@@ -101,8 +101,9 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">RELATÓRIOS</button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../views/relacaoComputPesquisa.php">Relação de computadores</a></li>
-                        <li><a class="dropdown-item" href="../views/relacaoImpPesquisa.php">Relação de impressoras</a></li>
+                        <li><a class="dropdown-item" href="../views/relacaoComputPesquisa.php">Relação de Computadores</a></li>
+                        <li><a class="dropdown-item" href="../views/relacaoImpPesquisa.php">Relação de Impressoras</a></li>
+                        <li><a class="dropdown-item" href="../views/relatorioMaterias.php">Materiais</a></li>
                     </ul>
                 </div>  
 

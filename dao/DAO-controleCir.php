@@ -414,10 +414,7 @@
                     $prepara->bindParam(":nomeLocalBd",  $BdnomeLocal);
                                 
                     $prepara->execute();                                 
-                    $localId = $conn->lastInsertId();
-                                
-                   
-                    //$_SESSION['msg1'] = $RESPOSTA1;
+                    $localId = $conn->lastInsertId();    
                     $_SESSION['localid'] = $localId;
                     $conn = null;
                 }
@@ -957,7 +954,9 @@
                     $prepara->bindParam(":codigoBd", $Bdcodigo);
                     $prepara->bindParam(":idFuncionarioBd", $BdidFuncionario);
 
-                    $prepara->execute();                 
+                    $prepara->execute();   
+                    $idEntMat  = $conn->lastInsertId();
+                    $_SESSION['idEntMat'] = $idEntMat ;                 
                     $conn = null;
                 }
 
@@ -981,6 +980,34 @@
 					$conn = null;	
 				}  
           
+            public function CadastrarEnpresaMaterial($empresaMat) 
+                {	
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');                    
+                    $prepara = $conn->prepare("INSERT INTO empresaMaterial(nomeEmpresa, cnpj, numNota, numProcesso, numEmpenho, obs, idEntMat) 
+                    VALUES(:nomeEmpresaBd, :cnpjBd, :numNotaBd, :numProcessoBd, :numEmpenhoBd, :obsBd, :idEntMatBd)");
+                        
+                    //$BdidEmpresa = $empresaMat->getIdEmpresa();                                     
+                    $BdnomeEmpresa = $empresaMat->getNomeEmpresa();
+                    $Bdcnpj	       = $empresaMat->getCnpj();
+                    $BdnumNota     = $empresaMat->getNumNota();
+                    $BdnumProcesso = $empresaMat->getNumProcesso();  
+                    $BdnumEmpenho  = $empresaMat->getNumEmpenho();
+                    $Bdobs         = $empresaMat->getObs();
+                    $BdidEntMat	   = $empresaMat->getIdEntMat(); 
+                                        
+                    //$prepara->bindParam(":idEntMatBd", $BdidEntMat);
+                    $prepara->bindParam(":nomeEmpresaBd",  $BdnomeEmpresa);
+                    $prepara->bindParam(":cnpjBd", $Bdcnpj);                   
+                    $prepara->bindParam(":numNotaBd", $BdnumNota);
+                    $prepara->bindParam(":numProcessoBd", $BdnumProcesso);
+                    $prepara->bindParam(":numEmpenhoBd", $BdnumEmpenho);
+                    $prepara->bindParam(":obsBd", $Bdobs); 
+                    $prepara->bindParam(":idEntMatBd", $BdidEntMat);
+
+                    $prepara->execute();                 
+                    $conn = null;
+                }
             //FIM DAS FUNÇÕES RELACIONADAS AOS MATERIAIS
 
             //INÍCIO DAS FUNÇÕES RELACIONADAS AO HISTORICO

@@ -2,13 +2,20 @@
     session_start();
 	include "../funcao/funcao.php";	
 	include "../models/class-entMaterial.php";
+    include "../models/class-empresaMaterial.php";
 	include "../dao/DAO-controleCir.php";	
 
     $listaMaterial = $_POST['listaMaterial'];
     $codigoMat = $_POST['codigo'];
     $quantidadeMat = $_POST['quantidadeMat'];
     $_SESSION['nomeFuncionario'];
-    $_SESSION['data']; 
+    $_SESSION['data'];
+    $nomeEmpresa = $_POST['nomeEmpresa'];
+    $cnpj = $_POST['dadosCnpj'];
+    $notaFiscal = $_POST['notaFiscal'];
+    $numProcesso = $_POST['numProcesso'];
+    $numEmpenho = $_POST['numEmpenho'];
+    $obsMaterial = $_POST['obsMaterial'];
 
     //buscar id funcionário
     $nomeTabela = "funcionario";
@@ -26,6 +33,12 @@
     $entradaMatDAO = new ControleCirDAO(); 
     $entradaMatDAO->CadastrarEntMaterial($entradaMat);
 
+    $empresaMat = new EmpresaMaterial($idEmpresa,$nomeEmpresa,$cnpj,$notaFiscal,$numProcesso,$numEmpenho,$obsMaterial,$_SESSION['idEntMat']);
+    //echo "<br><== empresaMat ==><br>";
+    //$empresaMat->exibir();
+    $empresaMatDAO = new ControleCirDAO(); 
+    $empresaMatDAO->CadastrarEnpresaMaterial($empresaMat);
+
     //atualizar tabela material
     $nomeTabela = "material";
     $tipoOpcao = "idMaterial";
@@ -40,8 +53,6 @@
              
     $updateMaterialDAO = new ControleCirDAO();  
     $updateMaterialDAO->UpdateMaterial($listaMaterial,$quantidadeBd);
-
-     //savar dados empresa no banco
 
     echo "<script type='text/javascript'>alert('ENTRADA DE MATERIAL CADASTRADA COM SUCESSO');</script>";
     echo "<script>location = '../views/materialEntradas.php';</script>";   

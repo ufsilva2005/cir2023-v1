@@ -8,10 +8,15 @@
     $quantidade = 0;
     $statusMat = "ativo";
  
-   	$codigoImp = $_POST['codigoImp'];
+   	//impressora
+    $codigoImp = $_POST['codigoImp'];
 	$descImp = converteMaiuscula(filter_input(INPUT_POST, 'descImp'));
+    $unidadeImp = converteMaiuscula(filter_input(INPUT_POST, 'unidadeImp'));
+
+    //computador
     $codigoComp = converteMaiuscula(filter_input(INPUT_POST, 'codigoComp'));	
-	$descComp = converteMaiuscula(filter_input(INPUT_POST, 'descComp'));	
+	$descComp = converteMaiuscula(filter_input(INPUT_POST, 'descComp'));
+    $unidadeComp = converteMaiuscula(filter_input(INPUT_POST, 'unidadeComp'));	
 
     //verifiocar se material existe
     if($descImp == "" && $codigoComp =="" && $descComp == "" )
@@ -43,6 +48,7 @@
             else
                 {
                     //cadastrar material
+                    $unidade = $unidadeImp;
                     $material = new Material($idMaterial, $codigoImp, $descImp, $numSerie, $unidade, $quantidade, $statusMat);
                     //echo "<br>dados material <br>";		
                     //$material->exibir();
@@ -56,8 +62,16 @@
 
     else if($descImp == "" && $codigoComp !="" && $descComp != "" )
         {
-            echo "<br>codigoComp => " . $codigoComp . "<br>";
-	        echo "<br>descComp => " . $descComp ."<br>";
+            //cadastrar material
+                    $unidade = $unidadeComp;
+                    $material = new Material($idMaterial, $codigoComp, $descComp, $numSerie, $unidade, $quantidade, $statusMat);
+                    //echo "<br>dados material <br>";		
+                    //$material->exibir();
+                    //echo "<br>";
+                    $materialDAO = new ControleCirDAO();
+                    $materialDAO->CadastrarMaterial($material);
+                    echo "<script type='text/javascript'>alert('MATERIAL CADASTRADO');</script>";
+                    echo "<script>location = '../views/materialCadastrar.php';</script>"; 
         }
 
     else

@@ -3,7 +3,7 @@ include "../template/menuPrincipal.php";
 //include "../scripts/mascara.php";
 //include "../scripts/validarCpf.php";
 //include "../scripts/pesquisaNumCpf.php";
-//include "../scripts/pesquisaLogin.php";
+include "../scripts/pesquisaLogin.php";
 
 if ($_SESSION['funcionarios'] != "sim") {
     echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
@@ -73,7 +73,7 @@ if ($_SESSION['funcionarios'] != "sim") {
                                     <th>Computador</th>
                                     <th>Ent. Material</th>
                                     <th>Sai. Material</th>
-                                    <th>Relatórios</th>
+                                    <th>Cadastrar Material</th>
                                 </tr>
                             </thead>
                             <tbody>

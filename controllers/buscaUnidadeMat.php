@@ -12,9 +12,9 @@
 	if($resultadoCodigo->num_rows)
 		{
 			$rowCap = mysqli_fetch_assoc($resultadoCodigo);
-			$valores['codigo'] = $rowCap['codigo'];
+			$valores['unidade'] = $rowCap['unidade'];	
 		}
         
-    $codigo = $valores['codigo']; 
-    echo $codigo;
+    $unidade = $valores['unidade']; 
+    echo $unidade;
 ?>
