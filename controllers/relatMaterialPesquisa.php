@@ -1,7 +1,4 @@
-<?php	
-	//session_start();	
-	//include "../funcao/funcao.php";
-	//echo "<br> teste de variaveis 1 => ";
+<?php		
 	//recebe dados da view
 	$geral = $_POST['geral'];   
 	$codigoMat = $_POST['codigoMat'];
@@ -14,8 +11,6 @@
 	$dataEnt = $_POST['dataEnt'];
 	$dataSai = $_POST['dataSai']; 
 	
-	//echo "<br> teste de variaveis => " . $geral . " - " . $codigoMat . " - " . $nomeMat . " - " . $empresa . " - " . $cnpj . " - " . $notaFiscal . " - " . $empenho . " - " . $processo . " - " . $dataEnt . " - " . $dataSai;
-
 	if($geral != "" && $codigoMat == "" && $nomeMat == "" && $empresa == "" && $cnpj == "" &&  $notaFiscal == "" && $empenho == "" && $processo== "" && $dataEnt == "" && $dataSai == "")
 		{
 			$_SESSION['valorPesquisa'] = $geral;

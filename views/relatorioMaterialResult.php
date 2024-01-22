@@ -72,14 +72,23 @@
                         {
                             include "../template/relatMatEmpNota.php";
                         }   
-                     /*elseif ($_SESSION['tipoPesquisa'] == "status")  
+                    elseif ($_SESSION['tipoPesquisa'] == "numEmpenho")  
                         {
-                            include "../template/.php";
-                        } */    
-                     /*elseif ($_SESSION['tipoPesquisa'] == "status")  
+                            include "../template/relatMatNumEmpenho.php";
+                        }    
+                    elseif ($_SESSION['tipoPesquisa'] == "numProcesso")  
                         {
-                            include "../template/.php";
-                        } */    
+                            include "../template/relatMatNumProcesso.php";
+                        }
+                    elseif ($_SESSION['tipoPesquisa'] == "dataEntrada")  
+                        {
+                            include "../template/relatMatDataEntra.php";
+                        }
+                    elseif ($_SESSION['tipoPesquisa'] == "dataSaida")  
+                        {
+                            //include "../template/relatMatDataSaida.php";
+                            include "./naoImplementada.php";
+                        } 
                     else
                         {
                             echo "<script type='text/javascript'>alert('NÃO FOI PSSÍVEL REALIZAR A PESQUISA');</script>";
