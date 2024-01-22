@@ -19,7 +19,7 @@
                                         <?php
                                             require_once '../dao/DAO-controleCir.php';
                                             $matAltDAO = new ControleCirDAO();
-                                            foreach($matAltDAO-> RelatMatEmpresa($_SESSION['valorPesquisa']) as $mat)                                             
+                                            foreach($matAltDAO-> RelatMatEmpCnpj($_SESSION['valorPesquisa']) as $mat)                                             
                                                 {?>													
 													<tr>
 														<td>

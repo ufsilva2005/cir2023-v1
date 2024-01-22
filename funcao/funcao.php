@@ -26,14 +26,14 @@
 	//CONVERTE MAIUSCULA
 	function converteMaiuscula($nomeA) 
 		{
-			$palavra =  strtr(strtoupper($nomeA),"àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ","ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß");
+			$palavra =  strtr(strtoupper($nomeA),"àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿº","ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞßº");
 			return $palavra;
 		}
 
 	//CONVERTE MINUSCULA
 	function converteMinuscula($nomeA) 
 		{
-			$palavra =  strtr(strtolower($nomeA),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß", "àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
+			$palavra =  strtr(strtolower($nomeA),"ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞßº", "àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿº");
 			return $palavra;
 		}
 

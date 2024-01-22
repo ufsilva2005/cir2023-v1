@@ -1008,6 +1008,93 @@
                     $prepara->execute();                 
                     $conn = null;
                 }
+
+            public function RelatMatEmpresa($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM empresaMaterial e, entraMaterial t, material m
+                            WHERE e.nomeEmpresa = '$valor'
+                            AND e.idEntMat = t.idEntMat
+                            AND t.idMaterial = m.idMaterial
+                            ORDER BY idEmpresa ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            //$numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    //$_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            public function RelatMatEmpCnpj($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM empresaMaterial e, entraMaterial t, material m
+                            WHERE e.cnpj = '$valor'
+                            AND e.idEntMat = t.idEntMat
+                            AND t.idMaterial = m.idMaterial
+                            ORDER BY idEmpresa ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            //$numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    //$_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            public function RelatMatEmpNota($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM empresaMaterial e, entraMaterial t, material m
+                            WHERE e.numNota = '$valor'
+                            AND e.idEntMat = t.idEntMat
+                            AND t.idMaterial = m.idMaterial
+                            ORDER BY idEmpresa ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            //$numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    //$_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
             //FIM DAS FUNÇÕES RELACIONADAS AOS MATERIAIS
 
             //INÍCIO DAS FUNÇÕES RELACIONADAS AO HISTORICO

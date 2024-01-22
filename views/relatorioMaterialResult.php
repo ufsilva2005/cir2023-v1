@@ -28,7 +28,7 @@
         <nav  class="fixed  navbar navbar-dark">
             <div class="col-md-12 py-5 px-2">	
                     <i class="icon-tasks icon-blue"></i>
-                    <h3 class="text-success"><?php echo "Resultado da Pesquisa por : " . converteMaiuscula($_SESSION['tipoPesquisa']); ?></h3>
+                    <h3 class="text-success"><?php echo "Resultado da Pesquisa por : " . converteMaiuscula($_SESSION['resultado']); ?></h3>
                     <div class="panel-header">
                         <table class="table table-borderless">
                             <thead>
@@ -64,10 +64,22 @@
                         {
                             include "../template/relatMatEmpresa.php";
                         } 
-                    /*elseif ($_SESSION['tipoPesquisa'] == "status")  
+                    elseif ($_SESSION['tipoPesquisa'] == "cnpj")  
                         {
-                            include "../template/relatStatusImp.php";
-                        } */               
+                            include "../template/relatMatEmpCnpj.php";
+                        }              
+                    elseif ($_SESSION['tipoPesquisa'] == "numNota")  
+                        {
+                            include "../template/relatMatEmpNota.php";
+                        }   
+                     /*elseif ($_SESSION['tipoPesquisa'] == "status")  
+                        {
+                            include "../template/.php";
+                        } */    
+                     /*elseif ($_SESSION['tipoPesquisa'] == "status")  
+                        {
+                            include "../template/.php";
+                        } */    
                     else
                         {
                             echo "<script type='text/javascript'>alert('NÃO FOI PSSÍVEL REALIZAR A PESQUISA');</script>";
@@ -84,12 +96,12 @@
 					<input type="text" class="form-control" value="<?php echo $_SESSION['numRows'];?>" >
 				</div>   
 				<div class="col px-md-1 col-md-2"> 
-					<label for="inputSuccess" class="control-label"> :</label>
-					<input type="text" class="form-control" value="<?php echo $ativo;?>" >
+					<label for="inputSuccess" class="control-label"></label>
+					<!--input type="text" class="form-control" value="<?php //echo $ativo;?>" -->
 				</div>        
 				<div class="col px-md-1 col-md-2"> 
-					<label for="inputSuccess" class="control-label"> :</label>
-					<input type="text" class="form-control" value="<?php echo $inativo;?>" >
+					<label for="inputSuccess" class="control-label"></label>
+					<!--input type="text" class="form-control" value="<?php //echo $inativo;?>" -->
 				</div>    
 			</div>         
 		</div>		
