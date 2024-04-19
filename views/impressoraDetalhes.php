@@ -8,6 +8,8 @@
     }
 
     require_once '../controllers/impressoraBuscar.php';
+    include_once "../dao/DAO-controleCir.php";
+
     //$_SESSION['idSetor'] = $idSetor;
     //$_SESSION['idFuncionario'] = $idFuncionario;
 ?>
@@ -62,22 +64,62 @@
                             <div class="col px-md-1 col-md-3">
                                 <label for="inputSuccess" class="control-label">Modelo:</label>
                                 <input type="text" class="form-control" value="<?php echo $modeloImpressora; ?>" disabled>
-                            </div>
-
-                            <div class="col px-md-1 col-md-3">
-                                <label for="inputSuccess" class="control-label">Tipo do Tonner: </label>
-                                <input type="text" class="form-control" value="<?php echo $tipoToner; ?>" disabled>
-                            </div>
-
-                            <div class="col px-md-1 col-md-3">
+                            </div>                          
+                                
+                            <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">Status:</label>
                                 <input type="text" class="form-control" value="<?php echo $statusImpressora; ?>" disabled>
                             </div>
 
-                            <div class="col px-md-1 col-md-3">
+                            <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">Conexão:</label>
                                 <input type="text" class="form-control" value="<?php echo $conexaoImp; ?>" disabled>
                             </div>
+                        </div>
+
+                        <hr>
+                        
+                        <div class="row">                        
+                            <div class="col px-md-1 col-md-12">
+                                <label for="inputSuccess" class="control-label">TONERS:</label>
+                                <?php
+                                    $t = sizeof($tipoToner);
+                                    $nomeTabela = "material";
+                                    $tipoOpcao = "idMaterial";                                 
+                                    for ($i = 0; $i < $t; $i++) 
+                                        {
+                                            $id = $tipoToner[$i];
+                                            $tipoTonerBdDAO = new ControleCirDAO();
+                                            foreach ($tipoTonerBdDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
+                                                { 
+                                                    $x = $i + 1;
+                                                    $tp[$x] = $descricao = $resp->descricao;  
+                                                } 
+                                        }       
+                                ?> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 1:</label>
+                                <input type="text" class="form-control" value="<?php echo $tp[1]; ?>" disabled>
+                            </div>
+
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 1:</label>
+                                <input type="text" class="form-control" value="<?php echo $tp[2]; ?>" disabled>
+                            </div>
+
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 1:</label>
+                                <input type="text" class="form-control" value="<?php echo $tp[3]; ?>" disabled>
+                            </div>
+
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 1:</label>
+                                <input type="text" class="form-control" value="<?php echo $tp[4]; ?>" disabled>
+                            </div>                          
                         </div>
 
                         <hr>

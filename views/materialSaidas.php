@@ -2,7 +2,7 @@
     session_start();
     include "../template/menuPrincipal.php";
 
-    if ($_SESSION['computador'] != "sim") {
+    if ($_SESSION['saiMaterial'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
         echo "<script>location = '../template/menuPrincipal.php';</script>";
     }
@@ -95,7 +95,19 @@
                                                                                 
                                     <div class="col px-md-1 col-md-4">
                                         <label for="inputSuccess" class="control-label">Nome do Técnico:</label>
-                                        <input type="text" class="form-control" name="nomeTecnico"  required>
+                                        <select class="form-control" name="nomeTecnico" required>
+                                            <option> </option>
+                                            <?php
+                                            include_once "../dao/DAO-controleCir.php";
+                                            $funcionarioDAO = new ControleCirDAO();
+                                            $nomeTabela = "funcionario";
+                                            foreach ($funcionarioDAO->ListarTudo($nomeTabela) as $res) {
+                                            ?>
+                                                <option value="<?php echo $res->idFuncionario; ?>"> <?php echo $res->nomeFuncionario; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
                                     </div>  
 
                                     <div class="col px-md-1 col-md-2">

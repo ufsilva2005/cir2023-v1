@@ -49,7 +49,7 @@
 	//echo "<br>desHist => " . $desHist;
 
 	$idComputador = null;
-    $historico = new Historico($idHistorico, $desHist, $dateAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
+    $historico = new Historico($idHistorico, $desHist, $dateAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idNotebook, $idImpressora, $_SESSION['idFuncionario']);
     echo "<br>dados  Historico<br>";		
     $historico->exibir();
     echo "<br>"; 

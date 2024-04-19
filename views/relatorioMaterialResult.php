@@ -4,10 +4,10 @@
     include "../controllers/relatMaterialPesquisa.php";
     include "../funcao/funcao.php";
 
-    //if ($_SESSION['computador'] != "sim") {
-        //echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
-        //echo "<script>location = '../template/menuPrincipal.php';</script>";
-    //}
+    if ($_SESSION['relaMaterial'] != "sim") {
+        echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
+        echo "<script>location = '../template/menuPrincipal.php';</script>";
+    }
 
     //$inativo = 0;
 	//$ativo = 0;

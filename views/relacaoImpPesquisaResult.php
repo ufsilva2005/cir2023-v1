@@ -3,7 +3,7 @@
     include_once "../controllers/relacaoImpPesquisa.php";
     include "../funcao/funcao.php";
 
-    if ($_SESSION['computador'] != "sim") {
+    if ($_SESSION['impressora'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
         echo "<script>location = '../template/menuPrincipal.php';</script>";
     }

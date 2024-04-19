@@ -101,20 +101,20 @@
 														<?php                                    
                                                             if($statusImpressora != "ativo") 
                                                                 {
-                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=5&id=$idImpressora' class='btn btn-small btn-success'>I<i class='icon-remove'></i></a>";
+                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=5&id=$idImpressora' class='btn btn-small btn-success'>AT<i class='icon-remove'></i></a>";
                                                                     $inativo++;
 																	echo $html;
                                                                 }  
 															else
                                                                 {
-                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=6&id=$idImpressora' class='btn btn-small btn-danger'>I<i class='icon-remove'></i></a>";
+                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=6&id=$idImpressora' class='btn btn-small btn-danger'>DE<i class='icon-remove'></i></a>";
                                                                     $ativo++;
 																	echo $html;
                                                                 }                                    
                                                         ?>  
                                                     </div>
 													<div class="btn-group pull-left">
-                                                        <a href="../.php?action=2&id=<?php echo $imp->idImpressora; ?>" class="btn btn-small btn-ufs">P<i class="icon-remove"></i></a>
+                                                        <a href="../gerarPdf/impressorasImprimirDados.php?action=1&id=<?php echo $imp->idImpressora; ?>" target="_blank"  class="btn btn-small btn-ufs">P<i class="icon-remove"></i></a>
                                                     </div>
                                                 </td>			
 											<tr>									
@@ -160,8 +160,8 @@
 									</div>
 												
 									<div class="btn-group pull-left">
-										<a class="btn btn-small btn-success">atIvar<i class="icon-remove"></i></a>
-										<a class="btn btn-small btn-danger">destIvar<i class="icon-remove"></i></a>
+										<a class="btn btn-small btn-success">ATiIvar<i class="icon-remove"></i></a>
+										<a class="btn btn-small btn-danger">DEstivar<i class="icon-remove"></i></a>
 									</div>
 
 									<div class="btn-group pull-left">

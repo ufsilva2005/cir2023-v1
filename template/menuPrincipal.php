@@ -1,4 +1,5 @@
-<?php 
+<?php
+    //session_destroy();
     session_start();
 ?>
 <!DOCTYPE html>
@@ -58,7 +59,19 @@
                     </ul>
                 </div>
 
-                 <div class="btn-group">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">NOTEBOOKS</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../views/notebooksCadastrar.php">Cadastrar</a></li>
+                        <li><a class="dropdown-item" href="../views/notebooksListar.php">Listar Todos</a></li>
+                         <li><a class="dropdown-item" href="../views/noteListarAtivoInativo.php?action=1">Listar Ativos</a></li>
+                        <li><a class="dropdown-item" href="../views/noteListarAtivoInativo.php?action=2">Listar Inativos</a></li>
+                        <li><a class="dropdown-item" href="../views/notebooksPesquisar.php">Pesquisar</a></li>
+                        <!--li><a class="dropdown-item" href="../views/notebooksCadastrarProce.php">Cadastrar Processador</a></li-->
+                    </ul>
+                </div>
+
+                <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">SERVIDORES</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../views/naoImplementada.php">Cadastrar</a></li>
@@ -94,7 +107,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../views/funcionarioCadastro.php">Cadastro</a></li>
                         <li><a class="dropdown-item" href="../views/naoImplementada.php">Gerenciar Por Nome</a></li>
-                        <li><a class="dropdown-item" href="../views/naoImplementada.php">Gerenciar Todos</a></li>  
+                        <li><a class="dropdown-item" href="../views/funcionarioGerenTodos.php">Gerenciar Todos</a></li>  
                     </ul>
                 </div>  
 
@@ -102,6 +115,7 @@
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">RELATÓRIOS</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../views/relacaoComputPesquisa.php">Relação de Computadores</a></li>
+                        <li><a class="dropdown-item" href="../views/relacaoNotPesquisa.php">Relação de Notebooks</a></li>
                         <li><a class="dropdown-item" href="../views/relacaoImpPesquisa.php">Relação de Impressoras</a></li>
                         <li><a class="dropdown-item" href="../views/relatorioMaterias.php">Materiais</a></li>
                     </ul>
@@ -109,7 +123,7 @@
 
                 <div class="btn-group"> 
                     &emsp; &emsp;
-                    <form class="d-flex" role="search" action="../index.php" method="POST">
+                    <form class="d-flex" role="search" action="../controllers/usuarioLogout.php" method="POST">
                         <button class="btn btn-outline-ufs" type="submit">Sair</button>
                     </form>
                 </div>  

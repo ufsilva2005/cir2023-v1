@@ -90,13 +90,13 @@
 														<?php                                    
                                                             if($statusImpressora != "ativo") 
                                                                 {
-                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=1&id=$idImpressora' class='btn btn-small btn-success'>I<i class='icon-remove'></i></a>";
+                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=1&id=$idImpressora' class='btn btn-small btn-success'>AT<i class='icon-remove'></i></a>";
                                                                     $inativo++;
 																	echo $html;
                                                                 }  
 															else
                                                                 {
-                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=2&id=$idImpressora' class='btn btn-small btn-danger'>I<i class='icon-remove'></i></a>";
+                                                                    $html = "<a href='../controllers/ativarDesativar.php?action=2&id=$idImpressora' class='btn btn-small btn-danger'>DE<i class='icon-remove'></i></a>";
                                                                     $ativo++;
 																	echo $html;
                                                                 }                                    
@@ -149,8 +149,8 @@
 										</div>
 													
 										<div class="btn-group pull-left">
-											<a class="btn btn-small btn-success">atIvar<i class="icon-remove"></i></a>
-											<a class="btn btn-small btn-danger">destIvar<i class="icon-remove"></i></a>
+											<a class="btn btn-small btn-success">ATivar<i class="icon-remove"></i></a>
+											<a class="btn btn-small btn-danger">DEstIvar<i class="icon-remove"></i></a>
 										</div>
 
 										<div class="btn-group pull-left">

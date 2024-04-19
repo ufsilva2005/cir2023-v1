@@ -10,8 +10,9 @@
     $compImp = $_POST['compImp'];
     $numCir = $_POST['numCir'];
     $numSerie = $_POST['numSerie'];
-    $nomeTecnico = $_POST['nomeTecnico'];
+    $idFuncionario = $_POST['nomeTecnico'];
     $dataSaida = $_POST['dataSaida'];
+    $obs = $_POST['obs'];
     $_SESSION['nomeFuncionario'];
     $_SESSION['data']; 
 
@@ -42,16 +43,17 @@
 
     if($compImp == "computador" && $numCir != "" && $numSerie == "")
         {
-           echo "<br>listaMaterial => " . $listaMaterial;
+            echo "<br>listaMaterial => " . $listaMaterial;
             echo "<br>codigoMat => " . $codigoMat;
             echo "<br>quantidadeMat => " . $quantidadeMat;
             echo "<br>compImp => " . $compImp;
             echo "<br>numCir => " . $numCir;
             //echo "<br>numSerie => " . $numSerie;
-            echo "<br>nomeTecnico => " . $nomeTecnico;
+            echo "<br>nomeTecnico => " . $idFuncionario;
             echo "<br>dataSaida => " . $dataSaida;
+            echo "<br>obs => " . $obs;
             echo "<br>nomeFuncionario => " . $_SESSION['nomeFuncionario'];
-            echo "<br>data => " . $_SESSION['data']; 
+            echo "<br>data => " . formatarData($_SESSION['data']); 
         }
 
      if($compImp == "impressora" && $numCir == "" && $numSerie != "")
@@ -62,10 +64,11 @@
             echo "<br>compImp => " . $compImp;
             //echo "<br>numCir => " . $numCir;
             echo "<br>numSerie => " . $numSerie;
-            echo "<br>nomeTecnico => " . $nomeTecnico;
+            echo "<br>nomeTecnico => " . $idFuncionario;
             echo "<br>dataSaida => " . $dataSaida;
+            echo "<br>obs => " . $obs;
             echo "<br>nomeFuncionario => " . $_SESSION['nomeFuncionario'];
-            echo "<br>data => " . $_SESSION['data'];
+            echo "<br>data => " . formatarData($_SESSION['data']);
         }
 
     //buscar id funcionário
@@ -76,6 +79,17 @@
 		{ 
 			$idFuncionario = $func->idFuncionario;				          
 		}
+
+    //buscar nome do técnico 
+    $nomeTabela = "funcionario";
+    $tipoOpcao = "nomeFuncionario";
+    $funcionarioDAO = new ControleCirDAO();
+	foreach ($funcionarioDAO->Verificar($nomeTabela, $tipoOpcao, $_SESSION['nomeFuncionario']) as $func)
+		{ 
+			$idFuncionario = $func->idFuncionario;				          
+		}
+
+   
 /*
     //savar dados no banco
     $entradaMat = new EntMaterial( $idEntMat,formatarData($_SESSION['data']),$quantidadeMat,$listaMaterial,$codigoMat,$idFuncionario);

@@ -1,16 +1,15 @@
 <?php
 	include "../template/menuPrincipal.php";
-	include "../funcao/funcao.php";
+	//include "../funcao/funcao.php";
    
     if($_SESSION['impressora'] != "sim")
         {
             echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
             echo "<script>location = '../template/menuPrincipal.php';</script>";  
         }
-	
-    $hist =  $_GET['action'];
-   	include "../controllers/impressoraBuscar.php"; 
 
+   	include "../controllers/impressoraBuscar.php";
+	
    $inativo = 0;
    $ativo = 0;
 
@@ -34,7 +33,7 @@
                                     ?>	
                                     <div class="row">
                                         <div class="col px-md-1  col-md-12">
-                                            <label class="text-success" for="inputSuccess" class="control-label">&nbsp; <?php echo "Data da Alteração: " . $hist->dataAltera . " Funcionário " . $hist->respAlteracoes; ?></label>
+                                            <label class="text-success" for="inputSuccess" class="control-label">&nbsp; <?php echo "Data da Alteração: " . formatarData2($hist->dataAltera) . " Funcionário " . $hist->respAlteracoes; ?></label>
                                         </div>
 
                                         <div class='area-texto'> 
@@ -45,7 +44,6 @@
 														<?php 
 															$historico = $hist->nomeAlteracoes;
 															$historico = lerArquivo($historico);
-															//echo nl2br($historico);
 															echo "\n Obs: " . $result = strstr($historico, " - ", true);
 															echo "\n Alteração: " . $result = str_replace(" - ","",strstr($historico, " - ", false));
 														?>        

@@ -4,7 +4,7 @@
     include_once "../funcao/funcao.php";
     include_once "../dao/DAO-controleCir.php";
 
-    if ($_SESSION['entMaterial'] != "sim") {
+    if ($_SESSION['relaMaterial'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
         echo "<script>location = '../template/menuPrincipal.php';</script>";
     }

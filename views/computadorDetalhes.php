@@ -131,36 +131,94 @@
                                     </div>
                                 </div>
 
-                                <hr>                               
-                                <div class="col-md-12">	
-                                    <table class="table table-striped table-bordered table-condensed table-hover table-light">
-                                        <thead>
-                                            <tr>
-                                                HD's no Computador:                                    
-                                            </tr>
-                                        </thead>
-                                        <tbody> 
-                                            <td class="align-left">
-                                                <?php
-                                                    $t = sizeof($tipoHD);
-                                                    $nomeTabela = "hdTipos";
-                                                    $tipoOpcao = "id";                                 
-                                                    for ($i = 0; $i < $t; $i++) 
-                                                        {
-                                                            $id = $tipoHD[$i];
-                                                            $tipoHDDAO = new ControleCirDAO();
-                                                            foreach ($tipoHDDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
-                                                                { 
-                                                                    $x = $i + 1;
-                                                                    echo "&emsp; hd(" . $x .") =>" . $descricao = $resp->descricao;  
-                                                                } 
-                                                        }          
-                                                ?>    
-                                            </td>
-                                        </tbody>
-                                    </table>
-                                </div>
                                 <hr>
+                                
+                                <div class="row">                        
+                                    <div class="col px-md-1 col-md-12">
+                                        <label for="inputSuccess" class="control-label"> HD's no Computador:</label>
+                                        <?php
+                                            $t = sizeof($tipoHD);
+                                            $nomeTabela = "hdTipos";
+                                            $tipoOpcao = "id";                                 
+                                            for ($i = 0; $i < $t; $i++) 
+                                                {
+                                                    $id = $tipoHD[$i];
+                                                    $tipoHDDAO = new ControleCirDAO();
+                                                    foreach ($tipoHDDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
+                                                        { 
+                                                            $x = $i + 1;
+                                                            $hd[$x] = $descricao = $resp->descricao;
+                                                        } 
+                                                }   
+                                        ?> 
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 1:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[1]; ?>" disabled>
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 2:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[2]; ?>" disabled>
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 3:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[3]; ?>" disabled>
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 4:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[4]; ?>" disabled>
+                                    </div>     
+                                    
+                                     <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 5:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[5]; ?>" disabled>
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 6:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[6]; ?>" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 7:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[7]; ?>" disabled>
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 8:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[8]; ?>" disabled>
+                                    </div>  
+                                    
+                                     <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 9:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[9]; ?>" disabled>
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 10:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[10]; ?>" disabled>
+                                    </div>     
+                                    
+                                     <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 11:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[11]; ?>" disabled>
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label class="control-label">HD 12:</label>
+                                        <input type="text" class="form-control" value="<?php echo $hd[12]; ?>" disabled>
+                                    </div>
+                                </div>
+
+                        <hr>
                                     
                                 <div class="row">	
                                     <label>

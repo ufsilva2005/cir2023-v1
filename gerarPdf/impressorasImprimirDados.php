@@ -1,21 +1,23 @@
 <?php
-	//include "../template/menuPrincipal.php";
-	//include "../funcao/funcao.php";
-   
-   // if($_SESSION['impressora'] != "sim")
-        //{
-            //echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
-            //echo "<script>location = '../template/menuPrincipal.php';</script>";  
-        //}
-	
-   //$hist =  $_GET['action'];
+    session_start();
+    //include "../dao/DAO-controleCir.php";
+	//$idComputador = $_GET['id'];
+	//$teste0 = $_GET['action'];
+
    	include "../controllers/impressoraBuscar.php"; 
-
-    $inativo = 0;
-    $ativo = 0;
-
-    $valor = "teste de variavel";
-    $i = 0;
+    $t = sizeof($tipoToner);
+    $nomeTabela = "material";
+    $tipoOpcao = "idMaterial";                                 
+    for ($i = 0; $i < $t; $i++) 
+        {
+            $id = $tipoToner[$i];
+            $tipoTonerBdDAO = new ControleCirDAO();
+            foreach ($tipoTonerBdDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
+                { 
+                    $x = $i + 1;
+                    $tonner = $resp->descricao;  
+                } 
+        }    
 
     $html ='<!DOCTYPE html>
             <html lang="PT-BR">
@@ -184,7 +186,7 @@
                                         </tr> 
                                         <tr>    
                                             <td><h6>Tipo de Toner</h6></td>
-                                            <td><h6>' . $tipoToner . '</h6></td>
+                                            <td><h6>' . $tonner . '</h6></td>
                                         </tr> 
                                         <tr>    
                                             <td><h6>Status da Impressora</h6></td>

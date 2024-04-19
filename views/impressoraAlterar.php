@@ -7,11 +7,8 @@ if ($_SESSION['impressora'] != "sim") {
     echo "<script>location = '../template/menuPrincipal.php';</script>";
 }
 
-//$idFuncionario = $_SESSION['idFuncionario'];  
-//$nomeFuncionario = $_SESSION['nomeFuncionario'];  
-
-//include "../scripts/validarSerieImp.php"; 
-//include "../scripts/validarNomeImp.php";
+include "../scripts/validarSerieImp.php"; 
+include "../scripts/validarNomeImp.php";
 //include "../scripts/mascara.php";
 require_once '../controllers/impressoraBuscar.php';
 $_SESSION['idSetor'] = $idSetor;
@@ -22,7 +19,7 @@ $_SESSION['idFuncionario'] = $idFuncionario;
         <nav class="navbar navbar-dark">
             <div class="line col-md-12 p-5 position-absolute start-5 top-0 bottom-50 end-250">
                 <h3 class="text-success">Informações da Impressora</h3>
-                <form name="cadastro" id="cadastro" method="post" action="../controllers/impressoraUpdate.php">
+                <form name="cadastro" id="cadastro" method="post" action="./naoImplementada.php">
                     <fieldset>
                         <div class="row">
                             <label>
@@ -37,10 +34,10 @@ $_SESSION['idFuncionario'] = $idFuncionario;
                                                                                 $_SESSION['idImpressora'] = $idImpressora; ?>" disabled>
                             </div>
 
-                            <div class="col px-md-1 col-md-2">
+                            <div class="col px-md-1  col-md-3">
                                 <label for="inputSuccess" class="control-label">Nome da Impressora:</label>
                                 <input type="text" class="form-control" value="<?= $nomeImpressora;
-                                                                                $_SESSION['antNomeImp'] = $nomeImpressora; ?>" name="nomeImp">
+                                                                                $_SESSION['antNomeImp'] = $nomeImpressora; ?>" name="nomeImpressora" id="nomeImpressora">
                             </div>
 
                             <div class="col px-md-1 col-md-2">
@@ -49,16 +46,26 @@ $_SESSION['idFuncionario'] = $idFuncionario;
                                                                                 $_SESSION['antNumSerie'] = $numSerie ?>" name="numSerie">
                             </div>
 
-                            <div class="col px-md-1 col-md-3">
+                            <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">IP: </label>
                                 <input type="text" class="form-control" value="<?= $ipImpressora;
                                                                                 $_SESSION['antNumIp'] = $ipImpressora ?>" name="ipImpressora" pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" placeholder="000.000.000.000" oninvalid="setCustomValidity('Endereco ip invalido!')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
 
-                            <div class="col px-md-1 col-md-3">
+                            <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">MAC:</label>
                                 <input type="text" class="form-control" value="<?= $macImpressora;
                                                                                 $_SESSION['antNumMac'] = $macImpressora ?>" name="numMac" maxlength="17" OnKeyPress="formatar('##:##:##:##:##:##', this)" pattern="([a-fA-F0-9]{2}[:]){5}([a-fA-F0-9]{2})$" oninvalid="setCustomValidity('Numero Mac inválido!')" onchange="try{setCustomValidity('')}catch(e){}">
+                            </div>
+
+                            <div class="col px-md-1 col-md-2">
+                                <label for="inputSuccess" class="control-label">Colorida:</label> <br>
+                                <select class="form-control" id="colorida" name="colorida">
+                                    <option value="<?php echo $colorida; $_SESSION['antColorida'] = $colorida ?>"><?php echo $colorida; ?></option> 
+                                    <option value=""> </option>
+                                    <option value=""> </option>
+                                    <option value=""> </option>
+                                </select>
                             </div>
                         </div>
 
@@ -87,55 +94,140 @@ $_SESSION['idFuncionario'] = $idFuncionario;
                             </div>
 
                             <div class="col px-md-1 col-md-3">
-                                <label for="inputSuccess" class="control-label">Tipo do Tonner: </label>
-                                <select class="form-control" id="tipoTonner" name="tipoTonner">
-                                    <option value="<?php echo $tipoTonerBd;
-                                                    $_SESSION['tipoTonerBd'] = $tipoTonerBd; ?>"> <?php echo $tipoToner; ?></option>
-                                    <option> </option>
-                                    <?php
-                                    include_once "../dao/DAO-controleCir.php";
-                                    $tonnerDAO = new ControleCirDAO();
-                                    $nomeTabela = "material";
-                                    $tipoOpcao = "descricao";
-                                    $valorOpcao = "TONNER";
+                                <div class="custom-control custom-radio">
+                                    <label for="inputSuccess" class="control-label">Status:</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="<?php echo $statusImpressora; $_SESSION['antStatusImp'] = $statusImpressora ?>"><?php echo $statusImpressora; ?></option> 
+                                        <option value=""> </option>
+                                        <option value=""> </option>
+                                        <option value=""> </option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                    foreach ($tonnerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $valorOpcao) as $res) {
-                                    ?>
-                                        <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
+                            <div class="col px-md-1 col-md-3">
+                                <div class="custom-control custom-radio">
+                                    <label for="inputSuccess" class="control-label">Conexão:</label>
+                                    <select class="form-control" id="conexaoImp" name="conexaoImp">
+                                        <option value="<?php echo $conexaoImp; $_SESSION['antConexaoImp'] = $conexaoImp ?>"><?php echo $conexaoImp; ?></option> 
+                                        <option value=""> </option>
+                                        <option value=""> </option>
+                                        <option value=""> </option>
+                                    </select>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                       <div class="row">                        
+                            <div class="col px-md-1 col-md-12">
+                                <label for="inputSuccess" class="control-label">TONERS:</label>
+                                <?php
+                                    $t = sizeof($tipoToner);
+                                    $nomeTabela = "material";
+                                    $tipoOpcao = "idMaterial";                                 
+                                    for ($i = 0; $i < $t; $i++) 
+                                        {
+                                            $id = $tipoToner[$i];
+                                            $tipoTonerBdDAO = new ControleCirDAO();
+                                            foreach ($tipoTonerBdDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
+                                                { 
+                                                    $x = $i + 1;
+                                                    $tp[$x] = $descricao = $resp->descricao;  
+                                                } 
+                                        }       
+                                ?> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 1:</label>
+                                <select class="form-control" name="tonner1[]">
+                                    <option value="<?php echo $tp[1]; $_SESSION['antToner1'] = $tp[1] ?>"><?php echo $tp[1]; ?></option> 
+                                    <option value=""> </option>
                                     <?php
-                                    }
+                                        include_once "../dao/DAO-controleCir.php";
+                                        $tonnerDAO = new ControleCirDAO();                                               
+                                        foreach ($tonnerDAO->ListarTonner() as $res) 
+                                            {
+                                                ?>
+                                                    <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
+                                                <?php
+                                            }
                                     ?>
                                 </select>
                             </div>
 
-                            <div class="col px-md-1 col-md-3">
-                                <div class="custom-control custom-radio">
-                                    <label for="inputSuccess" class="control-label">Status: <?= $statusImpressora;
-                                                                                            $_SESSION['antStatusImp'] = $statusImpressora ?></label></br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="impStatus" id="status1" value="ativo" checked>
-                                        <label class="form-check-label" for="status1">ativo</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="impStatus" id="status2" value="inativo">
-                                        <label class="form-check-label" for="status2">Inativo</label>
-                                    </div>
-                                </div>
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 2:</label>
+                                <select class="form-control" name="tonner2[]" >
+                                    <option value="<?php echo $tp[2]; $_SESSION['antToner1'] = $tp[2] ?>"><?php echo $tp[2]; ?></option>
+                                    <option value=""> </option>
+                                    <?php
+                                        include_once "../dao/DAO-controleCir.php";
+                                        $tonnerDAO = new ControleCirDAO();
+                                        $nomeTabela = "material";
+                                        $tipoOpcao = "descricao";
+                                        $status = "statusMat";
+                                        $valorStatus = "ativo";
+                                            $valorOpcao = "TONNER";
+                                            $valorOpcao2 = "CARTUCHO DE TINTA";
+                                            foreach ($tonnerDAO->ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus) as $res) 
+                                                {
+                                                    ?>
+                                                        <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
+                                                    <?php
+                                                }
+                                    ?>
+                                </select>
+                            </div>
+                             
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 3:</label>
+                                <select class="form-control" name="tonner3[]" >
+                                    <option value="<?php echo $tp[3]; $_SESSION['antToner1'] = $tp[3] ?>"><?php echo $tp[3]; ?></option>
+                                    <option value=""> </option>
+                                    <?php
+                                        include_once "../dao/DAO-controleCir.php";
+                                        $tonnerDAO = new ControleCirDAO();
+                                        $nomeTabela = "material";
+                                        $tipoOpcao = "descricao";
+                                        $status = "statusMat";
+                                        $valorStatus = "ativo";
+                                        $valorOpcao = "TONNER";
+                                        $valorOpcao2 = "CARTUCHO DE TINTA";
+                                        foreach ($tonnerDAO->ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus) as $res) 
+                                            {
+                                                ?>
+                                                    <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
+                                                <?php
+                                            }
+                                    ?>
+                                </select>
                             </div>
 
-                            <div class="col px-md-1 col-md-3">
-                                <div class="custom-control custom-radio">
-                                    <label for="inputSuccess" class="control-label">Conexão: <?= $conexaoImp;
-                                                                                            $_SESSION['antConexaoImp'] = $conexaoImp ?></label></br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="conexaoImp" id="conexao1" value="Rede" checked>
-                                        <label class="form-check-label" for="conexao1">Rede</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="conexaoImp" id="conexao2" value="Usb">
-                                        <label class="form-check-label" for="conexao2">Usb</label>
-                                    </div>
-                                </div>
+                            <div class="col px-md-1 col-md-2">
+                                <label class="control-label">Tipo do Tonner 4:</label>
+                                <select class="form-control" name="tonner4[]" >
+                                    <option value="<?php echo $tp[4]; $_SESSION['antToner1'] = $tp[4] ?>"><?php echo $tp[4]; ?></option>
+                                    <option value=""> </option>
+                                    <?php
+                                        include_once "../dao/DAO-controleCir.php";
+                                        $tonnerDAO = new ControleCirDAO();
+                                        $nomeTabela = "material";
+                                        $tipoOpcao = "descricao";
+                                        $status = "statusMat";
+                                        $valorStatus = "ativo";
+                                        $valorOpcao = "TONNER";
+                                        $valorOpcao2 = "CARTUCHO DE TINTA";
+                                        foreach ($tonnerDAO->ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus) as $res) 
+                                            {
+                                                ?>
+                                                    <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
+                                                <?php
+                                            }
+                                    ?>
+                                </select>
                             </div>
                         </div>
 

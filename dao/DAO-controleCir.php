@@ -151,7 +151,7 @@
                     $conn = null;	
                 }
 
-            public function ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2,  $status, $valorStatus)  
+            public function ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus)  
                 {
                     $conn = Database::connect();
                     $conn->exec('SET CHARACTER SET utf8');
@@ -226,6 +226,27 @@
             //FIM DAS FUNÇÕES COMUNS AO SISTEMA   
 
             //INÍCIO DAS FUNÇÕES RELACIONADAS AOS CARGOS  
+            public function BuscaCargo($idCargo, $idFuncionario) 
+                {					
+                    $conn = Database::connect();                                
+                    $conn->exec('SET CHARACTER SET utf8');   
+                    $sql = "SELECT * FROM funcionario f, cargo c 
+                    WHERE f.idCargo = '$idCargo' 
+                    AND  f.idFuncionario = '$idFuncionario'
+                    AND  f.idCargo = c.idCargo";
+                                
+                     try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
             //FIM DAS FUNÇÕES RELACIONADAS AOS CARGOS   
           
             //INÍCIO DAS FUNÇÕES RELACIONADAS AO TIPO DE ACESSO 
@@ -330,7 +351,55 @@
                     $conn = null;
                 } 
 
-           
+            public function Verificarfunc($nomeFuncionario, $login) 
+                {					
+                    $conn = Database::connect();
+                    
+                    $conn->exec('SET CHARACTER SET utf8');
+                    
+                    $sql = "SELECT * FROM funcionario 
+                    WHERE nomeFuncionario = '$nomeFuncionario' 
+                    AND login = '$login'
+                    AND statusFuncionario = 'ativo'";
+                    
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                                          
+                    $_SESSION['numUser'] = $numRows;
+                    return $buscar;
+                    $conn = null;	
+                }
+
+            
+            public function FuncionarioUpdate($idFuncionario, $senha)
+                {
+                    $conn = Database::connect();
+                    
+                    $conn->exec('SET CHARACTER SET utf8');
+                    
+                    $sql = "UPDATE funcionario SET senha = '$senha' WHERE idFuncionario = '$idFuncionario'";
+                    
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
+
             //FIM DAS FUNÇÕES RELACIONADAS AOS FUNCIONÁRIOS
                 
             //INÍCIO DAS FUNÇÕES RELACIONADAS AO LOCAL
@@ -665,7 +734,270 @@
                     return $buscar;
                     $conn = null;	
                 }
+
+            public function PegarUltimoNum($nomeTabela)
+                {
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');                    
+                    $sql = "SELECT * FROM $nomeTabela ORDER BY numCir DESC LIMIT 1 ";
+                    
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
             //FIM DAS FUNÇÕES RELACIONADAS AO COMPUTADOR
+
+            //INÍCIO DAS FUNÇÕES RELACIONADAS AO NOTEBOOK
+            public function CadastrarNotebook($notebook) 
+                {	
+                    $conn = Database::connect();                
+                    $conn->exec('SET CHARACTER SET utf8');                
+                    $prepara = $conn->prepare("INSERT INTO notebook (numCir, numPatrimonio, numPatReitoria, nomenotebook, 
+                    dataCadastro, respCadastro, dataAltCadastro, respAltCadastro, sistemaOpera, modelMaquina, memoria, numIp, numMac, 
+                    tipoHD, nomeUsuario, statusComp,	obs, idFuncionario, idSetor, idTipoProcessador)
+                    VALUES(:numCirBd, :numPatrimonioBd, :numPatReitoriaBd, :nomenotebookBd, :dataCadastroBd, :respCadastroBd, 
+                    :dataAltCadastroBd, :respAltCadastroBd, :sistemaOperaBd, :modelMaquinaBd, :memoriaBd, :numIpBd, :numMacBd,
+                    :tipoHDBd, :nomeUsuarioBd, :statusCompBd, :obsBd, :idFuncionarioBd, :idSetorBd, :idTipoProcessadorBd)");
+                    
+                    //$BdidNotebook		 = $notebook->getIdNotebook();
+                    $BdnumCir  			 = $notebook->getNumCir();
+                    $BdnumPatrimonio  	 = $notebook->getNumPatrimonio();
+                    $BdnumPatReitoria  	 = $notebook->getNumPatReitoria();
+                    $Bdnomenotebook	     = $notebook->getNomenotebook();
+                    $BddataCadastro 	 = $notebook->getDataCadastro();
+                    $BdrespCadastro    	 = $notebook->getRespCadastro();                    
+                    $BddataAltCadastro   = $notebook->getDataAltCadastro();  
+                    $BdrespAltCadastro   = $notebook->getRespAltCadastro();                  
+                    $BdsistemaOpera  	 = $notebook->getSistemaOpera();
+                    $BdmodelMaquina  	 = $notebook->getModelMaquina();
+                    $Bdmemoria 			 = $notebook->getMemoria();
+                    $BdnumIp  			 = $notebook->getNumIp();
+                    $BdnumMac 			 = $notebook->getNumMac();                   
+                    $BdtipoHD  			 = $notebook->getTipoHD();
+                    $BdnomeUsuario  	 = $notebook->getNomeUsuario();
+                    $BdstatusComp 		 = $notebook->getStatusComp();
+                    $Bdobs  			 = $notebook->getObs();
+                    $BdidFuncionario 	 = $notebook->getIdFuncionario();
+                    $BdidSetor			 = $notebook->getIdSetor();
+                    $BdidTipoProcessador = $notebook->getIdTipoProcessador();
+                        
+                    //$prepara->bindParam(":idNotebookBd",    $BdidNotebook);
+                    $prepara->bindParam(":numCirBd", $BdnumCir);
+                    $prepara->bindParam(":numPatrimonioBd", $BdnumPatrimonio);
+                    $prepara->bindParam(":numPatReitoriaBd", $BdnumPatReitoria);
+                    $prepara->bindParam(":nomenotebookBd", $Bdnomenotebook);
+                    $prepara->bindParam(":dataCadastroBd", $BddataCadastro);
+                    $prepara->bindParam(":respCadastroBd", $BdrespCadastro);                    
+                    $prepara->bindParam(":dataAltCadastroBd", $BddataAltCadastro);
+                    $prepara->bindParam(":respAltCadastroBd", $BdrespAltCadastro);
+                    $prepara->bindParam(":sistemaOperaBd", $BdsistemaOpera);
+                    $prepara->bindParam(":modelMaquinaBd", $BdmodelMaquina);
+                    $prepara->bindParam(":memoriaBd", $Bdmemoria);
+                    $prepara->bindParam(":numIpBd", $BdnumIp);
+                    $prepara->bindParam(":numMacBd", $BdnumMac);                   
+                    $prepara->bindParam(":tipoHDBd", $BdtipoHD);
+                    $prepara->bindParam(":nomeUsuarioBd", $BdnomeUsuario);
+                    $prepara->bindParam(":statusCompBd", $BdstatusComp);
+                    $prepara->bindParam(":obsBd", $Bdobs);
+                    $prepara->bindParam(":idFuncionarioBd", $BdidFuncionario);
+                    $prepara->bindParam(":idSetorBd", $BdidSetor);
+                    $prepara->bindParam(":idTipoProcessadorBd", $BdidTipoProcessador);
+
+                    $prepara->execute();                        
+                    $conn = null;
+                }
+
+            public function AtivaDesativaNot($idNotebook,$statusComp)
+				{
+					$conn = Database::connect();					
+					$conn->exec('SET CHARACTER SET utf8');					
+					$sql = "UPDATE notebook 
+                    SET statusComp = '$statusComp'
+                    WHERE idNotebook = '$idNotebook'";
+					try 
+						{
+							$listar = $conn->query($sql);
+							$buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+						} 
+					catch (PDOException $exc)
+						{
+							$buscar = $exc->getTraceAsString();
+						}
+					return $buscar;
+					$conn = null;	
+				}  
+                
+            public function BuscaPorDivNot($valorPesquisa)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM divisao d, setor s, notebook c 
+                            WHERE d.divisao = '$valorPesquisa'
+                            AND d.idDivisao = s.idDivisao
+                            AND s.idSetor = c.idSetor";
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            /*public function CadastrarTipoProce($modeloProce) 
+                {	
+                    $conn = Database::connect();
+                    
+                    $conn->exec('SET CHARACTER SET utf8');
+                    
+                    $prepara = $conn->prepare("INSERT INTO tipoProcessadores(descricao, statusTipo) 
+                    VALUES(:descricaoBd, :statusTipoBd)");
+                        
+                    //$BdidTipoProcessador = $modeloProce->getIdTipoProcessador();
+                    $Bddescricao  = $modeloProce->getDescricao();
+                    $BdstatusTipo = $modeloProce->getStatusTipo();  
+                                        
+                    //$prepara->bindParam(":idTipoProcessadorBd", $BdidTipoProcessador;
+                    $prepara->bindParam(":descricaoBd",  $Bddescricao);
+                    $prepara->bindParam(":statusTipoBd", $BdstatusTipo);
+
+                    $prepara->execute();                 
+                    $conn = null;
+                }*/
+
+            public function NotebookUpdateSetor($idNotebook,$idSetor)
+                {
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');                    
+                    $sql = "UPDATE notebook SET idSetor = '$idSetor' WHERE idNotebook = '$idNotebook'";
+                    
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
+
+            public function NotebookUpdateDados($notebook) 
+                {	
+                    $BdidNotebook		 = $notebook->getIdNotebook();
+                    $BdnumCir  			 = $notebook->getNumCir();
+                    $BdnumPatrimonio  	 = $notebook->getNumPatrimonio();
+                    $BdnumPatReitoria  	 = $notebook->getNumPatReitoria();
+                    $Bdnomenotebook	     = $notebook->getNomenotebook();
+                    $BddataCadastro 	 = $notebook->getDataCadastro();
+                    $BdrespCadastro    	 = $notebook->getRespCadastro();                    
+                    $BddataAltCadastro   = $notebook->getDataAltCadastro();  
+                    $BdrespAltCadastro   = $notebook->getRespAltCadastro();                  
+                    $BdsistemaOpera  	 = $notebook->getSistemaOpera();
+                    $BdmodelMaquina  	 = $notebook->getModelMaquina();
+                    $Bdmemoria 			 = $notebook->getMemoria();
+                    $BdnumIp  			 = $notebook->getNumIp();
+                    $BdnumMac 			 = $notebook->getNumMac();                   
+                    $BdtipoHD  			 = $notebook->getTipoHD();
+                    $BdnomeUsuario  	 = $notebook->getNomeUsuario();
+                    $BdstatusComp 		 = $notebook->getStatusComp();
+                    $Bdobs  			 = $notebook->getObs();
+                    $BdidFuncionario 	 = $notebook->getIdFuncionario();
+                    $BdidSetor			 = $notebook->getIdSetor();
+                    $BdidTipoProcessador = $notebook->getIdTipoProcessador();
+                    
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');
+                    
+                    $prepara = $conn->prepare("UPDATE notebook SET  numCir=:BdnumCir, numPatrimonio=:BdnumPatrimonio, 
+                    numPatReitoria=:BdnumPatReitoria, nomenotebook=:Bdnomenotebook, dataCadastro=:BddataCadastro, 
+                    respCadastro=:BdrespCadastro, dataAltCadastro=:BddataAltCadastro, respAltCadastro=:BdrespAltCadastro,
+                    sistemaOpera=:BdsistemaOpera, modelMaquina=:BdmodelMaquina, memoria=:Bdmemoria, numIp=:BdnumIp, numMac=:BdnumMac, 
+                    tipoHD=:BdtipoHD, nomeUsuario=:BdnomeUsuario, statusComp=:BdstatusComp, obs=:Bdobs, idFuncionario=:BdidFuncionario, 
+                    idSetor=:BdidSetor, idTipoProcessador=:BdidTipoProcessador WHERE idNotebook=:BdidNotebook"); 
+                   
+                    $prepara->bindParam(":BdidNotebook", $BdidNotebook);
+                    $prepara->bindParam(":BdnumCir", $BdnumCir);
+                    $prepara->bindParam(":BdnumPatrimonio", $BdnumPatrimonio);
+                    $prepara->bindParam(":BdnumPatReitoria", $BdnumPatReitoria);
+                    $prepara->bindParam(":Bdnomenotebook", $Bdnomenotebook);
+                    $prepara->bindParam(":BddataCadastro", $BddataCadastro);
+                    $prepara->bindParam(":BdrespCadastro", $BdrespCadastro);
+                    $prepara->bindParam(":BddataAltCadastro", $BddataAltCadastro);
+                    $prepara->bindParam(":BdrespAltCadastro", $BdrespAltCadastro);
+                    $prepara->bindParam(":BdsistemaOpera", $BdsistemaOpera);
+                    $prepara->bindParam(":BdmodelMaquina", $BdmodelMaquina);
+                    $prepara->bindParam(":Bdmemoria", $Bdmemoria);
+                    $prepara->bindParam(":BdnumIp", $BdnumIp);
+                    $prepara->bindParam(":BdnumMac", $BdnumMac); 
+                    $prepara->bindParam(":BdtipoHD", $BdtipoHD);
+                    $prepara->bindParam(":BdnomeUsuario", $BdnomeUsuario);
+                    $prepara->bindParam(":BdstatusComp", $BdstatusComp);
+                    $prepara->bindParam(":Bdobs", $Bdobs);
+                    $prepara->bindParam(":BdidFuncionario", $BdidFuncionario);
+                    $prepara->bindParam(":BdidSetor", $BdidSetor);
+                    $prepara->bindParam(":BdidTipoProcessador", $BdidTipoProcessador);
+
+                    $prepara->execute();                 
+                    $conn = null;
+                }
+
+            public function NotebookUpdateHd($idNotebook,$tipoHD)
+                {
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');                    
+                    $sql = "UPDATE notebook SET tipoHD = '$tipoHD' WHERE idNotebook = '$idNotebook'";
+                    
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
+
+            /*public function PegarUltimoNum($nomeTabela)
+                {
+                    $conn = Database::connect();                    
+                    $conn->exec('SET CHARACTER SET utf8');                    
+                    $sql = "SELECT * FROM $nomeTabela ORDER BY numCir DESC LIMIT 1 ";
+                    
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }*/
+            //FIM DAS FUNÇÕES RELACIONADAS AO NOTEBOOK
 
             //INÍCIO DAS FUNÇÕES RELACIONADAS A IMPRESSORA 
             public function CadastrarImpre($impressora) 
@@ -1182,6 +1514,37 @@
                     return $buscar;                        
                     $conn = null;	
                 }
+
+              public function ListarTonner()  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM material 
+                            WHERE descricao LIKE 'tonner%'
+                            OR descricao LIKE 'CARTUCHO DE TINTA%' 
+                            OR descricao LIKE 'pulseira%'
+                            AND  statusMat = 'ativo'
+                            ORDER BY idMaterial ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            //$numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    //$_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
             //FIM DAS FUNÇÕES RELACIONADAS AOS MATERIAIS
 
             //INÍCIO DAS FUNÇÕES RELACIONADAS AO HISTORICO
@@ -1190,14 +1553,15 @@
                     $conn = Database::connect();					
                     $conn->exec('SET CHARACTER SET utf8');
                     $prepara = $conn->prepare("INSERT INTO historico (nomeAlteracoes, dataAltera,  respAlteracoes, idComputador, 
-                    idImpressora, idFuncionario)
-                    VALUES(:BdnomeAlteracoes, :BddataAltera, :BdrespAlteracoes, :BdidComputador, :BdidImpressora,:BdidFuncionario)");   
+                    idNotebook, idImpressora, idFuncionario)
+                    VALUES(:BdnomeAlteracoes, :BddataAltera, :BdrespAlteracoes, :BdidComputador, :BdidNotebook, :BdidImpressora,:BdidFuncionario)");   
 
                     //$BdidHistorico    = $hitorico ->getIdHistorico();
                     $BdnomeAlteracoes = $historico ->getNomeAlteracoes();
                     $BddataAltera     = $historico ->getDataAltera();
                     $BdrespAlteracoes = $historico ->getRespAlteracoes();
                     $BdidComputador   = $historico ->getIdComputador();
+                    $BdidNotebook     = $historico ->getIdNotebook();
                     $BdidImpressora   = $historico ->getIdImpressora();
                     $BdidFuncionario  = $historico ->getIdFuncionario();  
                    
@@ -1207,6 +1571,7 @@
                     $prepara->bindParam(":BddataAltera",$BddataAltera);
                     $prepara->bindParam(":BdrespAlteracoes",$BdrespAlteracoes);
                     $prepara->bindParam(":BdidComputador",$BdidComputador);
+                    $prepara->bindParam(":BdidNotebook",$BdidNotebook);
                     $prepara->bindParam(":BdidImpressora",$BdidImpressora);
                     $prepara->bindParam(":BdidFuncionario",$BdidFuncionario);                    
                     
@@ -1448,7 +1813,7 @@
                     $sql = "SELECT * FROM impressoras i, setor s
                             WHERE s.localizacao = '$valor'
                             AND s.idSetor = i.idSetor
-                            ORDER BY idImpressora ASC";
+                            ORDER BY s.idDivisao ASC";
 
                     try 
                         {
@@ -1600,6 +1965,229 @@
                     $conn = null;	
                 }
             //FIM IMPRESSORA
+
+            //INICIO NOTEBOOK
+            //busca por andar
+            public function RelatNotAndar($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM notebook c, setor s
+                            WHERE s.localizacao = '$valor'
+                            AND s.idSetor = c.idSetor
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+             
+            //busca por divisao
+            public function RelatNotDivisao($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM notebook c, setor s, divisao d
+                            WHERE d.idDivisao = '$valor'
+                            AND d.idDivisao = s.idDivisao
+                            AND s.idSetor = c.idSetor
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por setor
+            public function RelatNotSetor($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM notebook c, setor s
+                            WHERE s.idSetor = '$valor'
+                            AND s.idSetor = c.idSetor
+                            ORDER BY numCir DESC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por status
+            public function RelatNotStatus($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM notebook 
+                            WHERE statusComp = '$valor'
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+                
+            //busca por sistema
+            public function RelatNotSistema($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM notebook 
+                            WHERE sistemaOpera = '$valor'
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por data
+            public function RelatNotData($dataInComp, $dataOutComp)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM notebook 
+                            WHERE dataCadastro BETWEEN '$dataInComp' AND '$dataOutComp'
+                            ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
+            //busca por processador
+            public function RelatNotProcessador($valor)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM notebook c, tipoProcessadores p
+                    WHERE p.descricao LIKE '%$valor%'
+                    AND p.idTipoProcessador = c.idTipoProcessador
+                    ORDER BY numCir ASC";
+
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+
+                   
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+            //procura processador
+            public function BuscaNotProc($idTipoProcessador) 
+                {					
+                    $conn = Database::connect();                                
+                    $conn->exec('SET CHARACTER SET utf8');     
+                    $sql = "SELECT * FROM tipoProcessadores
+                    WHERE idTipoProcessador = '$idTipoProcessador'";
+                                
+                     try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                        } 
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    return $buscar;
+                    $conn = null;	
+                }
+            //FIM NOTEBOOK
             
             //FIM DAS FUNÇÕES RELACIONADAS AOS RELATÓRIOS   
         }

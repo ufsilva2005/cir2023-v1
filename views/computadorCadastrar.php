@@ -7,6 +7,15 @@
         echo "<script>location = '../template/menuPrincipal.php';</script>";
     }
 
+    $nomeTabela = "computador";								
+	require_once '../dao/DAO-controleCir.php';
+	$compAltDAO = new ControleCirDAO();
+	foreach($compAltDAO-> PegarUltimoNum($nomeTabela)  as $comp)
+		{ 
+            $numCir = $comp->numCir;
+        }
+
+    $numCir++;
     //$idFuncionario = $_SESSION['idFuncionario'];  
     //$nomeFuncionario = $_SESSION['nomeFuncionario'];  
 
@@ -131,7 +140,7 @@
                                 <div class="row">
                                     <div class="col px-md-1 col-md-3">
                                         <label for="inputSuccess" class="control-label" >Número da Cir:</label>
-                                        <input type="text" class="form-control" name = "numCir" id = "numCir" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" required >
+                                        <input type="text" class="form-control" name = "numCir" value = "<?php echo $numCir; ?>" id = "numCir" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" required >
                                     </div>  
                                                     
                                     <div class="col px-md-1 col-md-3">

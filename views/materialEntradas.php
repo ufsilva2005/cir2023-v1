@@ -6,7 +6,7 @@
     //include "../scripts/validarCpf.php";
     //include_once("../dao/conexao.php"); 
 
-    if ($_SESSION['computador'] != "sim") {
+    if ($_SESSION['entMaterial'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
         echo "<script>location = '../template/menuPrincipal.php';</script>";
     }

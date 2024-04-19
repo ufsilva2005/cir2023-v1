@@ -1,17 +1,11 @@
 <?php
 include "../template/menuPrincipal.php";
-//include "../scripts/mascara.php";
-//include "../scripts/validarCpf.php";
-//include "../scripts/pesquisaNumCpf.php";
 include "../scripts/pesquisaLogin.php";
 
 if ($_SESSION['funcionarios'] != "sim") {
     echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
     echo "<script>location = '../template/menuPrincipal.php';</script>";
 }
-
-//$idFuncionario = $_SESSION['idFuncionario'];  
-//$nomeFuncionario = $_SESSION['nomeFuncionario'];  
 ?>
         <hr>
         <nav class="navbar navbar-dark">

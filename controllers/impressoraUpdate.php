@@ -320,7 +320,7 @@
             fclose($output2); 
 
             $idComputador = null;
-            $historicoBd = new Historico($idHistorico, $desHist, $dateAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idImpressora, $_SESSION['idFuncionario']);
+            $historicoBd = new Historico($idHistorico, $desHist, $dateAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idNotebook, $idImpressora, $_SESSION['idFuncionario']);
             //echo "<br>dados  Historico<br>";		
             //$historico->exibir();
             //echo "<br>"; 

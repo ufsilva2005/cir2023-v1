@@ -1,5 +1,11 @@
 <?php
+	session_start();
 	include "../dao/DAO-controleCir.php";
+	include "../funcao/funcao.php";
+
+	//$tipoToner = array();
+	//$tipoToner = 'a:4:{i:0;s:1:"44";i:1;s:1:"45";i:2;s:2:"46";i:3;s:1:"47";}';
+
 	$op1 =  $_GET['action'];
 	if ($op1 != 1 )  
 		{
@@ -20,15 +26,10 @@
 			$numSerie = $imp->numSerie;
             $ipImpressora = $imp->ipImpressora;
 			$macImpressora = $imp->macImpressora;
-			$tipoTonerBd = $imp->tipoToner;                         
-			$tonnerDAO = new ControleCirDAO();   
-			$nomeTabela = "material";
-			$tipoOpcao = "idMaterial";								
-			foreach ($tonnerDAO->ListarOpcao2($nomeTabela, $tipoOpcao, $tipoTonerBd) as $res)
-				{
-					$tipoToner = $res->descricao;
-				}            
-			$statusImpressora = $imp->statusImpressora;
+			$tipoToner = $imp->tipoToner; 
+			$tipoToner = unserialize($tipoToner); 
+			$colorida = $imp->colorida; 
+			$statusImpressora = $imp->statusImpressora;			
 			$conexaoImp = $imp->conexaoImp;
 			$modeloImpressoraBd = $imp->modeloImpressora;
 			$modeloDAO = new ControleCirDAO();   

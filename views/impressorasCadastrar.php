@@ -5,13 +5,10 @@
     if ($_SESSION['impressora'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
         echo "<script>location = '../template/menuPrincipal.php';</script>";
-    }
-
-    //$idFuncionario = $_SESSION['idFuncionario'];  
-    //$nomeFuncionario = $_SESSION['nomeFuncionario'];  
+    } 
 
     include "../scripts/validarNumImp.php";
-    //include "../scripts/validarNumImp.php";
+    include "../scripts/validarNomeImp.php";
     include "../scripts/mascara.php";
 ?>
 <script type="text/javascript" src="../javaScripts/typeahead.js"></script>
@@ -93,14 +90,8 @@
                                             <option value=""> </option>
                                             <?php
                                                 include_once "../dao/DAO-controleCir.php";
-                                                $tonnerDAO = new ControleCirDAO();
-                                                $nomeTabela = "material";
-                                                $tipoOpcao = "descricao";
-                                                $status = "statusMat";
-                                                $valorStatus = "ativo";
-                                                $valorOpcao = "TONNER";
-                                                $valorOpcao2 = "CARTUCHO DE TINTA";
-                                                foreach ($tonnerDAO->ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus) as $res) 
+                                                $tonnerDAO = new ControleCirDAO();                                               
+                                                foreach ($tonnerDAO->ListarTonner() as $res) 
                                                     {
                                                         ?>
                                                             <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>

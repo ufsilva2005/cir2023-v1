@@ -46,7 +46,7 @@
 
             //salva histórico 
             $idComputador = null;
-            $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['nomeFuncionario'], $_SESSION['idCompAlt'],  $idImpressora, $_SESSION['idFuncionario']);
+            $historicoBd = new Historico($idHistorico, $desHist, $dataAltCadastro, $_SESSION['nomeFuncionario'], $_SESSION['idCompAlt'],  $idNotebook, $idImpressora, $_SESSION['idFuncionario']);
             //echo "<br>dados  Historico<br>";		
             //$historicoBd->exibir();			
             //echo "<br>"; 

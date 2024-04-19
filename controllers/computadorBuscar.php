@@ -42,8 +42,8 @@
 			$memoria = $comp->memoria;    
             $numIp = $comp->numIp;
 			$numMac = $comp->numMac;
-			$tipoHD = $comp->tipoHD;
-			$tipoHD =  unserialize($tipoHD);           
+			$tipoHD = $comp->tipoHD;			
+			$tipoHD =  unserialize($tipoHD); 
             $nomeUsuario = $comp->nomeUsuario;
 			//$_SESSION['nomeUsuario'] = $nomeUsuario;
 			$statusComp = $comp->statusComp;

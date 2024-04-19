@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	//$tipoP = $_SESSION['tipoP'];
-	//$valorP = $_SESSION['valorP'];
+	$tipoP = $_SESSION['tipoP'];
+	$valorP = $_SESSION['valorP'];
 	$atiDes = $_SESSION['atiDes'];
 	$texto = "ALTERAÇÃO DE STATUS - ";
 
@@ -57,7 +57,7 @@
     fclose($output2); 
 	
 	$idImpressora = null;
-    $historico = new Historico($idHistorico, $desHist, $dateAltCadastro, $_SESSION['nomeFuncionario'],  $idComputador,  $idImpressora, 
+    $historico = new Historico($idHistorico, $desHist, $dateAltCadastro, $_SESSION['nomeFuncionario'],  $idComputador,  $idNotebook, $idImpressora, 
 	$_SESSION['idFuncionario']);
     //echo "<br>dados  Historico<br>";		
     //$historico->exibir();
@@ -81,7 +81,7 @@
 			//echo "<br>op2 4 => " . $op2;
 			$_SESSION['tipoP1'] = $tipoP;
 			$_SESSION['valorP1'] = $valorP;			
-			header("Location: ../views/computadorsPesquisarResultado.php");
+			header("Location: ../views/computadorPesquisarResultado.php");
 		}
 	else
 		{	
