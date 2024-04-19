@@ -18,12 +18,13 @@
     //recebendo os novos valores da view sobre a impressora 
 	$idHistorico = "";
     //$idImpressora = $_SESSION['idImpressora'];	
-	$nomeImpAlt = $_POST['nomeImp'];
+	$nomeImpAlt = $_POST['nomeImpressora'];
 	$numSerieAlt = $_POST['numSerie'];	
     $ipImpressoraAlt = $_POST['ipImpressora'];
     $numMacAlt = converteMaiuscula($_POST['numMac']);  
+    $coloridaAlt =  $_POST['colorida'];
     $tipoTonnerAlt = converteMaiuscula($_POST['tipoTonner']);      
-    $impStatusAlt =  $_POST['impStatus'];
+    $impStatusAlt =  $_POST['status'];
     $conexaoImpAlt =  $_POST['conexaoImp'];
     $modeloAlt = $_POST['modelo'];   
     $divisaoAlt = $_POST['divisao'];
@@ -39,6 +40,7 @@
     $numSerieAnt = $_SESSION['antNumSerie'];
     $ipImpressoraAnt = $_SESSION['antNumIp'];
     $macImpressoraAnt = $_SESSION['antNumMac'];
+    $coloridaAnt = $_SESSION['antColorida'];
     $tipoTonerAnt = $_SESSION['tipoTonerBd'];
     $statusImpressoraAnt = $_SESSION['antStatusImp'];
     $conexaoImpAnt = $_SESSION['antConexaoImp'];
@@ -53,6 +55,22 @@
     $respCadastro = $_SESSION['respCadastro'];
     $dateAltCadastro = $_SESSION['data'];
     $funcionarioAltCadastro = $_SESSION['nomeFuncionario'];
+
+
+    echo "<br>coloridaAlt => " . $coloridaAlt;
+    echo "<br>impStatusAlt => " . $impStatusAlt;
+    echo "<br>conexaoImpAlt => " . $conexaoImpAlt;
+    echo "<br>coloridaAnt => " . $coloridaAnt;
+    echo "<br>statusImpressoraAnt => " . $statusImpressoraAnt;
+    echo "<br>conexaoImpAnt => " . $conexaoImpAnt;
+    //echo "<br> => " . $;
+    //echo "<br> => " . $;
+    //echo "<br> => " . $;
+    //echo "<br> => " . $;
+    //echo "<br> => " . $;
+    //echo "<br> => " . $;
+
+
 
     $hitorico = $ObsImpAlt . " - ";    
     
@@ -100,6 +118,17 @@
             $macImpressora = $numMacAlt;  
             $aux++;
             $hitorico .= 'MAC DA IMPRESSORA ALTERADO DE: '. $macImpressoraAnt .' PARA => '. $macImpressora . ' \n';
+        }
+
+    if ($coloridaAlt == "" || $coloridaAlt == $antColorida)
+        {
+            $colorida = $antColorida;
+        }
+    else
+        {
+            $colorida = $coloridaAlt;  
+            $aux++;
+            $hitorico .= 'TIPO DE IMPRESSORA ALTERADO DE: '. $antColorida .' PARA => '. $colorida . ' \n';
         }
  
     if ($tipoTonnerAlt == "" || $tipoTonnerAlt == $tipoTonerAnt) 
@@ -242,7 +271,9 @@
             $hitorico .= 'NOME DO LOCAL ALTERADO DE: '. $nomeLocalAnt .' PARA => '. $nomeLocalBd . ' \n';
         }
 
-    //echo "<br>hitorico => " . $hitorico;
+    echo "<br>hitorico => " . $hitorico;
+    echo "<br>" . $aux . " => " . $auxLocal;
+    echo "<br>" . $idImpressora;
 
     //verificar setor e salvar update  
     $divisao2DAO = new ControleCirDAO();   
@@ -266,31 +297,31 @@
                     if($idSetor == 0)
                         {
                             $local1 = new Setor($idSetor, $divisaoBd, $localizacaoBd, $ramalBd, $respSetBd, $nomeLocalBd);	
-                            //echo "<br>";				
-                            //$local1->exibir();
-                            //echo "<br>";		
-                            $local = new ControleCirDAO();	
-                            $local->CadastrarSetor($local1);
-                            $idSetor = $_SESSION['localid'];      
+                            echo "<br>";				
+                            $local1->exibir();
+                            echo "<br>";		
+                            //$local = new ControleCirDAO();	
+                            //$local->CadastrarSetor($local1);
+                            //$idSetor = $_SESSION['localid'];      
                         }
 
                     if($aux == 0)
                         {
                             $impressoraDAO = new ControleCirDAO();
-                            $impressoraDAO->IpressoraUpdateSetor($idImpressora,$idSetor);
-                            echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
-                            echo "<script>location = '../views/impressorasListar.php';</script>";   
+                            //$impressoraDAO->IpressoraUpdateSetor($idImpressora,$idSetor);
+                            //echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
+                            //echo "<script>location = '../views/impressorasListar.php';</script>";   
                         }
                     else
                         {
                             $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $tipoToner, 
                             $statusImpressora, $conexaoImp, $modeloImpressora, $dataCadastroA, $respCadastro, $dateAltCadastro, $funcionarioAltCadastro, $ObsImpAlt,
                             $_SESSION['idFuncionario'] , $idSetor);
-                            //echo "<br>dados impressora <br>";		
-                            //$impressora->exibir();
-                            //echo "<br>";
-                            $impressoraDAO = new ControleCirDAO();
-                            $impressoraDAO->UpdateImpre($impressora);
+                            echo "<br>dados impressora <br>";		
+                            $impressora->exibir();
+                            echo "<br>";
+                            //$impressoraDAO = new ControleCirDAO();
+                            //$impressoraDAO->UpdateImpre($impressora);
                         } 
                 } 
 
@@ -299,11 +330,11 @@
                     $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $tipoToner, 
                     $statusImpressora, $conexaoImp, $modeloImpressora, $dataCadastroA, $respCadastro, $dateAltCadastro, $funcionarioAltCadastro, $ObsImpAlt,
                     $_SESSION['idFuncionario'] , $idSetor);
-                    //echo "<br>dados impressora <br>";		
-                    //$impressora->exibir();
-                    //echo "<br>";
-                    $impressoraDAO = new ControleCirDAO();
-                    $impressoraDAO->UpdateImpre($impressora);
+                    echo "<br>dados impressora <br>";		
+                    $impressora->exibir();
+                    echo "<br>";
+                    //$impressoraDAO = new ControleCirDAO();
+                    //$impressoraDAO->UpdateImpre($impressora);
                 }
 
             //criar historico e salvar
@@ -321,18 +352,19 @@
 
             $idComputador = null;
             $historicoBd = new Historico($idHistorico, $desHist, $dateAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idNotebook, $idImpressora, $_SESSION['idFuncionario']);
-            //echo "<br>dados  Historico<br>";		
-            //$historico->exibir();
-            //echo "<br>"; 
-            $historicoDAO = new ControleCirDAO();
-            $historicoDAO->HitoricoCadastrar($historicoBd);
+            echo "<br>dados  Historico<br>";		
+            $historico->exibir();
+            echo "<br>"; 
+            //$historicoDAO = new ControleCirDAO();
+            //$historicoDAO->HitoricoCadastrar($historicoBd);
 
-            echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
-            echo "<script>location = '../views/impressorasListar.php';</script>";   
+            //echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
+            //echo "<script>location = '../views/impressorasListar.php';</script>";   
         }
     else
         {
-            echo "<script type='text/javascript'>alert('nenhum valor(es)  alterado(s), portanto nada a ser salvo');</script>";
-            echo "<script>location = '../views/impressorasListar.php';</script>";   
+            //echo "<script type='text/javascript'>alert('nenhum valor(es)  alterado(s), portanto nada a ser salvo');</script>";
+            //echo "<script>location = '../views/impressorasListar.php';</script>";   
+            echo "<br>" . $aux . " => " . $auxLocal;
         }
 ?>

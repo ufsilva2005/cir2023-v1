@@ -7,19 +7,20 @@ if ($_SESSION['impressora'] != "sim") {
     echo "<script>location = '../template/menuPrincipal.php';</script>";
 }
 
-include "../scripts/validarSerieImp.php"; 
+include "../scripts/validarNumImp.php";
 include "../scripts/validarNomeImp.php";
+include "../scripts/validarMacImp.php";
 //include "../scripts/mascara.php";
 require_once '../controllers/impressoraBuscar.php';
-$_SESSION['idSetor'] = $idSetor;
-$_SESSION['idFuncionario'] = $idFuncionario;
+//$_SESSION['idSetor'] = $idSetor;
+//$_SESSION['idFuncionario'] = $idFuncionario;
 ?>
 
         <hr>
         <nav class="navbar navbar-dark">
             <div class="line col-md-12 p-5 position-absolute start-5 top-0 bottom-50 end-250">
                 <h3 class="text-success">Informações da Impressora</h3>
-                <form name="cadastro" id="cadastro" method="post" action="./naoImplementada.php">
+                <form name="cadastro" id="cadastro" method="post" action="../controllers/impressoraUpdate.php">
                     <fieldset>
                         <div class="row">
                             <label>
@@ -43,7 +44,7 @@ $_SESSION['idFuncionario'] = $idFuncionario;
                             <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">Nº de Série: </label>
                                 <input type="text" class="form-control" value="<?= $numSerie;
-                                                                                $_SESSION['antNumSerie'] = $numSerie ?>" name="numSerie">
+                                                                                $_SESSION['antNumSerie'] = $numSerie ?>" name="numSerie" id="numSerie">
                             </div>
 
                             <div class="col px-md-1 col-md-2">
@@ -55,16 +56,16 @@ $_SESSION['idFuncionario'] = $idFuncionario;
                             <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">MAC:</label>
                                 <input type="text" class="form-control" value="<?= $macImpressora;
-                                                                                $_SESSION['antNumMac'] = $macImpressora ?>" name="numMac" maxlength="17" OnKeyPress="formatar('##:##:##:##:##:##', this)" pattern="([a-fA-F0-9]{2}[:]){5}([a-fA-F0-9]{2})$" oninvalid="setCustomValidity('Numero Mac inválido!')" onchange="try{setCustomValidity('')}catch(e){}">
+                                                                                $_SESSION['antNumMac'] = $macImpressora ?>" name="numMac" id="numMac" maxlength="17" OnKeyPress="formatar('##:##:##:##:##:##', this)" pattern="([a-fA-F0-9]{2}[:]){5}([a-fA-F0-9]{2})$" oninvalid="setCustomValidity('Numero Mac inválido!')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
 
                             <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">Colorida:</label> <br>
                                 <select class="form-control" id="colorida" name="colorida">
                                     <option value="<?php echo $colorida; $_SESSION['antColorida'] = $colorida ?>"><?php echo $colorida; ?></option> 
-                                    <option value=""> </option>
-                                    <option value=""> </option>
-                                    <option value=""> </option>
+                                    <option value=""></option>
+                                    <option value="sim">SIM</option>
+                                    <option value="não">NÂO</option>
                                 </select>
                             </div>
                         </div>
@@ -98,9 +99,9 @@ $_SESSION['idFuncionario'] = $idFuncionario;
                                     <label for="inputSuccess" class="control-label">Status:</label>
                                     <select class="form-control" id="status" name="status">
                                         <option value="<?php echo $statusImpressora; $_SESSION['antStatusImp'] = $statusImpressora ?>"><?php echo $statusImpressora; ?></option> 
-                                        <option value=""> </option>
-                                        <option value=""> </option>
-                                        <option value=""> </option>
+                                        <option value=""></option>
+                                        <option value="ativa">ativa</option>
+                                        <option value="inativa">inativa</option>
                                     </select>
                                 </div>
                             </div>
@@ -110,9 +111,9 @@ $_SESSION['idFuncionario'] = $idFuncionario;
                                     <label for="inputSuccess" class="control-label">Conexão:</label>
                                     <select class="form-control" id="conexaoImp" name="conexaoImp">
                                         <option value="<?php echo $conexaoImp; $_SESSION['antConexaoImp'] = $conexaoImp ?>"><?php echo $conexaoImp; ?></option> 
-                                        <option value=""> </option>
-                                        <option value=""> </option>
-                                        <option value=""> </option>
+                                        <option value=""></option>
+                                        <option value="Rede">Rede</option>
+                                        <option value="Usb">Usb</option>
                                     </select>                                    
                                 </div>
                             </div>

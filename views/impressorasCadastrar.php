@@ -1,6 +1,6 @@
 <?php
     include "../template/menuPrincipal.php";
-    include "../scripts/mascara.php";
+    //include "../scripts/mascara.php";
 
     if ($_SESSION['impressora'] != "sim") {
         echo "<script type='text/javascript'>alert('USUÁRIO NÃO AUTORIZADO');</script>";
@@ -9,6 +9,7 @@
 
     include "../scripts/validarNumImp.php";
     include "../scripts/validarNomeImp.php";
+    include "../scripts/validarMacImp.php";
     include "../scripts/mascara.php";
 ?>
 <script type="text/javascript" src="../javaScripts/typeahead.js"></script>
@@ -46,7 +47,7 @@
 
                                     <div class="col px-md-1  col-md-2">
                                         <label for="inputSuccess" class="control-label">Número MAC:</label>
-                                        <input type="text" maxlength="17" OnKeyPress="formatar('##:##:##:##:##:##', this)" pattern="([a-fA-F0-9]{2}[:]){5}([a-fA-F0-9]{2})$" oninvalid="setCustomValidity('Numero Mac inválido!')" onchange="try{setCustomValidity('')}catch(e){}" class="form-control" name="numMac">
+                                        <input type="text" maxlength="17" OnKeyPress="formatar('##:##:##:##:##:##', this)" pattern="([a-fA-F0-9]{2}[:]){5}([a-fA-F0-9]{2})$" oninvalid="setCustomValidity('Numero Mac inválido!')" onchange="try{setCustomValidity('')}catch(e){}" class="form-control" name="numMac" id="numMac">
                                     </div>
 
                                     <div class="col px-md-1 col-md-2">
