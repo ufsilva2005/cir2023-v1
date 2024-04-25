@@ -1104,6 +1104,7 @@
                     $BdipImpressora  	= $impressora->getIpImpressora();
                     $BdmacImpressora    = $impressora->getMacImpressora();
                     $BdtipoToner        = $impressora->getTipoToner();
+                    $Bdcolorida         = $impressora->getColorida();
                     $BdstatusImpressora = $impressora->getStatusImpressora();
                     $BdconexaoImp       = $impressora->getConexaoImp(); 
                     $BdmodeloImpressora = $impressora->getModeloImpressora();
@@ -1119,7 +1120,7 @@
                     $conn->exec('SET CHARACTER SET utf8');
                     
                     $prepara = $conn->prepare("UPDATE impressoras SET nomeImpressora=:nomeImpressoraBd, numSerie=:numSerieBd,
-                    ipImpressora=:ipImpressoraBd, macImpressora=:macImpressoraBd, tipoToner=:tipoTonerBd, statusImpressora=:statusImpressoraBd,
+                    ipImpressora=:ipImpressoraBd, macImpressora=:macImpressoraBd, tipoToner=:tipoTonerBd, colorida=:coloridaBd, statusImpressora=:statusImpressoraBd,
                     conexaoImp=:conexaoImpBd ,modeloImpressora=:modeloImpressoraBd, dataCadastro=:dataCadastroBd, respCadastro=:respCadastroBd, 
                     dataAltCadastro=:dataAltCadastroBd, respAltCadastro=:respAltCadastroBd, obsImpressora=:obsImpressoraBd, idFuncionario=:idFuncionarioBd,
                     idSetor=:idSetorBd WHERE idImpressora=:idImpressoraBd"); 
@@ -1130,6 +1131,7 @@
                     $prepara->bindParam(":ipImpressoraBd",  $BdipImpressora);
                     $prepara->bindParam(":macImpressoraBd", $BdmacImpressora);
                     $prepara->bindParam(":tipoTonerBd", $BdtipoToner);
+                    $prepara->bindParam(":coloridaBd", $Bdcolorida);
                     $prepara->bindParam(":statusImpressoraBd", $BdstatusImpressora);
                     $prepara->bindParam(":conexaoImpBd", $BdconexaoImp);
                     $prepara->bindParam(":modeloImpressoraBd", $BdmodeloImpressora);

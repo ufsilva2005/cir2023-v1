@@ -10,9 +10,6 @@
 
 	$inativo = 0;
 	$ativo = 0;
-
-    //$idFuncionario = $_SESSION['idFuncionario'];  
-    //$nomeFuncionario = $_SESSION['nomeFuncionario'];  
 ?>	
 
 

@@ -105,7 +105,7 @@
 					$this->tipoToner = $tipoToner;
 				}
 
-			 //TIPO DE TONER
+			 //TIPO DE IMPRESSORA
 			public function getColorida() 
 				{     
 					return $this->colorida;
@@ -243,7 +243,7 @@
 					echo '</br>Tipo do tonner -> ';
 					echo $this->tipoToner . '<br>';
 
-					echo '</br>Tipo do tonner2 -> ';
+					echo '</br>Colorida -> ';
 					echo $this->colorida . '<br>';
 					
 					echo '</br>StatusImpressora -> ';

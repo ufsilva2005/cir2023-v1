@@ -5,6 +5,12 @@
     include "../models/class-setor.php";
 	include "../models/class-impressora.php";
     include "../models/class-historico.php";
+
+    $idTipoTonerBd = array();
+    //$tipoToner1 = array();
+    //$tipoToner2 = array();
+    //$tipoToner3 = array();
+    //$tipoToner4 = array();
 	
     //pegar ip do modelo e nao o nome
 	
@@ -23,7 +29,11 @@
     $ipImpressoraAlt = $_POST['ipImpressora'];
     $numMacAlt = converteMaiuscula($_POST['numMac']);  
     $coloridaAlt =  $_POST['colorida'];
-    $tipoTonnerAlt = converteMaiuscula($_POST['tipoTonner']);      
+    //$tipoTonnerAlt = converteMaiuscula($_POST['tipoTonner']);   
+    $tipoTonerAlt1 = $_POST['tonner1']; 
+    $tipoTonerAlt2 = $_POST['tonner2']; 
+    $tipoTonerAlt3 = $_POST['tonner3']; 
+    $tipoTonerAlt4 = $_POST['tonner4'];    
     $impStatusAlt =  $_POST['status'];
     $conexaoImpAlt =  $_POST['conexaoImp'];
     $modeloAlt = $_POST['modelo'];   
@@ -41,7 +51,11 @@
     $ipImpressoraAnt = $_SESSION['antNumIp'];
     $macImpressoraAnt = $_SESSION['antNumMac'];
     $coloridaAnt = $_SESSION['antColorida'];
-    $tipoTonerAnt = $_SESSION['tipoTonerBd'];
+    //$tipoTonerAnt = $_SESSION['tipoTonerBd'];
+    $tipoTonerAnt1 = $_SESSION['antToner1']; 
+    $tipoTonerAnt2 = $_SESSION['antToner2']; 
+    $tipoTonerAnt3 = $_SESSION['antToner3']; 
+    $tipoTonerAnt4 = $_SESSION['antToner4']; 
     $statusImpressoraAnt = $_SESSION['antStatusImp'];
     $conexaoImpAnt = $_SESSION['antConexaoImp'];
     $modeloImpressoraAnt = $_SESSION['antModelImp'];
@@ -55,23 +69,6 @@
     $respCadastro = $_SESSION['respCadastro'];
     $dateAltCadastro = $_SESSION['data'];
     $funcionarioAltCadastro = $_SESSION['nomeFuncionario'];
-
-
-    echo "<br>coloridaAlt => " . $coloridaAlt;
-    echo "<br>impStatusAlt => " . $impStatusAlt;
-    echo "<br>conexaoImpAlt => " . $conexaoImpAlt;
-    echo "<br>coloridaAnt => " . $coloridaAnt;
-    echo "<br>statusImpressoraAnt => " . $statusImpressoraAnt;
-    echo "<br>conexaoImpAnt => " . $conexaoImpAnt;
-    //echo "<br> => " . $;
-    //echo "<br> => " . $;
-    //echo "<br> => " . $;
-    //echo "<br> => " . $;
-    //echo "<br> => " . $;
-    //echo "<br> => " . $;
-
-
-
     $hitorico = $ObsImpAlt . " - ";    
     
     //verificando quais valores que nao foram alterados/ou estao em branco
@@ -120,41 +117,99 @@
             $hitorico .= 'MAC DA IMPRESSORA ALTERADO DE: '. $macImpressoraAnt .' PARA => '. $macImpressora . ' \n';
         }
 
-    if ($coloridaAlt == "" || $coloridaAlt == $antColorida)
+    if ($coloridaAlt == "" || $coloridaAlt == $coloridaAnt)
         {
-            $colorida = $antColorida;
+            $colorida = $coloridaAnt;
         }
     else
         {
             $colorida = $coloridaAlt;  
             $aux++;
-            $hitorico .= 'TIPO DE IMPRESSORA ALTERADO DE: '. $antColorida .' PARA => '. $colorida . ' \n';
-        }
- 
-    if ($tipoTonnerAlt == "" || $tipoTonnerAlt == $tipoTonerAnt) 
-        {
-            $tipoToner = $tipoTonerAnt;
-        }
-    else
-        {
-            $tipoToner = $tipoTonnerAlt;                
-            $nomeTabela = "material";
-            $tipoOpcao = "idMaterial";
-
-            $tonner0DAO = new ControleCirDAO(); 
-            foreach ($tonner0DAO->ListarOpcao2($nomeTabela, $tipoOpcao, $tipoTonerAnt) as $res)
+            if($colorida == "sim")
                 {
-                    $descTonnerAnt = $res->descricao;
+                    $hitorico .= 'TIPO DE IMPRESSORA ALTERADO DE NÃO COLORIDA PARA COLORIDA \n';
                 }
-            $tonner1DAO = new ControleCirDAO();   
-            foreach ($tonner1DAO->ListarOpcao2($nomeTabela, $tipoOpcao, $tipoTonnerAlt) as $res)
+            else
                 {
-                    $desTonnerAlt = $res->descricao;
-                }	
-            $aux++;
-            $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt .' PARA => '. $desTonnerAlt . ' \n';
+                    $hitorico .= 'TIPO DE IMPRESSORA ALTERADO DE COLORIDA PARA NÃO COLORIDA \n';
+                }
         }
 
+echo "<br>colorida => " . $colorida;
+echo "<br>aux => " . $aux;
+
+    if($colorida == "não")
+		{	
+			if ($tipoTonerAlt1 == "" || $tipoTonerAlt1 == $tipoTonerAnt1) 
+                {
+                    $tipoToner1 = $tipoTonerAnt1;
+                }
+            else
+                {
+                    $tipoToner1 = $tipoTonerAlt1; 
+                    $aux++;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                }
+
+            $tipoTonerBd[0] = $tipoToner1;   
+            $tipoTonerBd = serialize($tipoTonerBd);
+		}
+
+	else
+		{
+            //tonner 1
+			if ($tipoTonerAlt1 == "" || $tipoTonerAlt1 == $tipoTonerAnt1) 
+                {
+                    $tipoToner1 = $tipoTonerAnt1;
+                }
+            else
+                {
+                    $tipoToner1 = $tipoTonerAlt1; 
+                    $aux++;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                }
+            //tonner 2
+            if ($tipoTonerAlt2 == "" || $tipoTonerAlt2 == $tipoTonerAnt2) 
+                {
+                    $tipoToner2 = $tipoTonerAnt2;
+                }
+            else
+                {
+                    $tipoToner2 = $tipoTonerAlt2; 
+                    $aux++;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                }
+            //tonner 3
+            if ($tipoTonerAlt3 == "" || $tipoTonerAlt3 == $tipoTonerAnt3) 
+                {
+                    $tipoToner3 = $tipoTonerAnt3;
+                }
+            else
+                {
+                    $tipoToner3= $tipoTonerAlt3; 
+                    $aux++;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                }
+            //tonner 4
+            if ($tipoTonerAlt4 == "" || $tipoTonerAlt4 == $tipoTonerAnt4) 
+                {
+                    $tipoToner4 = $tipoTonerAnt4;
+                }
+            else
+                {
+                    $tipoToner4 = $tipoTonerAlt4; 
+                    $aux++;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                }
+
+            $tipoTonerBd[0] = $tipoToner1;
+            $tipoTonerBd[1] = $tipoToner2; 
+            $tipoTonerBd[2] = $tipoToner3; 
+            $tipoTonerBd[3] = $tipoToner4;
+
+            $tipoTonerBd = serialize($tipoTonerBd);
+		}    
+    
     if ($impStatusAlt == "" || $impStatusAlt == $statusImpressoraAnt) 
         {
             $statusImpressora = $statusImpressoraAnt;
@@ -271,10 +326,6 @@
             $hitorico .= 'NOME DO LOCAL ALTERADO DE: '. $nomeLocalAnt .' PARA => '. $nomeLocalBd . ' \n';
         }
 
-    echo "<br>hitorico => " . $hitorico;
-    echo "<br>" . $aux . " => " . $auxLocal;
-    echo "<br>" . $idImpressora;
-
     //verificar setor e salvar update  
     $divisao2DAO = new ControleCirDAO();   
     $nomeTabela = "divisao";
@@ -297,44 +348,44 @@
                     if($idSetor == 0)
                         {
                             $local1 = new Setor($idSetor, $divisaoBd, $localizacaoBd, $ramalBd, $respSetBd, $nomeLocalBd);	
-                            echo "<br>";				
-                            $local1->exibir();
-                            echo "<br>";		
-                            //$local = new ControleCirDAO();	
-                            //$local->CadastrarSetor($local1);
-                            //$idSetor = $_SESSION['localid'];      
+                            //echo "<br>Setor";				
+                            //$local1->exibir();
+                            //echo "<br>";		
+                            $local = new ControleCirDAO();	
+                            $local->CadastrarSetor($local1);
+                            $idSetor = $_SESSION['localid'];      
                         }
 
                     if($aux == 0)
                         {
                             $impressoraDAO = new ControleCirDAO();
-                            //$impressoraDAO->IpressoraUpdateSetor($idImpressora,$idSetor);
-                            //echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
-                            //echo "<script>location = '../views/impressorasListar.php';</script>";   
+                            $impressoraDAO->IpressoraUpdateSetor($idImpressora,$idSetor);
+                            echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
+                            echo "<script>location = '../views/impressorasListar.php';</script>";   
                         }
                     else
                         {
-                            $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $tipoToner, 
+                            $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $tipoTonerBd, $colorida,
                             $statusImpressora, $conexaoImp, $modeloImpressora, $dataCadastroA, $respCadastro, $dateAltCadastro, $funcionarioAltCadastro, $ObsImpAlt,
                             $_SESSION['idFuncionario'] , $idSetor);
-                            echo "<br>dados impressora <br>";		
-                            $impressora->exibir();
-                            echo "<br>";
-                            //$impressoraDAO = new ControleCirDAO();
-                            //$impressoraDAO->UpdateImpre($impressora);
+                            //echo "<br>dados impressora 0 <br>";		
+                            //$impressora->exibir();
+                            //echo "<br>";
+                            $impressoraDAO = new ControleCirDAO();
+                            $impressoraDAO->UpdateImpre($impressora);
                         } 
                 } 
 
              else
                 {
-                    $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $tipoToner, 
+                    $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $tipoTonerBd, $colorida,
                     $statusImpressora, $conexaoImp, $modeloImpressora, $dataCadastroA, $respCadastro, $dateAltCadastro, $funcionarioAltCadastro, $ObsImpAlt,
                     $_SESSION['idFuncionario'] , $idSetor);
-                    echo "<br>dados impressora <br>";		
-                    $impressora->exibir();
-                    echo "<br>";
-                    //$impressoraDAO = new ControleCirDAO();
-                    //$impressoraDAO->UpdateImpre($impressora);
+                    //echo "<br>dados impressora 1 <br>";		
+                    //$impressora->exibir();
+                    //echo "<br>";
+                    $impressoraDAO = new ControleCirDAO();
+                    $impressoraDAO->UpdateImpre($impressora);
                 }
 
             //criar historico e salvar
@@ -352,19 +403,19 @@
 
             $idComputador = null;
             $historicoBd = new Historico($idHistorico, $desHist, $dateAltCadastro, $funcionarioAltCadastro,  $idComputador,  $idNotebook, $idImpressora, $_SESSION['idFuncionario']);
-            echo "<br>dados  Historico<br>";		
-            $historico->exibir();
-            echo "<br>"; 
-            //$historicoDAO = new ControleCirDAO();
-            //$historicoDAO->HitoricoCadastrar($historicoBd);
+            //echo "<br>dados  Historico<br>";		
+            //$historicoBd->exibir();
+            //echo "<br>"; 
 
-            //echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
-            //echo "<script>location = '../views/impressorasListar.php';</script>";   
+            $historicoDAO = new ControleCirDAO();
+            $historicoDAO->HitoricoCadastrar($historicoBd);
+
+            echo "<script type='text/javascript'>alert('valor(es)  alterado(s)');</script>";
+            echo "<script>location = '../views/impressorasListar.php';</script>";   
         }
     else
         {
-            //echo "<script type='text/javascript'>alert('nenhum valor(es)  alterado(s), portanto nada a ser salvo');</script>";
-            //echo "<script>location = '../views/impressorasListar.php';</script>";   
-            echo "<br>" . $aux . " => " . $auxLocal;
+            echo "<script type='text/javascript'>alert('nenhum valor(es)  alterado(s), portanto nada a ser salvo');</script>";
+            echo "<script>location = '../views/impressorasListar.php';</script>";   
         }
 ?>

@@ -101,23 +101,23 @@
                         </div>
 
                         <div class="row">
-                            <div class="col px-md-1 col-md-2">
+                            <div class="col px-md-1 col-md-3">
                                 <label class="control-label">Tipo do Tonner 1:</label>
                                 <input type="text" class="form-control" value="<?php echo $tp[1]; ?>" disabled>
                             </div>
 
-                            <div class="col px-md-1 col-md-2">
-                                <label class="control-label">Tipo do Tonner 1:</label>
+                            <div class="col px-md-1 col-md-3">
+                                <label class="control-label">Tipo do Tonner 2:</label>
                                 <input type="text" class="form-control" value="<?php echo $tp[2]; ?>" disabled>
                             </div>
 
-                            <div class="col px-md-1 col-md-2">
-                                <label class="control-label">Tipo do Tonner 1:</label>
+                            <div class="col px-md-1 col-md-3">
+                                <label class="control-label">Tipo do Tonner 3:</label>
                                 <input type="text" class="form-control" value="<?php echo $tp[3]; ?>" disabled>
                             </div>
 
-                            <div class="col px-md-1 col-md-2">
-                                <label class="control-label">Tipo do Tonner 1:</label>
+                            <div class="col px-md-1 col-md-3">
+                                <label class="control-label">Tipo do Tonner 4:</label>
                                 <input type="text" class="form-control" value="<?php echo $tp[4]; ?>" disabled>
                             </div>                          
                         </div>

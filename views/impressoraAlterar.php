@@ -12,8 +12,6 @@ include "../scripts/validarNomeImp.php";
 include "../scripts/validarMacImp.php";
 //include "../scripts/mascara.php";
 require_once '../controllers/impressoraBuscar.php';
-//$_SESSION['idSetor'] = $idSetor;
-//$_SESSION['idFuncionario'] = $idFuncionario;
 ?>
 
         <hr>
@@ -133,7 +131,8 @@ require_once '../controllers/impressoraBuscar.php';
                                             foreach ($tipoTonerBdDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
                                                 { 
                                                     $x = $i + 1;
-                                                    $tp[$x] = $descricao = $resp->descricao;  
+                                                    $tp[$x] = $resp->descricao;  
+                                                    $idTp[$x] = $resp->idMaterial;  
                                                 } 
                                         }       
                                 ?> 
@@ -141,11 +140,11 @@ require_once '../controllers/impressoraBuscar.php';
                         </div>
 
                         <div class="row">
-                            <div class="col px-md-1 col-md-2">
+                            <div class="col px-md-1 col-md-3">
                                 <label class="control-label">Tipo do Tonner 1:</label>
-                                <select class="form-control" name="tonner1[]">
-                                    <option value="<?php echo $tp[1]; $_SESSION['antToner1'] = $tp[1] ?>"><?php echo $tp[1]; ?></option> 
-                                    <option value=""> </option>
+                                <select class="form-control" name="tonner1">
+                                    <option value="<?php echo $idTp[1]; $_SESSION['antToner1'] = $idTp[1] ?>"><?php echo $tp[1]; ?></option> 
+                                    <option value=""></option>
                                     <?php
                                         include_once "../dao/DAO-controleCir.php";
                                         $tonnerDAO = new ControleCirDAO();                                               
@@ -159,10 +158,10 @@ require_once '../controllers/impressoraBuscar.php';
                                 </select>
                             </div>
 
-                            <div class="col px-md-1 col-md-2">
+                            <div class="col px-md-1 col-md-3">
                                 <label class="control-label">Tipo do Tonner 2:</label>
-                                <select class="form-control" name="tonner2[]" >
-                                    <option value="<?php echo $tp[2]; $_SESSION['antToner1'] = $tp[2] ?>"><?php echo $tp[2]; ?></option>
+                                <select class="form-control" name="tonner2" >
+                                    <option value="<?php echo $idTp[2]; $_SESSION['antToner2'] = $idTp[2] ?>"><?php echo $tp[2]; ?></option>
                                     <option value=""> </option>
                                     <?php
                                         include_once "../dao/DAO-controleCir.php";
@@ -183,10 +182,10 @@ require_once '../controllers/impressoraBuscar.php';
                                 </select>
                             </div>
                              
-                            <div class="col px-md-1 col-md-2">
+                            <div class="col px-md-1 col-md-3">
                                 <label class="control-label">Tipo do Tonner 3:</label>
-                                <select class="form-control" name="tonner3[]" >
-                                    <option value="<?php echo $tp[3]; $_SESSION['antToner1'] = $tp[3] ?>"><?php echo $tp[3]; ?></option>
+                                <select class="form-control" name="tonner3" >
+                                    <option value="<?php echo $idTp[3]; $_SESSION['antToner3'] = $idTp[3] ?>"><?php echo $tp[3]; ?></option>
                                     <option value=""> </option>
                                     <?php
                                         include_once "../dao/DAO-controleCir.php";
@@ -207,10 +206,10 @@ require_once '../controllers/impressoraBuscar.php';
                                 </select>
                             </div>
 
-                            <div class="col px-md-1 col-md-2">
+                            <div class="col px-md-1 col-md-3">
                                 <label class="control-label">Tipo do Tonner 4:</label>
-                                <select class="form-control" name="tonner4[]" >
-                                    <option value="<?php echo $tp[4]; $_SESSION['antToner1'] = $tp[4] ?>"><?php echo $tp[4]; ?></option>
+                                <select class="form-control" name="tonner4" >
+                                    <option value="<?php echo $idTp[4]; $_SESSION['antToner4'] = $idTp[4] ?>"><?php echo $tp[4]; ?></option>
                                     <option value=""> </option>
                                     <?php
                                         include_once "../dao/DAO-controleCir.php";
