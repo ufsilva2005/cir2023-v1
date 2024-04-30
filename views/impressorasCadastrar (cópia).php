@@ -43,18 +43,18 @@
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Conexão:</label> <br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="conexaoImp" id="conexao1" value="Rede" >
+                                            <input class="form-check-input" type="radio" name="conexaoImp" id="conexao1" value="Rede" checked>
                                             <label class="form-check-label" for="conexao1">Rede</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="conexaoImp" id="conexao2" value="Usb" checked>
+                                            <input class="form-check-input" type="radio" name="conexaoImp" id="conexao2" value="Usb">
                                             <label class="form-check-label" for="conexao2">Usb</label>
                                         </div>
-                                    </div>          
+                                    </div>
 
-                                    <div class="col px-md-1 col-md-2" id="documentType" >
+                                    <div class="col px-md-1  col-md-2">
                                         <label for="inputSuccess" class="control-label">Número de IP:</label>
-                                        <input type="text" class="form-control"   name="numIp" id="numIp"  pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" placeholder="000.000.000.000" oninvalid="setCustomValidity('Endereco ip invalido!')" onchange="try{setCustomValidity('')}catch(e){}"  name="envia" id="envia" disabled required>
+                                        <input type="text" class="form-control" name="numIp" pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$" placeholder="000.000.000.000" oninvalid="setCustomValidity('Endereco ip invalido!')" onchange="try{setCustomValidity('')}catch(e){}">
                                     </div>
 
                                     <div class="col px-md-1  col-md-2">
@@ -317,24 +317,3 @@
         </nav>
     </body>
 </html>
-
-<script>
-    $(function() {
-        var documentType = $('#documentType');
-        documentType.hide();
-        function showInput(id) {
-            if(id =='conexao2') {
-            document.getElementById('numIp').disabled = "disabled";  
-             documentType.hide();
-            }
-            if(id =='conexao1') {
-                document.getElementById('numIp').disabled = "";
-                documentType.show(); 
-            }
-        }
-        $(document).on('click', 'input[type=radio]', function(){
-            var id = $(this).prop('id');
-            showInput(id);
-        });
-    });
-</script> 

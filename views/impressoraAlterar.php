@@ -98,8 +98,8 @@ require_once '../controllers/impressoraBuscar.php';
                                     <select class="form-control" id="status" name="status">
                                         <option value="<?php echo $statusImpressora; $_SESSION['antStatusImp'] = $statusImpressora ?>"><?php echo $statusImpressora; ?></option> 
                                         <option value=""></option>
-                                        <option value="ativa">ativa</option>
-                                        <option value="inativa">inativa</option>
+                                        <option value="ativo">ativa</option>
+                                        <option value="inativo">inativa</option>
                                     </select>
                                 </div>
                             </div>

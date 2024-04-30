@@ -41,6 +41,7 @@
 									<th>Setor da Máquina</th>
 									<th>Localização</th>
 									<th>Status</th>
+									<th>mac</th>
 									<th>Conexão</th>
 									<th>OPÇÃO</th>
 								</tr>
@@ -86,6 +87,7 @@
 												<td><?php echo $nomeLocal1?></td>	
 												<td><?php echo $localizacao1?></td>		
 												<td><?php echo $statusImpressora = $imp->statusImpressora?></td>
+												<td><?php echo $macImpressora = $imp->macImpressora?></td>
 												<td><?php echo $conexaoImp = $imp->conexaoImp?></td>
 												<td class='operations'>
                                                     <div class="btn-group pull-left" >
@@ -165,7 +167,7 @@
 									</div>
 
 									<div class="btn-group pull-left">
-										<a class="btn btn-small btn-ufs">imPrimir<i class="icon-remove"></i></a>
+										<a class="btn btn-small btn-ufs" href="../gerarPdf/impAtivaInativa.php" target="_blank">imPrimir<i class="icon-remove"></i></a>
 									</div>
 								</th>
 							</tr>

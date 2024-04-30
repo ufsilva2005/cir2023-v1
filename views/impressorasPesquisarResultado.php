@@ -27,11 +27,21 @@
                         <i class="icon-tasks icon-blue"></i>
                         <h3 class="text-success">Resultado da Pesquisa:</h3>
                         <?php
-                        if ($tipoPesquisa != "divisao") {
-                            include "../template/exibirPesquisa1.php";
-                        } else {
-                            include "../template/exibirPesquisa2.php";
-                        }
+                        if ($tipoPesquisa == "divisao") 
+                            {
+                                include "../template/exibirPesquisa2.php";
+                            }                         
+                        else 
+                            {                                
+                                if($tipoPesquisa == "andarImpressora") 
+                                    {
+                                       include "../template/exibirPesquisa3.php";
+                                    }
+                                else
+                                    {
+                                        include "../template/exibirPesquisa1.php";
+                                    }                                    
+                            }
                         ?>
                     </div>
                 </div>

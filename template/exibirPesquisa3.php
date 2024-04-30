@@ -7,8 +7,7 @@
     $_SESSION['tipoP'] = $tipoPesquisa;
     $_SESSION['valorP'] = $valorPesquisa;
     $ativo = 0;
-    $inativo = 0;
-
+    $inativo = 0; 
 ?>
 
                                 <table class="table table-striped table-bordered table-condensed">
@@ -25,10 +24,10 @@
                                     </thead>  
                                     <tbody> 
                                         <?php
-                                            $nomeTabela = "impressoras";								
+                                            //$nomeTabela = "impressoras";								
                                             require_once '../dao/DAO-controleCir.php';
                                             $impAltDAO = new ControleCirDAO();
-                                            foreach($impAltDAO->BuscaPorDivisao($valorPesquisa) as $imp)   
+                                            foreach($impAltDAO->BuscaPorAndar($valorPesquisa) as $imp)   
                                                                                       
                                                 { ?>													
                                                     <tr>

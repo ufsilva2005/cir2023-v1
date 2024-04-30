@@ -24,6 +24,9 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pillsUfs-divisao-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-divisao" type="button" role="tab" aria-controls="pillsUfs-divisao" aria-selected="false">Divisão</button>
                             </li>
+                             <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pillsUfs-andar-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-andar" type="button" role="tab" aria-controls="pillsUfs-andar" aria-selected="false">Andar</button>
+                            </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pillsUfs-modelo-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-modelo" type="button" role="tab" aria-controls="pillsUfs-modelo" aria-selected="false">Modelo</button>
                             </li>
@@ -60,6 +63,28 @@
                                         <option>FM</option>
                                         <option>IDT</option>
                                         <option></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="pillsUfs-andar" role="tabpanel" aria-labelledby="pillsUfs-andar-tab">
+                                <div class="col px-md-1 col-md-5">
+                                    <select class="form-control" id="andar" name="andar">
+                                        <option> </option>
+                                        <option>subsolo</option>
+                                        <option>1° andar</option>
+                                        <option>2° andar</option>
+                                        <option>3° andar</option>
+                                        <option>4° andar</option>
+                                        <option>5° andar</option>
+                                        <option>6° andar</option>
+                                        <option>7° andar</option>
+                                        <option>8° andar</option>
+                                        <option>9° andar</option>
+                                        <option>10° andar</option>
+                                        <option>11° andar</option>
+                                        <option>12° andar</option>
+                                        <option>13° andar</option>>
                                     </select>
                                 </div>
                             </div>

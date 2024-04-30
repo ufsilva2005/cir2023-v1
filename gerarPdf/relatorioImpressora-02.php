@@ -3,8 +3,6 @@
     include "../dao/DAO-controleCir.php";
     include "../funcao/funcao.php";
 
-    $auxPaginas = 0;
-
     //$numSerie = array();
     //echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];	
    
@@ -16,8 +14,7 @@
 				    $idImpressora =$imp->idImpressora;											
 					$numSerie[] =$imp->numSerie;															
 					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora;      
-                    $ipImpressora[] = $imp->ipImpressora;             
+                    $macImpressora[] =$imp->macImpressora;                   
                     $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
@@ -46,8 +43,7 @@
 				    $idImpressora =$imp->idImpressora;											
 					$numSerie[] =$imp->numSerie;															
 					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora; 
-                    $ipImpressora[] = $imp->ipImpressora;                    
+                    $macImpressora[] =$imp->macImpressora;                   
                     $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
@@ -76,8 +72,7 @@
 				    $idImpressora =$imp->idImpressora;											
 					$numSerie[] =$imp->numSerie;															
 					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora;      
-                    $ipImpressora[] = $imp->ipImpressora;               
+                    $macImpressora[] =$imp->macImpressora;                   
                     $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
@@ -106,8 +101,7 @@
 				    $idImpressora =$imp->idImpressora;											
 					$numSerie[] =$imp->numSerie;															
 					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora;   
-                    $ipImpressora[] = $imp->ipImpressora;                  
+                    $macImpressora[] =$imp->macImpressora;                   
                     $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
@@ -136,8 +130,7 @@
 				    $idImpressora =$imp->idImpressora;											
 					$numSerie[] =$imp->numSerie;															
 					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora;    
-                    $ipImpressora[] = $imp->ipImpressora;                 
+                    $macImpressora[] =$imp->macImpressora;                   
                     $idSetor =$imp->idSetor; 
 					$setorDAO = new ControleCirDAO();
 					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
@@ -163,21 +156,6 @@
             //NÃO FAZ NADA PAGINA EM BRANCO//
         }
 
-    //echo $numRows; 
-    $numPaginas0 = intdiv($numRows, 8);
-    //echo "<br> => " .  $numPaginas0; 
-    $numPaginas1 = ($numRows%8);
-    //echo "<br> => " .  $numPaginas1; 
-    if ( $numPaginas1 != 0)
-        {
-            $numPaginas =  $numPaginas0 + 1;
-        }
-    else    
-        {
-            $numPaginas =  $numPaginas0;
-        }
-
-    echo "<br> => " .  $numPaginas;   
          
 	$html1 ='<!DOCTYPE html>
                 <html lang="PT-BR">
@@ -316,14 +294,13 @@
                                     </thead>            
                                 </table>
                             </div>                           
-                            <div class="col-md-12 py-5 px-2">'; 
-                        $html2 = '<table class = "tableUfs">  
+                            <div class="col-md-12 py-5 px-2"> 
+                                <table class = "tableUfs">  
                                     <thead>     
                                         <tr>
                                             <th><h6>Número de Série:</h6></th>   
                                             <th><h6>Nome da Impressora:</h6></th>
                                             <th><h6>Nº MAC:</h6></th>                                                  
-                                            <th><h6>Nº IP</h6></th>
                                             <th><h6>Divisão</h6></th>
                                             <th><h6>Setor</h6></th>
                                             <th><h6>Ramal</h6></th>
@@ -333,24 +310,21 @@
                                         </tr>
                                     </thead>    
                                     <tbody>';
-                                        //for ($x=0; $x < $numPaginas ; $x++)
-                                            //{
-                                                for ($i=0; $i < $numRows ; $i++)
-                                                    { 
-                                                    $html2 .=' <tr>																																
-                                                                    <td><h6> ' . $numSerie[$i]. '</h6></td>
-                                                                    <td><h6> ' . $nomeImpressora[$i] . '</h6></td>
-                                                                    <td><h6> ' . $macImpressora[$i] . '</h6></td>
-                                                                    <td><h6> ' . $ipImpressora[$i] . '</h6></td>
-                                                                    <td><h6> ' . $divisao[$i] . '</h6></td>
-                                                                    <td><h6> ' . $nomeLocal[$i] . '</h6></td>
-                                                                    <td><h6> ' . $ramal[$i] . '</h6></td>
-                                                                    <td><h6> ' . $localizacao[$i] . '</h6></td>
-                                                                    <td><h6> ' . $statusImpressora[$i] . '</h6></td>
-                                                                    <td><h6> ' . $modeloImpressora[$i] . '</h6></td>
-                                                                <tr>';
-                                                    }
-                                            //}
+                                        for ($i=0; $i < $numRows ; $i++)
+                                            { 
+                                            $html2 =' <tr>																																
+                                                            <td><h6> ' . $numSerie[$i]. '</h6></td>
+                                                            <td><h6> ' . $nomeImpressora[$i] . '</h6></td>
+                                                            <td><h6> ' . $macImpressora[$i] . '</h6></td>
+                                                            <td><h6> ' . $divisao[$i] . '</h6></td>
+                                                            <td><h6> ' . $nomeLocal[$i] . '</h6></td>
+                                                            <td><h6> ' . $ramal[$i] . '</h6></td>
+                                                            <td><h6> ' . $localizacao[$i] . '</h6></td>
+                                                            <td><h6> ' . $statusImpressora[$i] . '</h6></td>
+                                                            <td><h6> ' . $modeloImpressora[$i] . '</h6></td>
+                                                        <tr>';
+                                                $html1 = $html1.$html2;
+                                            }
                                                 
 
                         $html3 =    '</tbody>        
@@ -369,12 +343,13 @@
             </div> 	
         </body>
     </html>';
+
+	
       
-	//$html = $html1 . $html2 . $html3;
-    //echo $html;
-    //echo "<br>impPagina => " .  $impPagina; 
 	
+
 	
+		
 	
 	//referenciar o DomPDF com namespace
 	use Dompdf\Dompdf;
@@ -385,7 +360,7 @@
 	//Criando a Instancia
 	$dompdf = new DOMPDF();
 	
-    $html=$html1 . $html2 . $html3;
+      $html=$html1.$html3;
 	// Carrega seu HTML
 	$dompdf->load_html('			
 			'. $html .'
@@ -405,5 +380,4 @@
 			"Attachment" => false //Para realizar o download somente alterar para true
 		)
 	);
-
 ?>

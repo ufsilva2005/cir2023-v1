@@ -25,6 +25,10 @@
 	$dataAltCadastro = "0000-00-00";
 	$respAltCadastro = "";
 
+	echo "<br>conexaoImp => " . $conexaoImp;
+	echo "<br>ipImpressora => " . $ipImpressora;
+
+	/*
 	//Informações do Local da Impressora
 	$dadosLocImp = $_POST['localImpressora']; 
 	$nomeDivisao =  $dadosLocImp[0];
@@ -108,5 +112,5 @@
         }
 	
 	
-	header("Location: ../views/impressorasCadastrar.php");    
+	header("Location: ../views/impressorasCadastrar.php");    */
 ?>

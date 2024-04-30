@@ -11,7 +11,8 @@
                                             <th>Divisão</th>
                                             <th>Setor da Máquina</th>
                                             <th>Localização</th>
-                                            <th>Status</th>
+                                            <th>IP</th>
+											<th>Status</th>
                                             <th>OPÇÃO</th> 
                                         </tr>
                                     </thead>  
@@ -49,6 +50,7 @@
 												</td>															
 												<td><?php echo $nomeLocal1?></td>	
 												<td><?php echo $localizacao1?></td>		
+												<td><?php echo $ipImpressora = $imp->ipImpressora?></td>
 												<td><?php echo $statusImpressora = $imp->statusImpressora?></td>
 												<td class='operations'> 
 													<?php                                    

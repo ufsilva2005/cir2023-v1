@@ -1172,6 +1172,30 @@
                     $conn = null;	
                 }
 
+            public function BuscaPorAndar($valorPesquisa)  
+                {
+                    $conn = Database::connect();
+                    $conn->exec('SET CHARACTER SET utf8');
+                                    
+                    $sql = "SELECT * FROM setor s, impressoras i 
+                            WHERE s.localizacao = '$valorPesquisa'
+                            AND i.idSetor = s.idSetor";
+                    try 
+                        {
+                            $listar = $conn->query($sql);
+                            $buscar = $listar->fetchAll(PDO::FETCH_OBJ);
+                            $numRows = $listar->rowCount();
+                        } 
+
+                    catch (PDOException $exc)
+                        {
+                            $buscar = $exc->getTraceAsString();
+                        }
+                    $_SESSION['numRows'] = $numRows;
+                    return $buscar;                        
+                    $conn = null;	
+                }
+
             public function AtivaDesativa($idImpressora,$statusImpressora)
 				{
 					$conn = Database::connect();					

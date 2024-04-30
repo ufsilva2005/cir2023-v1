@@ -7,11 +7,6 @@
     include "../models/class-historico.php";
 
     $idTipoTonerBd = array();
-    //$tipoToner1 = array();
-    //$tipoToner2 = array();
-    //$tipoToner3 = array();
-    //$tipoToner4 = array();
-	
     //pegar ip do modelo e nao o nome
 	
     $aux = 0;
@@ -25,7 +20,7 @@
 	$idHistorico = "";
     //$idImpressora = $_SESSION['idImpressora'];	
 	$nomeImpAlt = $_POST['nomeImpressora'];
-	$numSerieAlt = $_POST['numSerie'];	
+	$numSerieAlt =  converteMaiuscula($_POST['numSerie']);	
     $ipImpressoraAlt = $_POST['ipImpressora'];
     $numMacAlt = converteMaiuscula($_POST['numMac']);  
     $coloridaAlt =  $_POST['colorida'];
@@ -81,7 +76,7 @@
         {
             $nomeImpressora = $nomeImpAlt;  
             $aux++;
-            $hitorico .= 'NOME DA IMPRESSORA ALTERADO DE: '. $nomeImpressoraAnt .' PARA => '. $nomeImpressora . ' \n';
+            $hitorico .= 'NOME DA IMPRESSORA ALTERADO DE: '. $nomeImpressoraAnt .' PARA => '. $nomeImpressora ;
         }
 
     if ($numSerieAlt == "" || $numSerieAlt == $numSerieAnt) 
@@ -92,7 +87,7 @@
         {
             $numSerie = $numSerieAlt;  
             $aux++;
-            $hitorico .= 'Nº DE SÈRIE ALTERADO DE: '. $numSerieAnt .' PARA => '. $numSerie . ' \n';
+            $hitorico .= 'Nº DE SÉRIE ALTERADO DE: '. $numSerieAnt .' PARA => '. $numSerie ;
         }
 
     if ($ipImpressoraAlt == "" || $ipImpressoraAlt == $ipImpressoraAnt)
@@ -103,7 +98,7 @@
         {
             $ipImpressora = $ipImpressoraAlt;  
             $aux++;
-            $hitorico .= 'IP DA IMPRESSORA ALTERADO DE: '. $ipImpressoraAnt .' PARA => '. $ipImpressora . ' \n';
+            $hitorico .= 'IP DA IMPRESSORA ALTERADO DE: '. $ipImpressoraAnt .' PARA => '. $ipImpressora ;
         }
 
     if ($numMacAlt == "" || $numMacAlt == $macImpressoraAnt)
@@ -114,7 +109,7 @@
         {
             $macImpressora = $numMacAlt;  
             $aux++;
-            $hitorico .= 'MAC DA IMPRESSORA ALTERADO DE: '. $macImpressoraAnt .' PARA => '. $macImpressora . ' \n';
+            $hitorico .= 'MAC DA IMPRESSORA ALTERADO DE: '. $macImpressoraAnt .' PARA => '. $macImpressora ;
         }
 
     if ($coloridaAlt == "" || $coloridaAlt == $coloridaAnt)
@@ -135,9 +130,6 @@
                 }
         }
 
-echo "<br>colorida => " . $colorida;
-echo "<br>aux => " . $aux;
-
     if($colorida == "não")
 		{	
 			if ($tipoTonerAlt1 == "" || $tipoTonerAlt1 == $tipoTonerAnt1) 
@@ -148,7 +140,7 @@ echo "<br>aux => " . $aux;
                 {
                     $tipoToner1 = $tipoTonerAlt1; 
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
                 }
 
             $tipoTonerBd[0] = $tipoToner1;   
@@ -166,7 +158,7 @@ echo "<br>aux => " . $aux;
                 {
                     $tipoToner1 = $tipoTonerAlt1; 
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
                 }
             //tonner 2
             if ($tipoTonerAlt2 == "" || $tipoTonerAlt2 == $tipoTonerAnt2) 
@@ -177,7 +169,7 @@ echo "<br>aux => " . $aux;
                 {
                     $tipoToner2 = $tipoTonerAlt2; 
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
                 }
             //tonner 3
             if ($tipoTonerAlt3 == "" || $tipoTonerAlt3 == $tipoTonerAnt3) 
@@ -188,7 +180,7 @@ echo "<br>aux => " . $aux;
                 {
                     $tipoToner3= $tipoTonerAlt3; 
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
                 }
             //tonner 4
             if ($tipoTonerAlt4 == "" || $tipoTonerAlt4 == $tipoTonerAnt4) 
@@ -199,7 +191,7 @@ echo "<br>aux => " . $aux;
                 {
                     $tipoToner4 = $tipoTonerAlt4; 
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . ' \n';
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
                 }
 
             $tipoTonerBd[0] = $tipoToner1;
@@ -218,7 +210,7 @@ echo "<br>aux => " . $aux;
         {
             $statusImpressora = $impStatusAlt;  
             $aux++;
-            $hitorico .= 'STATUS ALTERADO DE: '. $statusImpressoraAnt .' PARA => '. $statusImpressora . ' \n';
+            $hitorico .= 'STATUS ALTERADO DE: '. $statusImpressoraAnt .' PARA => '. $statusImpressora ;
         }
 
       if ($conexaoImpAlt == "" || $conexaoImpAlt == $conexaoImpAnt ) 
@@ -229,7 +221,7 @@ echo "<br>aux => " . $aux;
         {
             $conexaoImp = $conexaoImpAlt;  
             $aux++;
-            $hitorico .= 'TIPO DE CONEXÃO ALTERADA DE: '. $conexaoImpAnt  .' PARA => '. $conexaoImp . ' \n';
+            $hitorico .= 'TIPO DE CONEXÃO ALTERADA DE: '. $conexaoImpAnt  .' PARA => '. $conexaoImp ;
         }
 
     if ($modeloAlt == "" || $modeloAlt == $modeloImpressoraAnt)
@@ -254,7 +246,7 @@ echo "<br>aux => " . $aux;
                 }	
            
             $aux++;
-            $hitorico .= 'MODELO DA IMPRESSORA ALTERADO DE: '. $descModelAnt .' PARA => '. $desModelAlt . ' \n';
+            $hitorico .= 'MODELO DA IMPRESSORA ALTERADO DE: '. $descModelAnt .' PARA => '. $desModelAlt ;
         }
 
     //local
@@ -279,7 +271,7 @@ echo "<br>aux => " . $aux;
                 }	
 
             $auxLocal++;
-            $hitorico .= 'DIVSÃO DA IMPRESSORA ALTERADA DE: '. $descricaoAnt .' PARA => '. $descricaoAlt . ' \n';
+            $hitorico .= 'DIVSÃO DA IMPRESSORA ALTERADA DE: '. $descricaoAnt .' PARA => '. $descricaoAlt ;
         }
        
     if ($localAlt == "" || $localAlt == $localizacaoAnt) 
@@ -290,7 +282,7 @@ echo "<br>aux => " . $aux;
         {
             $localizacaoBd = $localAlt;  
             $auxLocal++;
-            $hitorico .= 'LOCAL ALTERADO DE: '. $localizacaoAnt .' PARA => '. $localizacaoBd . ' \n';
+            $hitorico .= 'LOCAL ALTERADO DE: '. $localizacaoAnt .' PARA => '. $localizacaoBd ;
         }
 
     if ($ramalAlt == "" || $ramalAlt == $ramalAnt) 
@@ -301,7 +293,7 @@ echo "<br>aux => " . $aux;
         {
             $ramalBd = $ramalAlt;  
             $auxLocal++;
-            $hitorico .= 'RAMAL ALTERADO DE: '. $ramalAnt .' PARA => '. $ramalBd . ' \n';
+            $hitorico .= 'RAMAL ALTERADO DE: '. $ramalAnt .' PARA => '. $ramalBd ;
         }
 
     if ($respSetCompAlt == "" || $respSetCompAlt == $respSetCompAnt)
@@ -312,7 +304,7 @@ echo "<br>aux => " . $aux;
         {
             $respSetBd = $respSetCompAlt;  
             $auxLocal++;
-            $hitorico .= 'RESPONSÁVEL PELO SETOR ALTERADO DE: '. $respSetCompAnt .' PARA => '. $respSetBd . ' \n';
+            $hitorico .= 'RESPONSÁVEL PELO SETOR ALTERADO DE: '. $respSetCompAnt .' PARA => '. $respSetBd ;
         }
 
     if ($nomeLocalAlt == "" || $nomeLocalAlt == $nomeLocalAnt)
@@ -323,7 +315,7 @@ echo "<br>aux => " . $aux;
         {
             $nomeLocalBd = $nomeLocalAlt;  
             $auxLocal++;
-            $hitorico .= 'NOME DO LOCAL ALTERADO DE: '. $nomeLocalAnt .' PARA => '. $nomeLocalBd . ' \n';
+            $hitorico .= 'NOME DO LOCAL ALTERADO DE: '. $nomeLocalAnt .' PARA => '. $nomeLocalBd ;
         }
 
     //verificar setor e salvar update  

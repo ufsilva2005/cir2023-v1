@@ -51,10 +51,16 @@
                                                                                 $_SESSION['antNumIp'] = $ipImpressora ?>" disabled>
                             </div>
 
-                            <div class="col px-md-1 col-md-3">
+                            <div class="col px-md-1 col-md-2">
                                 <label for="inputSuccess" class="control-label">MAC:</label>
                                 <input type="text" class="form-control" value="<?= $macImpressora;
                                                                                 $_SESSION['antNumMac'] = $macImpressora ?>" disabled>
+                            </div>
+
+                             <div class="col px-md-1 col-md-2">
+                                <label for="inputSuccess" class="control-label">Colorida:</label>
+                                <input type="text" class="form-control" value="<?= $colorida;
+                                                                                $_SESSION['colorida'] = $colorida ?>" disabled>
                             </div>
                         </div>
 
