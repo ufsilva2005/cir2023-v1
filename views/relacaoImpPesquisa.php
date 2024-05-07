@@ -88,22 +88,10 @@
                             <div class="tab-pane fade" id="pillsUfs-setor" role="tabpanel" aria-labelledby="pillsUfs-setor-tab">
                                 <div class="col px-md-1 col-md-5">
                                     <label for="inputSuccess" class="control-label">Selecione o Setor:</label>
-                                    <select class="form-control" name="setor" >
-                                        <option value=""> </option>
-                                        <?php
-                                            include_once "../dao/DAO-controleCir.php";
-                                            $setorDAO = new ControleCirDAO();
-                                            $nomeTabela = "setor";
-                                            foreach ($setorDAO->ListarTudo($nomeTabela) as $res) 
-                                                {
-                                                    ?>
-                                                        <option value="<?php echo $res->idSetor; ?>"> <?php echo $res->nomeLocal;  $_SESSION['nomeLocal'] = $res->nomeLocal;?> </option>
-                                                    <?php
-                                                }
-                                        ?>
-                                    </select>
+                                    <input type="text" class="form-control" name="setor">
                                 </div>
                             </div>
+                            
                             <div class="tab-pane fade" id="pillsUfs-modelo" role="tabpanel" aria-labelledby="pillsUfs-modelo-tab">
                                 <div class="col px-md-1 col-md-5">
                                     <label for="inputSuccess" class="control-label">Selecione o Modelo:</label>

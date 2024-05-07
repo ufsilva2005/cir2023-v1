@@ -1894,9 +1894,9 @@
                     $conn->exec('SET CHARACTER SET utf8');
                                     
                     $sql = "SELECT * FROM impressoras i, setor s
-                            WHERE s.idSetor = '$valor'
+                            WHERE s.nomeLocal LIKE '$valor%'
                             AND s.idSetor = i.idSetor
-                            ORDER BY idImpressora ASC";
+                            ORDER BY idImpressora ASC";                           
 
                     try 
                         {

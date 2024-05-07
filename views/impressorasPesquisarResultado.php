@@ -31,17 +31,18 @@
                             {
                                 include "../template/exibirPesquisa2.php";
                             }                         
-                        else 
-                            {                                
-                                if($tipoPesquisa == "andarImpressora") 
-                                    {
-                                       include "../template/exibirPesquisa3.php";
-                                    }
-                                else
-                                    {
-                                        include "../template/exibirPesquisa1.php";
-                                    }                                    
+                        elseif($tipoPesquisa == "andarImpressora") 
+                            {
+                               include "../template/exibirPesquisa3.php";
+                            }                       
+                        elseif ($tipoPesquisa == "setor")  
+                            {
+                                include "../template/relatSetorImp.php";
                             }
+                        else 
+                            {
+                                include "../template/exibirPesquisa1.php";
+                            }     
                         ?>
                     </div>
                 </div>

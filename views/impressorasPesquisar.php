@@ -24,7 +24,10 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pillsUfs-divisao-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-divisao" type="button" role="tab" aria-controls="pillsUfs-divisao" aria-selected="false">Divisão</button>
                             </li>
-                             <li class="nav-item" role="presentation">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pillsUfs-setor-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-setor" type="button" role="tab" aria-controls="pillsUfs-setor" aria-selected="false">Setor</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pillsUfs-andar-tab" data-bs-toggle="pill" data-bs-target="#pillsUfs-andar" type="button" role="tab" aria-controls="pillsUfs-andar" aria-selected="false">Andar</button>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -64,6 +67,13 @@
                                         <option>IDT</option>
                                         <option></option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="pillsUfs-setor" role="tabpanel" aria-labelledby="pillsUfs-setor-tab">
+                                <div class="col px-md-1 col-md-5">
+                                    <label for="inputSuccess" class="control-label">Selecione o Setor:</label>
+                                    <input type="text" class="form-control" name="setor">        
                                 </div>
                             </div>
 
