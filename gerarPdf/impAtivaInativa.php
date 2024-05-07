@@ -4,134 +4,23 @@
     include "../funcao/funcao.php";
 
     $auxPaginas = 0;
+    $atiDes = $_SESSION['atiDes']; 
+    if($atiDes == 1)
+        {
+            $valorOpcao	= "ativo";
+        }
+    else
+        {
+            $valorOpcao	= "inativo";
+        }
 
-    //$numSerie = array();
-    //echo "<br>tipoPesquisa => " . $_SESSION['tipoPesquisa'];	
-   
-    if($_SESSION['tipoPesquisa'] == "setor")
-        {
-           $impAltDAO = new ControleCirDAO();
-            foreach($impAltDAO->RelatSetorImp($_SESSION['valorPesquisa']) as$imp)                                             
-                {  
-				    $idImpressora =$imp->idImpressora;											
-					$numSerie[] =$imp->numSerie;															
-					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora;      
-                    $ipImpressora[] = $imp->ipImpressora;             
-                    $idSetor =$imp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusImpressora[] =$imp->statusImpressora;
-                    $idModelo = $imp->modeloImpressora;
-                    $modeloDAO = new ControleCirDAO();
-					foreach($modeloDAO->Buscamod($idModelo) as $mod)
-						{ 	
-							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
-						}		
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "do Setor de " . converteMaiuscula($nomeLocal[0]);
-        }
-    elseif($_SESSION['tipoPesquisa'] == "divisao")
-        {
-           $impAltDAO = new ControleCirDAO();
-            foreach($impAltDAO->RelatDivisaoImp($_SESSION['valorPesquisa']) as$imp)                                             
-                {  
-				    $idImpressora =$imp->idImpressora;											
-					$numSerie[] =$imp->numSerie;															
-					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora; 
-                    $ipImpressora[] = $imp->ipImpressora;                    
-                    $idSetor =$imp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusImpressora[] =$imp->statusImpressora;
-                    $idModelo = $imp->modeloImpressora;
-                    $modeloDAO = new ControleCirDAO();
-					foreach($modeloDAO->Buscamod($idModelo) as $mod)
-						{ 	
-							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
-						}		
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "da Divisão " . converteMaiuscula($divisao[0]);
-        }
-    elseif($_SESSION['tipoPesquisa'] == "andar")
-        {
-           $impAltDAO = new ControleCirDAO();
-            foreach($impAltDAO->RelatAndarImp($_SESSION['valorPesquisa']) as$imp)                                             
-                {  
-				    $idImpressora =$imp->idImpressora;											
-					$numSerie[] =$imp->numSerie;															
-					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora;      
-                    $ipImpressora[] = $imp->ipImpressora;               
-                    $idSetor =$imp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusImpressora[] =$imp->statusImpressora;
-                    $idModelo = $imp->modeloImpressora;
-                    $modeloDAO = new ControleCirDAO();
-					foreach($modeloDAO->Buscamod($idModelo) as $mod)
-						{ 	
-							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
-						}		
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = "do " . $_SESSION['valorPesquisa'];
-        }
-    elseif($_SESSION['tipoPesquisa'] == "modelo")
-        {
-           $impAltDAO = new ControleCirDAO();
-            foreach($impAltDAO->RelatModeloImp($_SESSION['valorPesquisa']) as$imp)                                             
-                {  
-				    $idImpressora =$imp->idImpressora;											
-					$numSerie[] =$imp->numSerie;															
-					$nomeImpressora[] =$imp->nomeImpressora; 
-                    $macImpressora[] =$imp->macImpressora;   
-                    $ipImpressora[] = $imp->ipImpressora;                  
-                    $idSetor =$imp->idSetor; 
-					$setorDAO = new ControleCirDAO();
-					foreach($setorDAO->Buscalocal($idSetor) as $Setor)
-						{ 	
-							$divisao[] = converteMinuscula($Setor->divisao);
-				            $nomeLocal[] = converteMinuscula($Setor->nomeLocal);
-                            $ramal[] = $Setor->ramal;
-							$localizacao[] = $Setor->localizacao;
-						}		
-					$statusImpressora[] =$imp->statusImpressora;
-                    $idModelo = $imp->modeloImpressora;
-                    $modeloDAO = new ControleCirDAO();
-					foreach($modeloDAO->Buscamod($idModelo) as $mod)
-						{ 	
-							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
-						}		
-                }
-            $numRows = $_SESSION['numRows'];
-            $pesquisa = $_SESSION['valorPesquisa'] . "s";
-        }
-    elseif($_SESSION['tipoPesquisa'] == "status")
-        {
-           $impAltDAO = new ControleCirDAO();
-            foreach($impAltDAO->RelatStatusImp($_SESSION['valorPesquisa']) as$imp)                                             
+    //echo  $valorOpcao;
+    $string = substr($valorOpcao, 0, -1);
+    $string = ucwords($string);
+    $pesquisa = $string ."as";
+          
+    $impAltDAO = new ControleCirDAO();
+            foreach($impAltDAO->RelatStatusImp($valorOpcao) as $imp)                                             
                 {  
 				    $idImpressora =$imp->idImpressora;											
 					$numSerie[] =$imp->numSerie;															
@@ -155,29 +44,11 @@
 							$modeloImpressora[] = converteMinuscula($mod->modeloImpressora);
 						}		
                 }
+
             $numRows = $_SESSION['numRows'];
-            $pesquisa = $_SESSION['valorPesquisa'] . "s";
-        }
-    else
-        {
-            //NÃO FAZ NADA PAGINA EM BRANCO//
-        }
+            //echo "<br>" . $pesquisa = $_SESSION['valorPesquisa'] . "s";
 
-    //echo $numRows; 
-    $numPaginas0 = intdiv($numRows, 8);
-    //echo "<br> => " .  $numPaginas0; 
-    $numPaginas1 = ($numRows%8);
-    //echo "<br> => " .  $numPaginas1; 
-    if ( $numPaginas1 != 0)
-        {
-            $numPaginas =  $numPaginas0 + 1;
-        }
-    else    
-        {
-            $numPaginas =  $numPaginas0;
-        }
-
-    echo "<br> => " .  $numPaginas;   
+    
          
 	$html1 ='<!DOCTYPE html>
                 <html lang="PT-BR">
@@ -370,10 +241,6 @@
         </body>
     </html>';
       
-	//$html = $html1 . $html2 . $html3;
-    //echo $html;
-    //echo "<br>impPagina => " .  $impPagina; 
-	
 	
 	
 	//referenciar o DomPDF com namespace
@@ -405,5 +272,4 @@
 			"Attachment" => false //Para realizar o download somente alterar para true
 		)
 	);
-
 ?>
