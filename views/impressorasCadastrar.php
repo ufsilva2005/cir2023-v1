@@ -325,7 +325,7 @@
         function showInput(id) {
             if(id =='conexao2') {
             document.getElementById('numIp').disabled = "disabled";  
-             documentType.hide();
+            documentType.hide();
             }
             if(id =='conexao1') {
                 document.getElementById('numIp').disabled = "";

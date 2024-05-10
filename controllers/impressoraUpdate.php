@@ -29,8 +29,8 @@
     $tipoTonerAlt2 = $_POST['tonner2']; 
     $tipoTonerAlt3 = $_POST['tonner3']; 
     $tipoTonerAlt4 = $_POST['tonner4'];    
-    $impStatusAlt =  $_POST['status'];
-    $conexaoImpAlt =  $_POST['conexaoImp'];
+    $impStatusAlt = $_POST['status'];
+    $conexaoImpAlt = $_POST['conexaoImp'];
     $modeloAlt = $_POST['modelo'];   
     $divisaoAlt = $_POST['divisao'];
     $localAlt = $_POST['local'];
@@ -64,7 +64,7 @@
     $respCadastro = $_SESSION['respCadastro'];
     $dateAltCadastro = $_SESSION['data'];
     $funcionarioAltCadastro = $_SESSION['nomeFuncionario'];
-    $hitorico = $ObsImpAlt . " - ";    
+    $hitorico = $ObsImpAlt . " - ";     
     
     //verificando quais valores que nao foram alterados/ou estao em branco
     //impressora
@@ -318,6 +318,11 @@
             $hitorico .= 'NOME DO LOCAL ALTERADO DE: '. $nomeLocalAnt .' PARA => '. $nomeLocalBd ;
         }
 
+    if ($conexaoImpAlt == "Usb")
+        {
+            $ipImpressora = NULL;
+        }
+
     //verificar setor e salvar update  
     $divisao2DAO = new ControleCirDAO();   
     $nomeTabela = "divisao";
@@ -398,7 +403,6 @@
             //echo "<br>dados  Historico<br>";		
             //$historicoBd->exibir();
             //echo "<br>"; 
-
             $historicoDAO = new ControleCirDAO();
             $historicoDAO->HitoricoCadastrar($historicoBd);
 
