@@ -14,8 +14,6 @@
     $hitorico = "";
     $idSetor = 0;
 
-    //echo "<br>teste 0 => " . $aux . " - " . $auxLocal; 
-
     //recebendo os novos valores da view sobre a impressora 
 	$idHistorico = "";
     //$idImpressora = $_SESSION['idImpressora'];	
@@ -64,8 +62,9 @@
     $respCadastro = $_SESSION['respCadastro'];
     $dateAltCadastro = $_SESSION['data'];
     $funcionarioAltCadastro = $_SESSION['nomeFuncionario'];
-    $hitorico = $ObsImpAlt . " - ";     
-    
+    $hitorico = $ObsImpAlt . " - ";      
+    echo "<br> tipoTonerAnt1 => " .  $tipoTonerAnt1;
+    print_r( $_SESSION['antToner1']);
     //verificando quais valores que nao foram alterados/ou estao em branco
     //impressora
     if ($nomeImpAlt == "" || $nomeImpAlt == $nomeImpressoraAnt) 
@@ -129,7 +128,7 @@
                     $hitorico .= 'TIPO DE IMPRESSORA ALTERADO DE COLORIDA PARA NÃO COLORIDA \n';
                 }
         }
-
+   
     if($colorida == "não")
 		{	
 			if ($tipoTonerAlt1 == "" || $tipoTonerAlt1 == $tipoTonerAnt1) 
@@ -139,8 +138,24 @@
             else
                 {
                     $tipoToner1 = $tipoTonerAlt1; 
+
+                    echo "<br>tipoTonerAlt1 => " . $tipoTonerAlt1 . " tipoTonerAnt1 => " . $tipoTonerAnt1;
+
+                    $nomeTabela = "material";
+                    $tipoOpcao = "idMaterial";
+                    $tonerDAO = new ControleCirDAO(); 
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                        {
+                            $descTonnerAnt1 = $res->descricao;
+                        }
+                    $toner1DAO = new ControleCirDAO();   
+                    foreach ($toner1DAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAlt1) as $res)
+                        {
+                            $desTonnerAlt1 = $res->descricao;
+                        }	
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 . "  " ;
+                    echo "<br>hitorico 0 => " . $hitorico;
                 }
 
             $tipoTonerBd[0] = $tipoToner1;   
@@ -157,6 +172,19 @@
             else
                 {
                     $tipoToner1 = $tipoTonerAlt1; 
+                    echo "<br>tipoTonerAlt 1 0  => " . $tipoTonerAlt1;
+                    $nomeTabela = "material";
+                    $tipoOpcao = "idMaterial";
+                    $tonerDAO = new ControleCirDAO(); 
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                        {
+                            $descTonnerAnt1 = $res->descricao;
+                        }
+                    $toner1DAO = new ControleCirDAO();   
+                    foreach ($toner1DAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAlt1) as $res)
+                        {
+                            $desTonnerAlt1 = $res->descricao;
+                        }	
                     $aux++;
                     $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
                 }
@@ -168,8 +196,20 @@
             else
                 {
                     $tipoToner2 = $tipoTonerAlt2; 
+                    $nomeTabela = "material";
+                    $tipoOpcao = "idMaterial";
+                    $tonerDAO = new ControleCirDAO(); 
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                        {
+                            $descTonnerAnt1 = $res->descricao;
+                        }
+                    $toner1DAO = new ControleCirDAO();   
+                    foreach ($toner1DAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAlt1) as $res)
+                        {
+                            $desTonnerAlt1 = $res->descricao;
+                        }	
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt2 .' PARA => '. $desTonnerAlt2 ;
                 }
             //tonner 3
             if ($tipoTonerAlt3 == "" || $tipoTonerAlt3 == $tipoTonerAnt3) 
@@ -179,8 +219,20 @@
             else
                 {
                     $tipoToner3= $tipoTonerAlt3; 
+                    $nomeTabela = "material";
+                    $tipoOpcao = "idMaterial";
+                    $tonerDAO = new ControleCirDAO(); 
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                        {
+                            $descTonnerAnt1 = $res->descricao;
+                        }
+                    $toner1DAO = new ControleCirDAO();   
+                    foreach ($toner1DAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAlt1) as $res)
+                        {
+                            $desTonnerAlt1 = $res->descricao;
+                        }	
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt3 .' PARA => '. $desTonnerAlt3;
                 }
             //tonner 4
             if ($tipoTonerAlt4 == "" || $tipoTonerAlt4 == $tipoTonerAnt4) 
@@ -190,8 +242,20 @@
             else
                 {
                     $tipoToner4 = $tipoTonerAlt4; 
+                    $nomeTabela = "material";
+                    $tipoOpcao = "idMaterial";
+                    $tonerDAO = new ControleCirDAO(); 
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                        {
+                            $descTonnerAnt1 = $res->descricao;
+                        }
+                    $toner1DAO = new ControleCirDAO();   
+                    foreach ($toner1DAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAlt1) as $res)
+                        {
+                            $desTonnerAlt1 = $res->descricao;
+                        }	
                     $aux++;
-                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt1 .' PARA => '. $desTonnerAlt1 ;
+                    $hitorico .= 'TIPO DE TONNER ALTERADO DE: '. $descTonnerAnt4 .' PARA => '. $desTonnerAlt4;
                 }
 
             $tipoTonerBd[0] = $tipoToner1;
@@ -201,7 +265,7 @@
 
             $tipoTonerBd = serialize($tipoTonerBd);
 		}    
-    
+       
     if ($impStatusAlt == "" || $impStatusAlt == $statusImpressoraAnt) 
         {
             $statusImpressora = $statusImpressoraAnt;
@@ -248,7 +312,7 @@
             $aux++;
             $hitorico .= 'MODELO DA IMPRESSORA ALTERADO DE: '. $descModelAnt .' PARA => '. $desModelAlt ;
         }
-
+  
     //local
     if ($divisaoAlt == "" || $divisaoAlt == $divisaoAnt)
         {
@@ -273,7 +337,7 @@
             $auxLocal++;
             $hitorico .= 'DIVSÃO DA IMPRESSORA ALTERADA DE: '. $descricaoAnt .' PARA => '. $descricaoAlt ;
         }
-       
+      
     if ($localAlt == "" || $localAlt == $localizacaoAnt) 
         {
             $localizacaoBd = $localizacaoAnt;
@@ -323,6 +387,14 @@
             $ipImpressora = NULL;
         }
 
+ echo "<br>hitorico 1 => " . $hitorico;
+ echo "<br>tipoTonerAlt 1 => " . $tipoTonerAlt1;
+ echo "<br>tipoTonerAlt 2 => " . $tipoTonerAlt2;
+ echo "<br>tipoTonerAlt 3 => " . $tipoTonerAlt3;
+ echo "<br>tipoTonerAlt 4 => " . $tipoTonerAlt4;
+ echo "<br> => " . print_r($$tipoTonerBd);
+
+  /*
     //verificar setor e salvar update  
     $divisao2DAO = new ControleCirDAO();   
     $nomeTabela = "divisao";
@@ -413,5 +485,5 @@
         {
             echo "<script type='text/javascript'>alert('nenhum valor(es)  alterado(s), portanto nada a ser salvo');</script>";
             echo "<script>location = '../views/impressorasListar.php';</script>";   
-        }
+        }*/
 ?>
