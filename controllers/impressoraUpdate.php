@@ -199,7 +199,7 @@
                     $nomeTabela = "material";
                     $tipoOpcao = "idMaterial";
                     $tonerDAO = new ControleCirDAO(); 
-                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt2) as $res)
                         {
                             $descTonnerAnt1 = $res->descricao;
                         }
@@ -222,7 +222,7 @@
                     $nomeTabela = "material";
                     $tipoOpcao = "idMaterial";
                     $tonerDAO = new ControleCirDAO(); 
-                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt3) as $res)
                         {
                             $descTonnerAnt1 = $res->descricao;
                         }
@@ -245,7 +245,7 @@
                     $nomeTabela = "material";
                     $tipoOpcao = "idMaterial";
                     $tonerDAO = new ControleCirDAO(); 
-                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt1) as $res)
+                    foreach ($tonerDAO->ListarOpcao($nomeTabela, $tipoOpcao, $tipoTonerAnt4) as $res)
                         {
                             $descTonnerAnt1 = $res->descricao;
                         }
