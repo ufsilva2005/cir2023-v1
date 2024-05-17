@@ -1547,7 +1547,7 @@
                     $conn->exec('SET CHARACTER SET utf8');
                                     
                     $sql = "SELECT * FROM material 
-                            WHERE descricao LIKE 'tonner%'
+                            WHERE descricao LIKE 'toner%'
                             OR descricao LIKE 'CARTUCHO DE TINTA%' 
                             OR descricao LIKE 'pulseira%'
                             AND  statusMat = 'ativo'

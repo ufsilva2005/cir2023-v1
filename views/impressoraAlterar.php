@@ -135,19 +135,13 @@ require_once '../controllers/impressoraBuscar.php';
                                     <option value=""> </option>
                                     <?php
                                         include_once "../dao/DAO-controleCir.php";
-                                        $tonnerDAO = new ControleCirDAO();
-                                        $nomeTabela = "material";
-                                        $tipoOpcao = "descricao";
-                                        $status = "statusMat";
-                                        $valorStatus = "ativo";
-                                            $valorOpcao = "TONNER";
-                                            $valorOpcao2 = "CARTUCHO DE TINTA";
-                                            foreach ($tonnerDAO->ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus) as $res) 
-                                                {
-                                                    ?>
-                                                        <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
-                                                    <?php
-                                                }
+                                        $tonnerDAO = new ControleCirDAO();                                               
+                                        foreach ($tonnerDAO->ListarTonner() as $res) 
+                                            {
+                                                ?>
+                                                    <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
+                                                <?php
+                                            }
                                     ?>
                                 </select>
                             </div>
@@ -159,14 +153,8 @@ require_once '../controllers/impressoraBuscar.php';
                                     <option value=""> </option>
                                     <?php
                                         include_once "../dao/DAO-controleCir.php";
-                                        $tonnerDAO = new ControleCirDAO();
-                                        $nomeTabela = "material";
-                                        $tipoOpcao = "descricao";
-                                        $status = "statusMat";
-                                        $valorStatus = "ativo";
-                                        $valorOpcao = "TONNER";
-                                        $valorOpcao2 = "CARTUCHO DE TINTA";
-                                        foreach ($tonnerDAO->ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus) as $res) 
+                                        $tonnerDAO = new ControleCirDAO();                                               
+                                        foreach ($tonnerDAO->ListarTonner() as $res) 
                                             {
                                                 ?>
                                                     <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
@@ -183,14 +171,8 @@ require_once '../controllers/impressoraBuscar.php';
                                     <option value=""> </option>
                                     <?php
                                         include_once "../dao/DAO-controleCir.php";
-                                        $tonnerDAO = new ControleCirDAO();
-                                        $nomeTabela = "material";
-                                        $tipoOpcao = "descricao";
-                                        $status = "statusMat";
-                                        $valorStatus = "ativo";
-                                        $valorOpcao = "TONNER";
-                                        $valorOpcao2 = "CARTUCHO DE TINTA";
-                                        foreach ($tonnerDAO->ListarOpcaoAtivo2($nomeTabela, $tipoOpcao, $valorOpcao, $valorOpcao2, $status, $valorStatus) as $res) 
+                                        $tonnerDAO = new ControleCirDAO();                                               
+                                        foreach ($tonnerDAO->ListarTonner() as $res) 
                                             {
                                                 ?>
                                                     <option value="<?php echo $res->idMaterial; ?>"> <?php echo $res->descricao; ?> </option>
