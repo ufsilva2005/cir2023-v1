@@ -12,7 +12,29 @@
     include "../scripts/validarMacImp.php";
     include "../scripts/mascara.php";
 ?>
-<script type="text/javascript" src="../javaScripts/typeahead.js"></script>
+
+    <script src="../js/jquery.min.3-1.js"></script>
+    <script src="../js/bootstrap3-typeahead.min.js"></script>  
+    <script src="../js/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#local_busca').keyup(function() {
+                var divisao = document.getElementById("divisao").value;
+                var nome = document.getElementById("local_busca").value;
+                $.ajax({
+                    type: 'POST',
+                    url: '../scripts/buscaLocal.php',
+                    data: {
+                        nome, divisao
+                    },
+                    success: function(data) {
+                        $('#listarLocal').html(data);
+                    }
+                });
+            });
+
+        });
+    </script>
 
         <hr>
         <nav class="navbar navbar-dark">
@@ -239,12 +261,24 @@
                                         <label for="inputSuccess" class="control-label">Responsável pelo Setor:</label>
                                         <input type="text" class="form-control" name="localImpressora[]">
                                     </div>
+                                </div>
 
-                                    <div class="col px-md-1  col-md-12">
-                                        <label for="inputSuccess" class="control-label">Local da Impressora:</label>
-                                        <input type="text" class="form-control" name="nomLocImpressora" id="nomLocImpressora" class="typeahead" />
+                                 <p id="demo"></p>
+
+                                <div class="row">
+                                    <div class="col px-md-1  col-md-4">
+                                        <label for="inputSuccess" class="control-label">Pesquisar Local:</label>
+                                        <input type="text" class="form-control" id="local_busca" name="local_busca">               
                                     </div>
 
+                                    <div class="col px-md-1  col-md-8">
+                                        <label for="inputSuccess" class="control-label">Local da Impressora:</label>
+                                        <!--input type="text" class="form-control" name="nomLocImpressora" id="nomLocImpressora" class="typeahead" /-->
+                                        <select class="form-control" name="nomLocImpressora" id="listarLocal" onclick="if( $('#listarLocal').html() == '' ){ alert('Local Não encontrado.\n Comunique ao Administrador do Sistema.');}" required></select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
                                     <div class="col px-md-1  col-md-12">
                                         <label for="inputSuccess" class="control-label">Observação:</label>
                                         <input type="text" class="form-control" name="localImpressora[]">

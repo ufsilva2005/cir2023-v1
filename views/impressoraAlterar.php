@@ -220,28 +220,6 @@ require_once '../controllers/impressoraBuscar.php';
                             </div>                            
                         </div>
 
-                       <div class="row">                        
-                            <div class="col px-md-1 col-md-12">
-                                <label for="inputSuccess" class="control-label">TONERS:</label>
-                                <?php
-                                    $t = sizeof($tipoToner);
-                                    $nomeTabela = "material";
-                                    $tipoOpcao = "idMaterial";                                 
-                                    for ($i = 0; $i < $t; $i++) 
-                                        {
-                                            $id = $tipoToner[$i];
-                                            $tipoTonerBdDAO = new ControleCirDAO();
-                                            foreach ($tipoTonerBdDAO->ListarOpcao($nomeTabela, $tipoOpcao, $id)as $resp)
-                                                { 
-                                                    $x = $i + 1;
-                                                    $tp[$x] = $resp->descricao;  
-                                                    $idTp[$x] = $resp->idMaterial;  
-                                                } 
-                                        }       
-                                ?> 
-                            </div>
-                        </div>
-
                         <hr>
 
                         <div class="row">
