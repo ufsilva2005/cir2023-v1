@@ -22,6 +22,7 @@
 						<table class="table table-striped table-bordered table-condensed">
 							<thead>
 								<tr>
+									<th>ID</th>
 									<th>Modelo</th>
 									<th>Número Série</th>
 									<th>Divisão</th>
@@ -44,7 +45,12 @@
 											<tr>
 												<td>
 													<?php  
-														$idImpressora = $imp->idImpressora;
+														echo $idImpressora = $imp->idImpressora;
+													?>
+												</td>
+												<td>
+													<?php  
+														//echo $idImpressora = $imp->idImpressora;
 														$modelo1 = $imp->modeloImpressora;
 														$modeloDAO = new ControleCirDAO();
 														foreach($modeloDAO->BuscaModelo($modelo1, $idImpressora) as $resp)
