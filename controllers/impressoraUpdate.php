@@ -34,7 +34,7 @@
     $localAlt = $_POST['local'];
     $ramalAlt = $_POST['ramal'];
     $respSetCompAlt = $_POST['respSetComp'];
-    $nomeLocalAlt = converteMaiuscula($_POST['nomeLocal']);
+    $nomeLocalAlt = converteMaiuscula($_POST['nomLocImpressora']);
     $ObsImpAlt = converteMaiuscula($_POST['ObsImp']);    
         
     //recebendo os valores antigos do impressora
@@ -62,8 +62,11 @@
     $respCadastro = $_SESSION['respCadastro'];
     $dateAltCadastro = $_SESSION['data'];
     $funcionarioAltCadastro = $_SESSION['nomeFuncionario'];
-    $hitorico = $ObsImpAlt ." - ";      
+    $hitorico = $ObsImpAlt ." - ";    
+    
+    echo "<br>" . $divisaoAlt . " - " . $nomeLocalAnt . " - " .  $nomeLocalAlt;
   
+    
     //verificando quais valores que nao foram alterados/ou estao em branco
     //impressora
     if ($nomeImpAlt == "" || $nomeImpAlt == $nomeImpressoraAnt) 
@@ -405,7 +408,10 @@
         { 
             $idSetor = $local->idSetor;				          
         }
-    
+
+ echo "<br>" . $descricaoAnt . " - " .  $idSetor;
+
+    /*
     if( $aux != 0 || $auxLocal != 0)
         {
             if($auxLocal != 0)
@@ -481,5 +487,5 @@
         {
             echo "<script type='text/javascript'>alert('nenhum valor(es)  alterado(s), portanto nada a ser salvo');</script>";
             echo "<script>location = '../views/impressorasListar.php';</script>";   
-        }
+        }*/
 ?>

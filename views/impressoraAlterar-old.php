@@ -314,18 +314,19 @@ require_once '../controllers/impressoraBuscar.php';
                              <div class="col px-md-1 col-md-4">
                                 <label for="inputSuccess" class="control-label">Local atual da Máquina: </label>
                                 <input type="text" class="form-control" value="<?= $nomeLocal1;
-                                                                                $_SESSION['antNomeLocal'] = $nomeLocal1 ?>" />
+                                                                                $_SESSION['antNomeLocal'] = $nomeLocal1 ?>" name="nomeLocal" id="nomeLocal" class="typeahead" />
                             </div>
 
                             <div class="col px-md-1  col-md-4">
-                                <label for="inputSuccess" class="control-label">Pesquisar Local:</label>
-                                <input type="text" class="form-control" id="local_busca" name="local_busca">               
+                                        <label for="inputSuccess" class="control-label">Pesquisar Local:</label>
+                                        <input type="text" class="form-control" id="local_busca" name="local_busca">               
                             </div>                           
 
                              <div class="col px-md-1  col-md-4">
-                                <label for="inputSuccess" class="control-label">Local Novo da Impressora:</label>
-                                <select class="form-control" name="nomLocImpressora" id="listarLocal" onclick="if( $('#listarLocal').html() == '' ){ alert('Local Não encontrado.\n Comunique ao Administrador do Sistema.');}" ></select>
-                            </div>
+                                        <label for="inputSuccess" class="control-label">Local Novo da Impressora:</label>
+                                        <!--input type="text" class="form-control" name="nomLocImpressora" id="nomLocImpressora" class="typeahead" /-->
+                                        <select class="form-control" name="nomLocImpressora" id="listarLocal" onclick="if( $('#listarLocal').html() == '' ){ alert('Local Não encontrado.\n Comunique ao Administrador do Sistema.');}" required></select>
+                                    </div>
                         </div>
 
                         <div class="row">
