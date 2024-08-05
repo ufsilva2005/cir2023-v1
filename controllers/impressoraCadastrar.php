@@ -25,92 +25,46 @@
 	$dataAltCadastro = "0000-00-00";
 	$respAltCadastro = "";
 
-	echo "<br>conexaoImp => " . $conexaoImp;
-	echo "<br>ipImpressora => " . $ipImpressora;
+	//echo "<br>conexaoImp => " . $conexaoImp;
+	//echo "<br>ipImpressora => " . $ipImpressora;
 
-	/*
+	
 	//Informações do Local da Impressora
 	$dadosLocImp = $_POST['localImpressora']; 
 	$nomeDivisao =  $dadosLocImp[0];
 	$localizacao =  $dadosLocImp[1];
 	$ramal =  $dadosLocImp[2];
 	$respSetor =  converteMaiuscula($dadosLocImp[3]);
-	$nomeLocal = converteMaiuscula($_POST['nomLocImpressora']);
+	$idSetor = $_POST['nomLocImpressora'];
 	$obsImpressora =  $dadosLocImp[4];
 
 	if($colorida == "não")
 		{	
 			$idTipoTonerBd = serialize($tipoToner1);
+			//echo "<br>tipo toner => ";
 			//print_r ($idTipoTonerBd);
 		}
 
 	else
 		{
 			$idTipoTonerBd = serialize(array_merge($tipoToner1,$tipoToner2,$tipoToner3,$tipoToner4));
+			//echo "<br>tipo toner => ";
 			//print_r ($idTipoTonerBd);
 		}
 	
-	//verificar se local existe
-	$setorExisteDAO = new ControleCirDAO();
-	foreach ($setorExisteDAO->VerificarSetor($nomeDivisao,$localizacao,$nomeLocal) as $local)
-		{ 
-			$verificaSetor = $local->idSetor;				          
-		}
-	  	
-	//echo "<br>verificaSetor => " . $verificaSetor;
 
-	if ($verificaSetor != "")
-        {
-            $idSetor = $verificaSetor;
-			//echo "<br>idSetor => " . $idSetor . "<br>";
+	
+    //$idSetor = $verificaSetor;
+	//echo "<br>idSetor => " . $idSetor . "<br>";
             
-            $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $idTipoTonerBd, 
-			$colorida, $statusImpressora, $conexaoImp, $modeloImpressora, $dataCadastro, $_SESSION['nomeFuncionario'], $dataAltCadastro, 
-			$respAltCadastro, $obsImpressora, $idFuncionario, $idSetor);
-			//echo "<br>dados impressora <br>";		
-			//$impressora->exibir();
-			//echo "<br>";
-			$impressoraDAO = new ControleCirDAO();
-			$impressoraDAO->CadastrarImpre($impressora);
-			
-        }
-
-	else
-        {
-            $nomeTabela = "divisao"; 
-			$opcao1 = "divisao"; 
-			$valor1 = $nomeDivisao; 
-			$divisaoDAO = new ControleCirDAO();
-			foreach ($divisaoDAO->Verificar($nomeTabela, $opcao1, $valor1) as $divisao)
-				{ 
-					$idDivisao = $divisao->idDivisao;				          
-				}	
-
-			//echo "<br>verificaDivisao => " . $idDivisao . "<br>";
-
-			$local1 = new Setor($idSetor, $idDivisao, $localizacao, $ramal, $respSetor, $nomeLocal);	
-			//echo "<br>";				
-			//$local1->exibir();
-			//echo "<br>";		
-			$local = new ControleCirDAO();	
-			$local->CadastrarSetor($local1);
-
-			$idSetor = $_SESSION['localid'];
-			//echo "<br>idSetor => " . $idSetor; 
-			//echo "<br>nomeFuncionario => " . $_SESSION['nomeFuncionario'];
-
-			
-            $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $idTipoTonerBd, 
-			$colorida, $statusImpressora, $conexaoImp, $modeloImpressora, $dataCadastro, $_SESSION['nomeFuncionario'], $dataAltCadastro, 
-			$respAltCadastro, $obsImpressora, $idFuncionario, $idSetor);
-			//echo "<br>";		
-			//$impressora->exibir();
-			//echo "<br>";		
-			$impressoraDAO = new ControleCirDAO();
-			$impressoraDAO->CadastrarImpre($impressora);
-			
-        }
+    $impressora = new Impressora($idImpressora, $nomeImpressora,  $numSerie, $ipImpressora, $macImpressora, $idTipoTonerBd, 
+	$colorida, $statusImpressora, $conexaoImp, $modeloImpressora, $dataCadastro, $_SESSION['nomeFuncionario'], $dataAltCadastro, 
+	$respAltCadastro, $obsImpressora, $idFuncionario, $idSetor);
+	//echo "<br>dados impressora <br>";		
+	//$impressora->exibir();
+	//echo "<br>";
+	$impressoraDAO = new ControleCirDAO();
+	$impressoraDAO->CadastrarImpre($impressora);
 	
-	
-	header("Location: ../views/impressorasCadastrar.php");    */
+	header("Location: ../views/impressorasCadastrar.php");    
 ?>
