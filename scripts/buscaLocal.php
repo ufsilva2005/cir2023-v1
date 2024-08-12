@@ -18,7 +18,7 @@
 
     /*$query = "SELECT * FROM setor WHERE nomeLocal LIKE '%$nome%' ORDER BY nomeLocal ASC";*/
     $query = "SELECT * FROM setor s, divisao d
-                WHERE d.divisao = '$divisao'
+                WHERE d.idDivisao = '$divisao'
                 AND d.idDivisao = s.idDivisao
                 AND s.nomeLocal LIKE '%$nome%' 
                 ORDER BY s.nomeLocal ASC";
