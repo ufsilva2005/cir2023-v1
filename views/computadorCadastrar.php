@@ -184,24 +184,15 @@
                                         <input type="text" class="form-control" name="localComputador[]" pattern="[0-9]{4}+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000" maxlength="4">
                                     </div>              
                                    
-                                    <div class="col px-md-1 col-md-2">
+                                    <div class="col px-md-1 col-md-6">
                                         <label for="inputSuccess" class="control-label">Unidade do CH:</label>
                                         <select class="form-control" id="pac1" name = "localComputador[]" onblur ="soma();" required>
                                             <option> </option>
-                                            <option value = "HU">HUCFF</option>
-                                            <option value = "IPPMG">IPPMG</option>
-                                            <option value = "ME">ME (Maternidade Escola)</option>
+                                            <option value = "HU">HUCFF - Hospital Universitário Clementino Fraga Filho</option>
+                                            <option value = "IPPMG">IPPMG - Instituto de Puericultura e Pediatria Martagão Gesteira</option>
+                                            <option value = "ME">ME - Maternidade Escola da UFRJ</option>
                                         </select>
-                                    </div>
-
-                                     <div class="col px-md-1 col-md-2">
-                                        <label for="inputSuccess" class="control-label">Tipo de Equipamento:</label>
-                                        <select class="form-control"  name = "dadosComputador[]"  id="pac2"  onblur ="soma();" required>
-                                            <option> </option>
-                                            <option value = "WK">DESKTOP</option>
-                                            <option value = "NT">NOTEBOOK</option>
-                                        </select>
-                                    </div>
+                                    </div>                                     
                                 </div>
                                         
                                 <p id="demo"></p>
@@ -240,12 +231,21 @@
                                 </div>	
                                             
                                 <div class="row">
-                                    <div class="col px-md-1 col-md-3">
-                                        <label for="inputSuccess" class="control-label" >Número da Cir:</label>
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label" >Número:</label>
                                         <input type="text" class="form-control" name = "numCir"  id="pac3"  onblur ="soma();" value = "<?php echo $numCir; ?>" id = "numCir" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" required >
                                     </div>  
+
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">Tipo de Equipamento:</label>
+                                        <select class="form-control"  name = "dadosComputador[]"  id="pac2"  onblur ="soma();" required>
+                                            <option> </option>
+                                            <option value = "WK">DESKTOP</option>
+                                            <option value = "NT">NOTEBOOK</option>
+                                        </select>
+                                    </div>
                                                     
-                                    <div class="col px-md-1 col-md-3">
+                                    <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Patrimônio Reitoria:</label>
                                         <input type="text" class="form-control" name="dadosComputador[]" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" >
                                     </div>
