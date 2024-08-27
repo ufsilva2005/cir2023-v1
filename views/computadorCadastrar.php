@@ -67,6 +67,20 @@
         });
     </script> 
 
+<script type="text/javascript">
+    function soma()
+		{
+			var total = "";
+			var n1 = (document.getElementById("pac1")).value;
+				total +=n1+"-";
+            var n2 = (document.getElementById("pac2")).value;
+				total +=n2+"-";
+            var n3 = (document.getElementById("pac3")).value;
+				total +=n3;						
+			document.getElementById("total").innerHTML = total;										
+		}
+</script>
+
         <hr>
         <nav class="navbar navbar-dark">
             <div class="line col-md-12 p-5 position-absolute start-5 top-0 bottom-50 end-250">
@@ -131,7 +145,7 @@
                                    
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Unidade do CH:</label>
-                                        <select class="form-control"  name = "localComputador[]" required>
+                                        <select class="form-control" id="pac1" name = "localComputador[]" onblur ="soma();" required>
                                             <option> </option>
                                             <option value = "HU">HUCFF</option>
                                             <option value = "IPPMG">IPPMG</option>
@@ -141,7 +155,7 @@
 
                                      <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Tipo de Equipamento:</label>
-                                        <select class="form-control"  name = "dadosComputador[]" required>
+                                        <select class="form-control"  name = "dadosComputador[]"  id="pac2"  onblur ="soma();" required>
                                             <option> </option>
                                             <option value = "WK">DESKTOP</option>
                                             <option value = "NT">NOTEBOOK</option>
@@ -187,7 +201,7 @@
                                 <div class="row">
                                     <div class="col px-md-1 col-md-3">
                                         <label for="inputSuccess" class="control-label" >Número da Cir:</label>
-                                        <input type="text" class="form-control" name = "numCir" value = "<?php echo $numCir; ?>" id = "numCir" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" required >
+                                        <input type="text" class="form-control" name = "numCir"  id="pac3"  onblur ="soma();" value = "<?php echo $numCir; ?>" id = "numCir" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" required >
                                     </div>  
                                                     
                                     <div class="col px-md-1 col-md-3">
@@ -202,7 +216,7 @@
 
                                     <div class="col px-md-1 col-md-3">
                                         <label for="inputSuccess" class="control-label">Nome do Computador:</label>
-                                        <input type="text" class="form-control" id = "nomeCir" name = "nomeCir" required >
+                                        <input type="text" class="form-control" id = "nomeCir"  name = "nomeCir" required > <span id="total"></span>
                                     </div>												                                      
                                 </div>		
                                                 
