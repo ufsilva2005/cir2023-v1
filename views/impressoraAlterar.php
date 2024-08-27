@@ -255,22 +255,18 @@ require_once '../controllers/impressoraBuscar.php';
                                     <option value="<?php echo $idDivisao1;
                                                     $_SESSION['antDivisao'] = $idDivisao1; ?>"> <?php echo $divisao1; ?></option>
                                     <option> </option>
+                                    <?php
+                                            include_once "../dao/DAO-controleCir.php";
+                                            $divisaoDAO = new ControleCirDAO();
+                                            $nomeTabela = "divisao";
+                                            foreach ($divisaoDAO->ListarTudo($nomeTabela) as $res) {
+                                            ?>
+                                                <option value="<?php echo $res->idDivisao; ?>"> <?php echo $res->divisao; ?></option>
+                                            <?php
+                                            }
+                                            ?>
                                     
-                                            <option> </option>
-                                            <option>CAE</option>
-                                            <option>CIR</option>
-                                            <option>DAA</option>
-                                            <option>DAG</option>
-                                            <option>DEG</option>
-                                            <option>DEN</option>
-                                            <option>DFN</option>
-                                            <option>DRH</option>
-                                            <option>DG</option>
-                                            <option>DMD</option>
-                                            <option>DSC</option>
-                                            <option>FM</option>
-                                            <option>IDT</option>
-                                            <option></option>
+                                           
                                 </select>
                             </div>
 

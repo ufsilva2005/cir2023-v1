@@ -127,11 +127,25 @@
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Ramal:</label>
                                         <input type="text" class="form-control" name="localComputador[]" pattern="[0-9]{4}+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000" maxlength="4">
+                                    </div>              
+                                   
+                                    <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">Unidade do CH:</label>
+                                        <select class="form-control"  name = "localComputador[]" required>
+                                            <option> </option>
+                                            <option value = "HU">HUCFF</option>
+                                            <option value = "IPPMG">IPPMG</option>
+                                            <option value = "ME">ME (Maternidade Escola)</option>
+                                        </select>
                                     </div>
-                                                                    
-                                    <div class="col px-md-1 col-md-6">
-                                        <label for="inputSuccess" class="control-label">Responsável pelo Setor:</label>
-                                        <input type="text" class="form-control" name="localComputador[]">
+
+                                     <div class="col px-md-1 col-md-2">
+                                        <label for="inputSuccess" class="control-label">Tipo de Equipamento:</label>
+                                        <select class="form-control"  name = "dadosComputador[]" required>
+                                            <option> </option>
+                                            <option value = "WK">DESKTOP</option>
+                                            <option value = "NT">NOTEBOOK</option>
+                                        </select>
                                     </div>
                                 </div>
                                         
@@ -144,14 +158,19 @@
                                     </div>
 
                                     <div class="col px-md-1  col-md-8">
-                                        <label for="inputSuccess" class="control-label">Local da Impressora:</label>
+                                        <label for="inputSuccess" class="control-label">Local do Computador:</label>
                                         <!--input type="text" class="form-control" name="nomLocImpressora" id="nomLocImpressora" class="typeahead" /-->
                                         <select class="form-control" name="localComputador1" id="listarLocal" onclick="if( $('#listarLocal').html() == '' ){ alert('Local Não encontrado.\n Comunique ao Administrador do Sistema.');}" required></select>
                                     </div>
                                 </div>
 
-                                <div class="row">                                                
-                                    <div class="col px-md-1 col-md-12">
+                                <div class="row">  
+                                    <div class="col px-md-1 col-md-6">
+                                        <label for="inputSuccess" class="control-label">Responsável pelo Setor:</label>
+                                        <input type="text" class="form-control" name="localComputador[]">
+                                    </div>
+
+                                    <div class="col px-md-1 col-md-6">
                                         <label for="inputSuccess" class="control-label">Observação:</label>
                                         <input type="text" class="form-control" name="dadosComputador[]">
                                     </div>

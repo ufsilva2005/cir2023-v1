@@ -64,8 +64,58 @@
     $funcionarioAltCadastro = $_SESSION['nomeFuncionario'];
     $hitorico = $ObsImpAlt ." - ";    
     
-    echo "<br>" . $divisaoAlt . " - " . $nomeLocalAnt . " - " .  $nomeLocalAlt;
+    echo "<br><= dados novos =><br>";
+
+    //teste de exibir
+    echo "<br>idHistorico => " . $idHistorico;	
+	echo "<br>nomeImpAlt => " . $nomeImpAlt;
+	echo "<br>numSerieAlt => " . $numSerieAlt;    
+    echo "<br>ipImpressoraAlt => " . $ipImpressoraAlt;   
+    echo "<br>numMacAlt => " . $numMacAlt;
+    echo "<br>colorida => " . $coloridaAlt;
+    echo "<br>toner 1 => " . $tipoTonerAlt1; 
+    echo "<br>toner 2 =>" . $tipoTonerAlt2;
+    echo "<br>toner 3 => " . $tipoTonerAlt3;
+    echo "<br>toner 4 => " . $tipoTonerAlt4;    
+    echo "<br>status => " . $impStatusAlt; 
+    echo "<br>conexao => " . $conexaoImpAlt; 
+    echo "<br>modelo => " . $modeloAlt;
+    echo "<br>divisao => " . $divisaoAlt; 
+    echo "<br>local => " . $localAlt; 
+    echo "<br>ramal => " . $ramalAlt; 
+    echo "<br>responsavel => " . $respSetCompAlt;
+    echo "<br>nome local => " . $nomeLocalAlt;
+    echo "<br>obs 1 => " . $ObsImpAlt;
+        
+    echo "<br><= dados antigos =><br>";
+    //recebendo os valores antigos do impressora
+    echo "<br>id => " . $idImpressora;
+    echo "<br>nome => " . $nomeImpressoraAnt;
+    echo "<br>n° serie => " . $numSerieAnt;
+    echo "<br>ip => " . $ipImpressoraAnt;
+    echo "<br>mac => " . $macImpressoraAnt;
+    echo "<br>colorida => " . $coloridaAnt;
+    echo "<br>toner 1 => " . $tipoTonerAnt1;
+    echo "<br>toner 2 => " . $tipoTonerAnt2;
+    echo "<br>toner 3 => " . $tipoTonerAnt3;
+    echo "<br>toner 4 => " . $tipoTonerAnt4;
+    echo "<br>status => " . $statusImpressoraAnt;
+    echo "<br>conexao => " . $conexaoImpAnt;
+    echo "<br>modelo => " . $modeloImpressoraAnt;
+    echo "<br>divisao => " . $divisaoAnt;
+    echo "<br>local => " . $localizacaoAnt;
+    echo "<br>ramal => " . $ramalAnt;
+    echo "<br>responsavel => " . $respSetCompAnt;
+    echo "<br>nome local => " . $nomeLocalAnt;
+    echo "<br>obs 2 => " . $obsImpressoraAnt;
+    echo "<br>data cadastro => " . $dataCadastroA;
+    echo "<br>funcionario 1 => " . $respCadastro;
+    echo "<br>data altera => " . $dateAltCadastro;
+    echo "<br>funcionario => " . $funcionarioAltCadastro;
+    echo "<br>historio => " . $hitorico = $ObsImpAlt;
+    //fim teste
   
+    /*
     
     //verificando quais valores que nao foram alterados/ou estao em branco
     //impressora
@@ -383,7 +433,7 @@
     if ($conexaoImpAlt == "Usb")
         {
             $ipImpressora = NULL;
-        }
+        }*/
 
  /*echo "<br>hitorico 1 => " . $hitorico;
  echo "<br>tipoTonerAlt 1 => " . $tipoTonerAlt1;
@@ -393,7 +443,7 @@
  echo "<br>";
  print_r($tipoTonerBd);*/
 
-  
+  /*
     //verificar setor e salvar update  
     $divisao2DAO = new ControleCirDAO();   
     $nomeTabela = "divisao";
@@ -409,7 +459,7 @@
             $idSetor = $local->idSetor;				          
         }
 
- echo "<br>" . $descricaoAnt . " - " .  $idSetor;
+ echo "<br>Teste 2 => " . $descricaoAnt . " - " .  $idSetor;*/
 
     /*
     if( $aux != 0 || $auxLocal != 0)
