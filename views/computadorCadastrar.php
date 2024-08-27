@@ -67,19 +67,60 @@
         });
     </script> 
 
-<script type="text/javascript">
-    function soma()
-		{
-			var total = "";
-			var n1 = (document.getElementById("pac1")).value;
-				total +=n1+"-";
-            var n2 = (document.getElementById("pac2")).value;
-				total +=n2+"-";
-            var n3 = (document.getElementById("pac3")).value;
-				total +=n3;						
-			document.getElementById("total").innerHTML = total;										
-		}
-</script>
+    <script type="text/javascript">
+        function soma()
+            {
+                var total = "";
+                var n1,n2,n3,n4,n5
+
+                n1 = (document.getElementById("pac1")).value;
+                    total +=n1+"-";
+                n2 = (document.getElementById("pac2")).value;
+                    total +=n2+"-";
+                n3 = (document.getElementById("pac3")).value;
+                        
+                
+                n4 = 6 - n3.length;
+                //document.getElementById("total1").innerHTML = n4;	
+                if(n4 == 5) 
+                    {
+                        n5 = "00000";
+                        n3 = n5 + n3;
+                    }
+
+                if(n4 == 4) 
+                    {
+                        n5 = "0000";
+                        n3 = n5 + n3;
+                    }
+
+                if(n4 == 3) 
+                    {
+                        n5 = "0000";
+                        n3 = n5 + n3;
+                    }
+
+
+                if(n4 == 2) 
+                    {
+                        n5 = "00";
+                        n3 = n5 + n3;
+                    }
+
+                if(n4 == 1)
+                    {
+                        n5 = "0";
+                        n3 = n5 + n3;
+                    }
+
+                //document.getElementById("total2").innerHTML = n5;
+                total +=n3;						
+                //document.getElementById("total").innerHTML = total;	
+
+                const nomeCir = document.getElementById("nomeCir");
+                nomeCir.value = total;
+            }
+    </script>
 
         <hr>
         <nav class="navbar navbar-dark">
@@ -216,8 +257,8 @@
 
                                     <div class="col px-md-1 col-md-3">
                                         <label for="inputSuccess" class="control-label">Nome do Computador:</label>
-                                        <input type="text" class="form-control" id = "nomeCir"  name = "nomeCir" required > <span id="total"></span>
-                                    </div>												                                      
+                                        <input type="text" class="form-control" id = "nomeCir"  name = "nomeCir" value = "" readonly >  
+                                    </div>	
                                 </div>		
                                                 
                                 <div class="row">
