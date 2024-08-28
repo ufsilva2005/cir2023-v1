@@ -188,9 +188,9 @@
                                         <label for="inputSuccess" class="control-label">Unidade do CH:</label>
                                         <select class="form-control" id="pac1" name = "localComputador[]" onblur ="soma();" required>
                                             <option> </option>
-                                            <option value = "HU">HUCFF - Hospital Universitário Clementino Fraga Filho</option>
+                                            <option value = "HUCFF">HUCFF - Hospital Universitário Clementino Fraga Filho</option>
                                             <option value = "IPPMG">IPPMG - Instituto de Puericultura e Pediatria Martagão Gesteira</option>
-                                            <option value = "ME">ME - Maternidade Escola da UFRJ</option>
+                                            <option value = "MERJ">ME - Maternidade Escola da UFRJ</option>
                                         </select>
                                     </div>                                     
                                 </div>
