@@ -67,61 +67,6 @@
         });
     </script> 
 
-    <script type="text/javascript">
-        function soma()
-            {
-                var total = "";
-                var n1,n2,n3,n4,n5
-
-                n1 = (document.getElementById("pac1")).value;
-                    total +=n1+"-";
-                n2 = (document.getElementById("pac2")).value;
-                    total +=n2+"-";
-                n3 = (document.getElementById("pac3")).value;
-                        
-                
-                n4 = 6 - n3.length;
-                //document.getElementById("total1").innerHTML = n4;	
-                if(n4 == 5) 
-                    {
-                        n5 = "00000";
-                        n3 = n5 + n3;
-                    }
-
-                if(n4 == 4) 
-                    {
-                        n5 = "0000";
-                        n3 = n5 + n3;
-                    }
-
-                if(n4 == 3) 
-                    {
-                        n5 = "0000";
-                        n3 = n5 + n3;
-                    }
-
-
-                if(n4 == 2) 
-                    {
-                        n5 = "00";
-                        n3 = n5 + n3;
-                    }
-
-                if(n4 == 1)
-                    {
-                        n5 = "0";
-                        n3 = n5 + n3;
-                    }
-
-                //document.getElementById("total2").innerHTML = n5;
-                total +=n3;						
-                //document.getElementById("total").innerHTML = total;	
-
-                const nomeCir = document.getElementById("nomeCir");
-                nomeCir.value = total;
-            }
-    </script>
-
         <hr>
         <nav class="navbar navbar-dark">
             <div class="line col-md-12 p-5 position-absolute start-5 top-0 bottom-50 end-250">
@@ -154,20 +99,6 @@
                                             <option>DSC</option>
                                             <option>FM</option>
                                             <option>IDT</option>
-                                            <option>DGC</option>
-                                            <option>DENF1</option>
-                                            <option>DENF2</option>
-                                            <option>DENF3</option>
-                                            <option>DADT</option>
-                                            <option>DCDT1</option>
-                                            <option>DCDT2</option>
-                                            <option>DAF</option>
-                                            <option>DLIH</option>
-                                            <option>DIVGP</option>
-                                            <option>SUPEP</option>
-                                            <option>SUPEX1</option>
-                                            <option>SUPEX2</option>
-                                            <option>SUPEX3</option>
                                             <option></option>
                                         </select>
                                     </div>
@@ -196,17 +127,12 @@
                                     <div class="col px-md-1 col-md-2">
                                         <label for="inputSuccess" class="control-label">Ramal:</label>
                                         <input type="text" class="form-control" name="localComputador[]" pattern="[0-9]{4}+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000" maxlength="4">
-                                    </div>              
-                                   
+                                    </div>
+                                                                    
                                     <div class="col px-md-1 col-md-6">
-                                        <label for="inputSuccess" class="control-label">Unidade do CH:</label>
-                                        <select class="form-control" id="pac1" name = "localComputador[]" onblur ="soma();" required>
-                                            <option> </option>
-                                            <option value = "HUCFF">HUCFF - Hospital Universitário Clementino Fraga Filho</option>
-                                            <option value = "IPPMG">IPPMG - Instituto de Puericultura e Pediatria Martagão Gesteira</option>
-                                            <option value = "MERJ">ME - Maternidade Escola da UFRJ</option>
-                                        </select>
-                                    </div>                                     
+                                        <label for="inputSuccess" class="control-label">Responsável pelo Setor:</label>
+                                        <input type="text" class="form-control" name="localComputador[]">
+                                    </div>
                                 </div>
                                         
                                 <p id="demo"></p>
@@ -218,19 +144,14 @@
                                     </div>
 
                                     <div class="col px-md-1  col-md-8">
-                                        <label for="inputSuccess" class="control-label">Local do Computador:</label>
+                                        <label for="inputSuccess" class="control-label">Local da Impressora:</label>
                                         <!--input type="text" class="form-control" name="nomLocImpressora" id="nomLocImpressora" class="typeahead" /-->
                                         <select class="form-control" name="localComputador1" id="listarLocal" onclick="if( $('#listarLocal').html() == '' ){ alert('Local Não encontrado.\n Comunique ao Administrador do Sistema.');}" required></select>
                                     </div>
                                 </div>
 
-                                <div class="row">  
-                                    <div class="col px-md-1 col-md-6">
-                                        <label for="inputSuccess" class="control-label">Responsável pelo Setor:</label>
-                                        <input type="text" class="form-control" name="localComputador[]">
-                                    </div>
-
-                                    <div class="col px-md-1 col-md-6">
+                                <div class="row">                                                
+                                    <div class="col px-md-1 col-md-12">
                                         <label for="inputSuccess" class="control-label">Observação:</label>
                                         <input type="text" class="form-control" name="dadosComputador[]">
                                     </div>
@@ -245,21 +166,12 @@
                                 </div>	
                                             
                                 <div class="row">
-                                    <div class="col px-md-1 col-md-2">
-                                        <label for="inputSuccess" class="control-label" >Número:</label>
-                                        <input type="text" class="form-control" name = "numCir"  id="pac3"  onblur ="soma();" value = "<?php echo $numCir; ?>" id = "numCir" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" required >
+                                    <div class="col px-md-1 col-md-3">
+                                        <label for="inputSuccess" class="control-label" >Número da Cir:</label>
+                                        <input type="text" class="form-control" name = "numCir" value = "<?php echo $numCir; ?>" id = "numCir" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" required >
                                     </div>  
-
-                                    <div class="col px-md-1 col-md-2">
-                                        <label for="inputSuccess" class="control-label">Tipo de Equipamento:</label>
-                                        <select class="form-control"  name = "dadosComputador[]"  id="pac2"  onblur ="soma();" required>
-                                            <option> </option>
-                                            <option value = "WK">DESKTOP</option>
-                                            <option value = "NT">NOTEBOOK</option>
-                                        </select>
-                                    </div>
                                                     
-                                    <div class="col px-md-1 col-md-2">
+                                    <div class="col px-md-1 col-md-3">
                                         <label for="inputSuccess" class="control-label">Patrimônio Reitoria:</label>
                                         <input type="text" class="form-control" name="dadosComputador[]" pattern="[0-9]+$" oninvalid="setCustomValidity('Somente Numeros!')" onchange="try{setCustomValidity('')}catch(e){}" placeholder="0000000000" >
                                     </div>
@@ -271,8 +183,8 @@
 
                                     <div class="col px-md-1 col-md-3">
                                         <label for="inputSuccess" class="control-label">Nome do Computador:</label>
-                                        <input type="text" class="form-control" id = "nomeCir"  name = "nomeCir" value = "" readonly >  
-                                    </div>	
+                                        <input type="text" class="form-control" id = "nomeCir" name = "nomeCir" required >
+                                    </div>												                                      
                                 </div>		
                                                 
                                 <div class="row">
